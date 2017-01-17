@@ -4,25 +4,29 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent }  from './app.component';
-import { AddUserComponent } from './add-user.component';
 import { LoginComponent } from './login.component';
 import { VaktlisteAdminComponent } from './vaktliste-admin.component'
+import { UserFormComponent } from './user-form.component';
+import {UserService} from "./user.service";
+import {InputFieldComponent} from "./input-field.component";
 
 @NgModule({
   imports:      [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpModule
+    HttpModule,
+
 
   ],
   declarations: [
     AppComponent,
-    AddUserComponent,
     LoginComponent,
-    VaktlisteAdminComponent
+    VaktlisteAdminComponent,
+    UserFormComponent,
+    InputFieldComponent
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap:    [ AppComponent ]
 })
 export class AppModule { }
