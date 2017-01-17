@@ -5,8 +5,6 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent }  from './app.component';
 import { AddUserComponent } from './add-user.component';
-import { LoginComponent } from './login.component';
-import { VaktlisteAdminComponent } from './vaktliste-admin.component'
 
 @NgModule({
   imports:      [
@@ -19,10 +17,8 @@ import { VaktlisteAdminComponent } from './vaktliste-admin.component'
   declarations: [
     AppComponent,
     AddUserComponent,
-    LoginComponent,
-    VaktlisteAdminComponent
   ],
   providers: [],
   bootstrap:    [ AppComponent ]
 })
-export class AppModule { }
+export class AppFalkModule { }

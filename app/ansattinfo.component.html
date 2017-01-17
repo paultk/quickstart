@@ -1,0 +1,86 @@
+<div>
+  <!--
+  <div class="header">
+    <div class="header-text">MinVakt</div>
+    <div class="name">Trym Todalshaug</div>
+  </div>
+  -->
+  <div class="menu">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a href="#">MinVakt</a>
+      </div>
+      <div>
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <a href="#">
+              <span class="glyphicon glyphicon-bell"></span>
+            Varsler</a>
+          </li>
+          <li>
+            <a href="#">
+              <span class="glyphicon glyphicon-user"></span>
+            Profil</a>
+          </li>
+          <li>
+            <a href="#">
+              <span class="glyphicon glyphicon-question-sign"></span>
+            Hjelp</a>
+          </li>
+          <li>
+            <a href="#">
+              <span class="glyphicon glyphicon-log-out"></span>
+            Logg ut</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="navigation pull-left">
+    <div class="container-fluid">
+      <ul class="nav side-menu">
+        <li>
+          <a href="#">
+            <span class="glyphicon"></span>
+            Vaktliste</a>
+        </li>
+        <li>
+          <a href="#">
+            <span class="glyphicon"></span>
+            Brukerinfo</a>
+        </li>
+        <li>
+          <a href="#">
+            <span class="glyphicon"></span>
+            Tilgjengelighet</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="content">
+    <form>
+      <input type="text" name="search" placeholder="Søk">
+      <button class="search-button">Søk</button>
+      <br>
+      <a href="#">
+        <span class="glyphicon glyphicon-plus"></span>
+      Ny bruker</a>
+    </form>
+    <table class="ansatte">
+      <tr>
+        <th>Navn</th>
+        <th>Stilling</th>
+        <th>Stillingsprosent</th>
+        <th>Telefonnummer</th>
+        <th>Epost</th>
+      </tr>
+      <tr *ngFor="let ansatt of ansatte">
+        <td>{{ansatt.navn}}</td>
+        <td>{{ansatt.stilling}}</td>
+        <td>{{ansatt.stillingspros}}</td>
+        <td>{{ansatt.tlf}}</td>
+        <td>{{ansatt.epost}}</td>
+      </tr>
+    </table>
+  </div>
+</div>
