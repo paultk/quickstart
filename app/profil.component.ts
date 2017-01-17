@@ -1,5 +1,5 @@
 /**
- * Created by Trym Todalshaug on 12/01/2017.
+ * Created by Trym Todalshaug on 16/01/2017.
  */
 
 import {Component, OnInit} from "@angular/core";
@@ -9,16 +9,16 @@ import {UserService} from './user.service';
 
 @Component({
   moduleId: module.id,
-  selector: 'my-ansattinfo',
-  templateUrl: 'ansattinfo.component.html',
-  styleUrls: ['ansattinfo.component.css']
+  selector: 'my-profil',
+  templateUrl: 'profil.component.html',
+  styleUrls: ['profil.component.css']
 })
 
-export class AnsattinfoComponent implements OnInit{
+export class ProfilComponent implements OnInit {
   users: User[];
   selectedUser: User;
 
-  constructor (
+  constructor(
     private userService: UserService,
   ) {}
 
@@ -27,6 +27,6 @@ export class AnsattinfoComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.userService.getUsers();
+    this.getUsers();
   }
 }

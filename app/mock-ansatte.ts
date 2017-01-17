@@ -2,9 +2,9 @@
  * Created by Trym Todalshaug on 12/01/2017.
  */
 
-import {Ansatt} from './ansatt'
+import {User} from './ansatt'
 
-export const ANSATTE: Ansatt[] = [
+export const ANSATTE: User[] = [
   {id: 1, navn: 'Mr. Nice', stilling: 'sykepleier', stillingspros: '100%', tlf: 41333183, epost: 'mrnice@minvakt.no'},
   {id: 2, navn: 'Narco', stilling: 'sykepleier', stillingspros: '50%', tlf: 41345183, epost: 'narco@minvakt.no'},
   {id: 3, navn: 'Bombasto', stilling: 'helsefagarbeider', stillingspros: '70%', tlf: 48583183, epost: 'bombasto@minvakt.no'},

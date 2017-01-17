@@ -1,32 +1,15 @@
 <div class="container">
-  <div  [hidden]="submitted">
+  <div [hidden]="submitted">
     <h1>Legg til bruker</h1>
     <form (ngSubmit)="onSubmit()" #heroForm="ngForm">
 
-<!--
-      <div class="form-group">
-        <label for="fornavn">Fornavn</label>
-        <input type="text" class="form-control" id="fornavn"
-               required
-               [(ngModel)]="model.fornavn" name="name"
-               #name="ngModel" >
-        <div [hidden]="name.valid || name.pristine"
-             class="alert alert-danger">
-          Name is required
-        </div>
-      </div>-->
-
-      <!--
-      nordic characters:
-
-      -->
-      <input-field  [field] = '"Fornavn"' [(fieldValue)]="model.fornavn"></input-field>
-      <input-field  [field] = '"Etternavn"' [(fieldValue)]="model.etternavn"></input-field>
-      <input-field  [field] = '"Epost"' [(fieldValue)]="model.epost"></input-field>
-      <input-field  [field] = '"Fodselsdato"' [(fieldValue)]="model.fodselsdato"></input-field>
-      <input-field  [field] = '"Adresse"' [(fieldValue)]="model.adresse"></input-field>
-      <input-field  [field] = '"By"' [(fieldValue)]="model.by"></input-field>
-      <input-field  [field] = '"Timelønn"' [(fieldValue)]="model.timelonn"></input-field>
+      <input-field [field]='"Fornavn"' [(fieldValue)]="model.fornavn"></input-field>
+      <input-field [field]='"Etternavn"' [(fieldValue)]="model.etternavn"></input-field>
+      <input-field [field]='"Epost"' [(fieldValue)]="model.epost"></input-field>
+      <input-field [field]='"Fodselsdato"' [(fieldValue)]="model.fodselsdato"></input-field>
+      <input-field [field]='"Adresse"' [(fieldValue)]="model.adresse"></input-field>
+      <input-field [field]='"By"' [(fieldValue)]="model.by"></input-field>
+      <input-field [field]='"Timelønn"' [(fieldValue)]="model.timelonn"></input-field>
       <!--<input-field  [field] = '' [(fieldValue)]="model.stillingsId"></input-field>-->
       <!--<input-field  [field] = 'model.fornavn' [(fieldValue)]="model.avdelingId"></input-field>-->
       <!--<input-field  [field] = 'model.fornavn' [(fieldValue)]="model.stillingsprosent"></input-field>-->
@@ -36,152 +19,10 @@
       <!--todo: fix inputfields that shouldnt be regular input-->
       <!--todo: fix fix nordic characters-->
 
-      <!--<div class="form-group">
-        <label for="etternavn">Etternavn</label>
-        <input type="text" class="form-control" id="etternavn"
-               required
-               [(ngModel)]="model.etternavn" name="name"
-               #name="ngModel" >
-        <div [hidden]="name.valid || name.pristine"
-             class="alert alert-danger">
-          Name is required
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="email">Epost</label>
-        <input type="text" class="form-control" id="email"
-               required
-               [(ngModel)]="model.email" name="name"
-               #name="ngModel" >
-        <div [hidden]="name.valid || name.pristine"
-             class="alert alert-danger">
-          Name is required
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="telefonNr">Telefon</label>
-        <input type="text" class="form-control" id="telefonNr"
-               required
-               [(ngModel)]="model.telefonNr" name="name"
-               #name="ngModel" >
-        <div [hidden]="name.valid || name.pristine"
-             class="alert alert-danger">
-          Name is required
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label for="fodselsdato">Fødselsdato</label>
-        <input type="date" class="form-control" id="fodselsdato"
-               required
-               [(ngModel)]="model.fodselsdato" name="fodselsdato"
-               #name="ngModel" >
-        <div [hidden]="name.valid || name.pristine"
-             class="alert alert-danger">
-          Name is required
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="adresse">Adresse</label>
-        <input type="text" class="form-control" id="adresse"
-               required
-               [(ngModel)]="model.adresse" name="name"
-               #name="ngModel" >
-        <div [hidden]="name.valid || name.pristine"
-             class="alert alert-danger">
-          Felt må utfylles
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="by">By</label>
-        <input type="text" class="form-control" id="by"
-               required
-               [(ngModel)]="model.by" name="name"
-               #name="ngModel" >
-        <div [hidden]="name.valid || name.pristine"
-             class="alert alert-danger">
-          Name is required
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="postkode">Postkode</label>
-        <input type="text" class="form-control" id="postkode"
-               required
-               [(ngModel)]="model.postkode" name="name"
-               #name="ngModel" >
-        <div [hidden]="name.valid || name.pristine"
-             class="alert alert-danger">
-          Felt må utfylles
-        </div>
-      </div>
-
-
-      <div class="form-group">
-        <label for="stillingsId">Stilling</label>
-        <select class="form-control" id="stillingsId"
-                required
-                [(ngModel)]="model.stillingsId" name="stillingsId"
-                #power="ngModel" >
-          <option *ngFor="let stillingsId of stillinger" [value]="stillingsId">{{stillingsId}}</option>
-        </select>
-        <div [hidden]="power.valid || power.pristine" class="alert alert-danger">
-          Felt må utfylles
-        </div>
-
-        <div class="form-group">
-          <label for="stillingsprosent">Stillingsprosent</label>
-          <select class="form-control" id="stillingsprosent"
-                  required
-                  [(ngModel)]="model.stillingsprosent" name="stillingsprosent"
-                  #power="ngModel" >
-            <option *ngFor="let stillingsProsent of stillingsProsent" [value]="stillingsProsent">{{stillingsProsent}} Prosent</option>
-            &lt;!&ndash;todo: fix stillingsprosent&ndash;&gt;
-          </select>
-          <div [hidden]="power.valid || power.pristine" class="alert alert-danger">
-            Felt må utfylles
-          </div>-->
-
-
-
-          <!--<div class="form-group">
-            <label for="alterEgo">Alter Ego</label>
-            <input type="text" class="form-control" id="alterEgo"
-                   [(ngModel)]="model.email" name="alterEgo" >
-          </div>
-          <div class="form-group">
-            <label for="power">Hero Power</label>
-            <select class="form-control" id="power"
-                    required
-                    [(ngModel)]="model.adresse" name="power"
-                    #power="ngModel" >
-              <option *ngFor="let pow of powers" [value]="pow">{{pow}}</option>
-            </select>
-            <div [hidden]="power.valid || power.pristine" class="alert alert-danger">
-              Power is required
-            </div>
-          </div>-->
-          <button type="submit" class="btn btn-default" [disabled]="!heroForm.form.valid">Submit</button>
-          <!--<button type="button" class="btn btn-default" (click)="newHero(); heroForm.reset()">New Hero</button>-->
-      <!--</div>-->
-      <!--</div>-->
+      <!--
+      &lt;!&ndash;todo: fix stillingsprosent&ndash;&gt;
+      -->
+      <button type="submit" class="btn btn-default" [disabled]="!heroForm.form.valid">Submit</button>
     </form>
-    <!--<button (click)="testConnect4()">test connect</button>-->
   </div>
-  <!--<div [hidden]="!submitted">
-    <h2>You submitted the following:</h2>
-    <div class="row">
-      <div class="col-xs-3">Name</div>
-      <div class="col-xs-9  pull-left">{{ model.email }}</div>
-    </div>
-    <div class="row">
-      <div class="col-xs-3">Alter Ego</div>
-      <div class="col-xs-9 pull-left">{{ model.adresse }}</div>
-    </div>
-    <div class="row">
-      <div class="col-xs-3">Power</div>
-      <div class="col-xs-9 pull-left">{{ model.id }}</div>
-    </div>
-    <br>
-    <button class="btn btn-default" (click)="submitted=false">Edit</button>
-  </div>-->
 </div>

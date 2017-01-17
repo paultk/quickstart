@@ -4,6 +4,7 @@ import {User} from "./user";
 
 import 'rxjs/add/operator/toPromise';
 import {JsonTestClass} from "./json-test-class";
+import {ANSATTE} from './mock-ansatte';
 
 @Injectable()
 export class UserService {
@@ -45,6 +46,13 @@ export class UserService {
       .catch(this.handleError);
   }
 
+  getUsers(): Promise<User[]> {
+    return Promise.resolve(ANSATTE);
+  }
 
+  getUser(id: number): Promise<User> {
+    return this.getUsers()
+      .then(users => users.find(user => user.id === id));
+  }
 
 }
