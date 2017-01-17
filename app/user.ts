@@ -13,6 +13,6 @@ export class User {
     public avdelingId?: number,
     public timelonn?: number,
     public admin?: boolean,
-    public passord?: string,
+    public passord?: string
   ){}
 }

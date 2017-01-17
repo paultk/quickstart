@@ -4,11 +4,21 @@
     <form (ngSubmit)="onSubmit()" #heroForm="ngForm">
 
       <input-field [field]='"Fornavn"' [(fieldValue)]="model.fornavn"></input-field>
-      <input-field [field]='"Etternavn"' [(fieldValue)]="model.etternavn"></input-field>
-      <input-field [field]='"Epost"' [(fieldValue)]="model.epost"></input-field>
+      <input-field [field] ='"Etternavn"' [(fieldValue)]="model.etternavn"></input-field>
       <input-field [field]='"Fodselsdato"' [(fieldValue)]="model.fodselsdato"></input-field>
+
+      <input-field [field]='"Epost"' [(fieldValue)]="model.epost"></input-field>
       <input-field [field]='"Adresse"' [(fieldValue)]="model.adresse"></input-field>
       <input-field [field]='"By"' [(fieldValue)]="model.by"></input-field>
+      <input-field [field]='"Poststed"' [(fieldValue)]="model.poststed"></input-field>
+
+      <input-field>
+        <label for="stillingsId">Stilling</label>
+        <select class="form-control" id="stillingsId" required>
+          <option *ngFor="let stil of stillinger" [value]="stil">{{stil}}</option>
+        </select>
+      </input-field>
+
       <input-field [field]='"Timelønn"' [(fieldValue)]="model.timelonn"></input-field>
       <!--<input-field  [field] = '' [(fieldValue)]="model.stillingsId"></input-field>-->
       <!--<input-field  [field] = 'model.fornavn' [(fieldValue)]="model.avdelingId"></input-field>-->
@@ -22,7 +32,7 @@
       <!--
       &lt;!&ndash;todo: fix stillingsprosent&ndash;&gt;
       -->
-      <button type="submit" class="btn btn-default" [disabled]="!heroForm.form.valid">Submit</button>
+      <button type="submit" class="btn btn-default" [disabled]="!heroForm.form.valid">Lagre bruker</button>
     </form>
   </div>
 </div>

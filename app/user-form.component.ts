@@ -19,11 +19,10 @@ export class UserFormComponent {
   stillingsProsent = ['25', '50',
     '75', '100'];
 
-  stillinger = ['helsefagArbeider', 'helsesøster'];
-  //todo: fix stillinger
+  stillinger = ['Helsefagarbeider', 'Sykepleier', 'Assistent'];
 
 
-  model = new User('periphone@gmai;.cm', 32, 'paul', 'korsvold', "1993-2-2", 99110488, 'prinsens gate', 'Trondheim',  1, 25, 1, 3000, true, 'myPassword');
+  model = new User('periphone@gmai;.cm', 32, 'paul', 'korsvold', "1993-2-2", 99110488, 'prinsens gate', 'Trondheim',  3, 25, 1, 3000, true, 'myPassword');
   submitted = false;
 
   jsonTest= new JsonTestClass('dsffsd');
