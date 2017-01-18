@@ -10,7 +10,7 @@
         <label for="fodselsdato">Fødselsdato</label><br>
         <input type="date" id="fodselsdato"
                required
-               [(ngModel)]="model.fodselsdato"  name="fodselsdato">
+               [(ngModel)]="model.fodselsdato"  name="fodselsdato" value="date">
         </div>
 
       <input-field [field]='"Telefonnummer"' [(fieldValue)]="model.telefonNr"></input-field>
@@ -62,7 +62,9 @@
 
       <input-field [field]='"Passord"' [(fieldValue)]="model.passord"></input-field>
 
-      <button type="submit" class="btn btn-default" [disabled]="!heroForm.form.valid">Lagre bruker</button>
+      <button type="submit" (click)="printFunksjon()" class="btn btn-default" [disabled]="!heroForm.form.valid">Lagre bruker</button>
+
+
     </form>
   </div>
 </div>

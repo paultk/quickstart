@@ -51,6 +51,10 @@ export class UserFormComponent {
 
   }
 
+  printFunksjon(): void{
+    console.log(this.model);
+  }
+
   newHero() {
     // this.model = new User('ptkm' );
   }
