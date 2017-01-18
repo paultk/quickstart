@@ -9,12 +9,12 @@ import {UserService} from './user.service';
 
 @Component({
   moduleId: module.id,
-  selector: 'my-ansattinfo',
-  templateUrl: 'ansattinfo.component.html',
-  styleUrls: ['ansattinfo.component.css']
+  selector: 'my-userinfo',
+  templateUrl: 'userinfo.component.html',
+  styleUrls: ['userinfo.component.css']
 })
 
-export class AnsattinfoComponent implements OnInit{
+export class UserinfoComponent implements OnInit{
   users: User[];
   selectedUser: User;
 
@@ -27,6 +27,6 @@ export class AnsattinfoComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.userService.getUsers();
+    this.getUsers();
   }
 }

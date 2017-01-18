@@ -1,17 +1,20 @@
-import { Component } from '@angular/core';
-import { User }    from './user';
-import { UserService } from './user.service'
+import {Component} from '@angular/core';
+
+import {User}    from './user';
+import {UserService} from './user.service'
 import {JsonTestClass} from "./json-test-class";
+
 @Component({
   moduleId: module.id,
   selector: 'user-form',
-  templateUrl: 'user-form.component.html'
+  templateUrl: 'user-form.component.html',
+  styleUrls: ['user-form.component.css']
 })
+
 export class UserFormComponent {
 
-  constructor(
-    private userService: UserService
-  ){}
+  constructor(private userService: UserService) {
+  }
 
   field2: string = 'field2';
   fieldValue2: string = 'fieldValue';
@@ -22,7 +25,7 @@ export class UserFormComponent {
   stillinger = ['Helsefagarbeider', 'Sykepleier', 'Assistent'];
 
 
-  model = new User('periphone@gmai;.cm', 32, 'paul', 'korsvold', "1993-2-2", 99110488, 'prinsens gate', 'Trondheim',  3, 25, 1, 3000, true, 'myPassword');
+  model = new User('periphone@gmai.com', 32, 'paul', 'korsvold', "1993-2-2", 99110488, 'prinsens gate', 'Trondheim', 1, 25, 1, 3000, true, 'myPassword');
   submitted = false;
 
   jsonTest= new JsonTestClass('dsffsd');
@@ -46,6 +49,7 @@ export class UserFormComponent {
 
 
   }
+
   newHero() {
     // this.model = new User('ptkm' );
   }

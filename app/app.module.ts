@@ -5,8 +5,8 @@ import {HttpModule} from '@angular/http';
 
 
 import {AppComponent}  from './app.component';
-import {AnsattinfoComponent} from './ansattinfo.component';
 import {ProfilComponent} from './profil.component';
+import {UserinfoComponent} from "./userinfo.component";
 import {LoginComponent} from './login.component';
 import {UserFormComponent} from './user-form.component';
 import {UserService} from './user.service';
@@ -23,7 +23,7 @@ import {ForgotCredentialsComponent} from './forgot-credentials.component';
   declarations: [
     AppComponent,
     LoginComponent,
-    AnsattinfoComponent,
+    UserinfoComponent,
     ProfilComponent,
     UserFormComponent,
     InputFieldComponent,

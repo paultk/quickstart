@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
-import {User} from "./user";
 
+import {User} from "./user";
 import 'rxjs/add/operator/toPromise';
 import {JsonTestClass} from "./json-test-class";
-import {ANSATTE} from './mock-ansatte';
+import {USERS} from './mock-ansatte';
 
 @Injectable()
 export class UserService {
@@ -47,12 +47,15 @@ export class UserService {
   }
 
   getUsers(): Promise<User[]> {
-    return Promise.resolve(ANSATTE);
+    return Promise.resolve(USERS);
   }
 
   getUser(id: number): Promise<User> {
-    return this.getUsers()
-      .then(users => users.find(user => user.id === id));
+    return this.getUsers().then(users => users.find(user => user.id === id));
+  }
+
+  getCurrentUser(): User {
+    return new User('narco@minvakt.no', 1, 'Mr. Nice', 'johnson', '01.01.2016', 41414141, 'veigata 5', 'Trondheim', 1, 100, 1, 200, false, 'passord1234');
   }
 
 }

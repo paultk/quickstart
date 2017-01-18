@@ -1,3 +1,12 @@
+label {
+  font-weight: normal;
+}
+
+h4 {
+  font-weight: bold;
+  font-size: 15px;
+}
+
 .navigation {
   height: 100%;
   width: 150px;
@@ -47,8 +56,10 @@
   float: left;
   margin-top: 75px;
   margin-left: 170px;
-  font-family: "Ubuntu Condensed", sans-serif;
+  font-family: Ubuntu Condensed, sans-serif;
 }
+
+/* Header under her */
 
 .menu {
   background-color: #006D92;

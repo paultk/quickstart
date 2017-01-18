@@ -3,18 +3,21 @@ import {Component, Input, Output, DoCheck, EventEmitter} from "@angular/core";
   moduleId: module.id,
   selector: 'input-field',
   templateUrl: './input-field.component.html',
+  styleUrls: ['input-field.component.css']
 })
 
-export class InputFieldComponent implements DoCheck{
+export class InputFieldComponent implements DoCheck {
   ngDoCheck(): void {
     this.fieldValueChange.emit(this.fieldValue);
   }
-  constructor(
-    // public field: string, public fieldValue: string
-  ){}
+
+  constructor(// public field: string, public fieldValue: string
+  ) {
+  }
 
   @Input()
   field: string;
+
   @Input()
   fieldValue: string;
 
@@ -30,4 +33,4 @@ export class InputFieldComponent implements DoCheck{
     this.fieldValue = newValue;
     this.fieldValueChange.emit(newValue);
   }
- }
+}

@@ -15,18 +15,14 @@ import {UserService} from './user.service';
 })
 
 export class ProfilComponent implements OnInit {
-  users: User[];
+  user: User;
   selectedUser: User;
 
   constructor(
     private userService: UserService,
   ) {}
 
-  getUsers(): void {
-    this.userService.getUsers().then(users => this.users = users);
-  }
-
   ngOnInit(): void {
-    this.getUsers();
+    this.user = this.userService.getCurrentUser();
   }
 }

@@ -2,17 +2,17 @@
  * Created by Trym Todalshaug on 12/01/2017.
  */
 
-import {User} from './ansatt'
+import {User} from './user'
 
-export const ANSATTE: User[] = [
-  {id: 1, navn: 'Mr. Nice', stilling: 'sykepleier', stillingspros: '100%', tlf: 41333183, epost: 'mrnice@minvakt.no'},
-  {id: 2, navn: 'Narco', stilling: 'sykepleier', stillingspros: '50%', tlf: 41345183, epost: 'narco@minvakt.no'},
-  {id: 3, navn: 'Bombasto', stilling: 'helsefagarbeider', stillingspros: '70%', tlf: 48583183, epost: 'bombasto@minvakt.no'},
-  {id: 4, navn: 'Celeritas', stilling: 'helsefagarbeider', stillingspros: '80%', tlf: 91333183, epost: 'celeritas@minvakt.no'},
-  {id: 5, navn: 'Magneta', stilling: 'assistent', stillingspros: '40%', tlf: 41336103, epost: 'magneta@minvakt.no'},
-  {id: 6, navn: 'RubberMan', stilling: 'sykepleier', stillingspros: '100%', tlf: 78303183, epost: 'rubberman@minvakt.no'},
-  {id: 7, navn: 'Dynama', stilling: 'helsefagarbeider', stillingspros: '20%', tlf: 45106183, epost: 'dynama@minvakt.no'},
-  {id: 8, navn: 'Dr IQ', stilling: 'assistent', stillingspros: '45%', tlf: 41333109, epost: 'driq@minvakt.no'},
-  {id: 9, navn: 'Magma', stilling: 'helsefagarbeider', stillingspros: '100%', tlf: 71233183, epost: 'magma@minvakt.no'},
-  {id: 10, navn: 'Tornado', stilling: 'sykepleier', stillingspros: '80%', tlf: 41335103, epost: 'tornado@minvakt.no'}
+export const USERS: User[] = [
+  {epost: 'mrnice@minvakt.no', id: 1, fornavn: 'Mr. Nice', etternavn: 'johnson', stillingsId: 1, stillingsprosent: 100, telefonNr: 41333183},
+  {epost: 'narco@minvakt.no', id: 2, fornavn: 'Narco', stillingsId: 1, stillingsprosent: 50, telefonNr: 41345183,},
+  {epost: 'bombasto@minvakt.no', id: 3, fornavn: 'Bombasto', stillingsId: 2, stillingsprosent: 70, telefonNr: 48583183},
+  {epost: 'celeritas@minvakt.no', id: 4, fornavn: 'Celeritas', stillingsId: 2, stillingsprosent: 80, telefonNr: 91333183},
+  {epost: 'magneta@minvakt.no', id: 5, fornavn: 'Magneta', stillingsId: 3, stillingsprosent: 40, telefonNr: 41336103},
+  {epost: 'rubberman@minvakt.no', id: 6, fornavn: 'RubberMan', stillingsId: 1, stillingsprosent: 100, telefonNr: 78303183},
+  {epost: 'dynama@minvakt.no', id: 7, fornavn: 'Dynama', stillingsId: 2, stillingsprosent: 20, telefonNr: 45106183},
+  {epost: 'driq@minvakt.no', id: 8, fornavn: 'Dr IQ', stillingsId: 3, stillingsprosent: 45, telefonNr: 41333109},
+  {epost: 'magma@minvakt.no', id: 9, fornavn: 'Magma', stillingsId: 2, stillingsprosent: 100, telefonNr: 71233183},
+  {epost: 'tornado@minvakt.no', id: 10, fornavn: 'Tornado', stillingsId: 1, stillingsprosent: 80, telefonNr: 41335103}
 ];

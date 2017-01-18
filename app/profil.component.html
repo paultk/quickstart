@@ -1,63 +1,30 @@
 <div>
-  <div class="menu">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <a href="#">MinVakt</a>
-      </div>
-      <div>
-        <ul class="nav navbar-nav navbar-right">
-          <li>
-            <a class="not-selected" href="#">
-              <span class="glyphicon glyphicon-bell"></span>
-              Varsler</a>
-          </li>
-          <li>
-            <a class="selected" href="#">
-              <span class="glyphicon glyphicon-user"></span>
-              Profil</a>
-          </li>
-          <li>
-            <a class="not-selected" href="#">
-              <span class="glyphicon glyphicon-question-sign"></span>
-              Hjelp</a>
-          </li>
-          <li>
-            <a class="not-selected" href="#">
-              <span class="glyphicon glyphicon-log-out"></span>
-              Logg ut</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <div class="navigation pull-left">
-    <div class="container-fluid">
-      <ul class="nav side-menu">
-        <li>
-          <a class="user-name" href="#">
-            <span class="glyphicon glyphicon-user"></span>Trym Todalshaug<!--{{selectedUser.navn}}-->
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <span class="glyphicon"></span>
-            Vaktliste</a>
-        </li>
-        <li>
-          <a href="#">
-            <span class="glyphicon"></span>
-            Brukerinfo</a>
-        </li>
-        <li>
-          <a href="#">
-            <span class="glyphicon"></span>
-            Tilgjengelighet</a>
-        </li>
-      </ul>
-    </div>
-  </div>
   <div class="content">
 
+    <div class="static-info">
+      <div class="name">
+        <h4>Navn:</h4>
+        <label>{{user.fornavn}} {{user.etternavn}}</label>
+      </div>
+      <div class="birthday">
+        <h4>Fødselsdato</h4>
+        <label>{{user.fodselsdato}}</label>
+      </div>
+      <div class="stilling">
+        <h4>Stilling</h4>
+        <label>{{user.stillingsId}}</label>
+      </div>
+      <div class="stillingsprosent">
+        <h4>Stillingsprosent</h4>
+        <label>{{user.stillingsprosent}}%</label>
+      </div>
+    </div>
+
+    <div class="dynamic-info">
+      <div class="phone">
+        <input-field [field]='"Telefonnummer:"' [(fieldValue)]="user.telefonNr"></input-field>
+      </div>
+    </div>
   </div>
   <!-- FOOTER -->
 </div>

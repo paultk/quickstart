@@ -1,15 +1,15 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'my-app',
   template: `
-    <!--<my-ansattinfo></my-ansattinfo>
+    <!--<my-userinfo></my-userinfo>-->
     <my-profil></my-profil>
-    <my-login></my-login>-->
-    <user-form></user-form>
+    <!--<my-login></my-login>-->
+    <!--<user-form></user-form>-->
   `,
 
 })
-export class AppComponent  {
+export class AppComponent {
   name = 'Angular';
 }

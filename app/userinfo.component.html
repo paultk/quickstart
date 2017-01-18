@@ -65,20 +65,20 @@
         <span class="glyphicon glyphicon-plus"></span>
         Ny bruker</a>
     </form>
-    <table class="ansatte">
+    <table class="users">
       <tr>
-        <th>Navn</th>
-        <th>Stilling</th>
+        <th>Fornavn</th>
+        <th>StillingsId</th>
         <th>Stillingsprosent</th>
         <th>Telefonnummer</th>
         <th>Epost</th>
       </tr>
-      <tr *ngFor="let ansatt of ansatte">
-        <td>{{ansatt.navn}}</td>
-        <td>{{ansatt.stilling}}</td>
-        <td>{{ansatt.stillingspros}}</td>
-        <td>{{ansatt.tlf}}</td>
-        <td>{{ansatt.epost}}</td>
+      <tr *ngFor="let user of users">
+        <td>{{user.fornavn}}</td>
+        <td>{{user.stillingsId}}</td>
+        <td>{{user.stillingsprosent}}</td>
+        <td>{{user.telefonNr}}</td>
+        <td>{{user.epost}}</td>
       </tr>
     </table>
   </div>
