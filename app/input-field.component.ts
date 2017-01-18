@@ -1,4 +1,5 @@
 import {Component, Input, Output, DoCheck, EventEmitter} from "@angular/core";
+
 @Component({
   moduleId: module.id,
   selector: 'input-field',
@@ -20,6 +21,9 @@ export class InputFieldComponent implements DoCheck {
 
   @Input()
   fieldValue: string;
+
+  @Input()
+  disabled: boolean;
 
   @Output()
   fieldValueChange: EventEmitter<string> = new EventEmitter<string>();

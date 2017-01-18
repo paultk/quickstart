@@ -3,15 +3,15 @@
     <label>{{field}}</label>
       <div class="form-group">
         <label for= {{field}}></label>
-        <input type="text" class="form-control" id="{{field}}"
+        <input type="text" class="form-control" id="{{field}}" [disabled]="disabled"
                required
                [(ngModel)]="fieldValue" name="{{field}}"
 
                (ngModelChange)="onChanges($event)"
 
-               #fieldValue2="ngModel" >
+               #fieldValue2="ngModel">
         <!--dfsdf{{fieldValue2.className}}-->
-        <div [hidden]="fieldValue2 || fieldValue2"
+        <div [hidden]="fieldValue || fieldValue"
              class="alert alert-danger">
           Feltet må utfylles
         </div>

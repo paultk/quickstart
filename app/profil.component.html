@@ -1,31 +1,65 @@
 <div>
   <div class="content">
 
-    <div class="static-info">
-      <div class="name">
-        <h4>Navn:</h4>
-        <label>{{user.fornavn}} {{user.etternavn}}</label>
+    <div class="static-info pull-left">
+      <div class="static-header">
+        <h4>Personlig informasjon</h4>
       </div>
-      <div class="birthday">
-        <h4>Fødselsdato</h4>
-        <label>{{user.fodselsdato}}</label>
+      <div class="name">
+        <div class="first-name">
+          <input-field [field]='"Fornavn"' [disabled]="true" [(fieldValue)]="user.fornavn"></input-field>
+        </div>
+        <div class="last-name">
+          <input-field [field]='"Etternavn"' [disabled]="true" [(fieldValue)]="user.etternavn"></input-field>
+        </div>
+      </div>
+      <div class="birthdate">
+        <input-field [field]='"Fødselsdato"' [disabled]="true" [(fieldValue)]="user.fodselsdato"></input-field>
       </div>
       <div class="stilling">
-        <h4>Stilling</h4>
-        <label>{{user.stillingsId}}</label>
+        <div class="stilling-navn">
+          <input-field [field]='"Stilling"' [disabled]="true" [(fieldValue)]="user.stillingsId"></input-field>
+        </div>
+        <div class="stillingsprosent">
+          <input-field [field]='"Stillingsprosent"' [disabled]="true" [(fieldValue)]="user.stillingsprosent"></input-field>
+        </div>
       </div>
-      <div class="stillingsprosent">
-        <h4>Stillingsprosent</h4>
-        <label>{{user.stillingsprosent}}%</label>
+      <div class="department">
+        <input-field [field]='"Avdeling"' [disabled]="true" [(fieldValue)]="user.avdelingId"></input-field>
       </div>
     </div>
 
     <div class="dynamic-info">
-      <div class="phone">
-        <input-field [field]='"Telefonnummer:"' [(fieldValue)]="user.telefonNr"></input-field>
+      <div class="dynamic-header">
+        <h4>Kontaktinformasjon</h4>
       </div>
+      <div class="contact-info">
+        <div class="phone">
+          <input-field [field]='"Telefonnummer:"' [(fieldValue)]="user.telefonNr"></input-field>
+        </div>
+        <div class="email">
+          <input-field [field]='"Epost:"' [(fieldValue)]="user.epost"></input-field>
+        </div>
+      </div>
+      <div class="residence-info">
+        <div class="address">
+          <input-field [field]='"Adresse:"' [(fieldValue)]="user.adresse"></input-field>
+        </div>
+        <div class="city">
+          <input-field [field]='"By:"' [(fieldValue)]="user.by"></input-field>
+        </div>
+      </div>
+      <div class="password">
+        <div class="password-one">
+          <input-field [field]='"Passord:"' [(fieldValue)]="user.passord"></input-field>
+        </div>
+        <div class="password-two">
+          <input-field [field]='"Gjenta passord:"' [(fieldValue)]="user.passord"></input-field>
+        </div>
+      </div>
+      <button class="submit-btn">Oppdater profil
+      </button>
     </div>
   </div>
-  <!-- FOOTER -->
 </div>
 

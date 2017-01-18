@@ -1,62 +1,76 @@
-label {
-  font-weight: normal;
-}
-
-h4 {
-  font-weight: bold;
-  font-size: 15px;
-}
-
-.navigation {
-  height: 100%;
-  width: 150px;
-  float: left;
-  alignment: left;
-  padding-top: 50px;
-  background-color: #006D92;
-  border-right: 4px solid #04A3ED;
-  position: fixed;
-}
-
-.user-name {
-  font-size: 13px !important;
-  background-color: #006D92;
-  color: white;
-  text-align: right;
-}
-
-.navigation .side-menu > li > a:focus {
-  background-color : #006D92;
-  color: #04A3ED;
-}
-
-.navigation .side-menu > li > a {
-  font-size: 13px;
-  background-color: #006D92;
-  color: white;
-  padding: 10px;
-  border-bottom: 1px solid #04A3ED;
-  text-align: right;
-}
-
-.navigation  .side-menu > li > a:hover {
-  background-color: #006D92;
-  color: #04A3ED;
-
-}
-
-.navigation .side-menu > li > a:active {
-  background-color : #006D92;
-  color: #04A3ED;
-}
-
 .content {
   height: 100%;
   width: 80%;
   float: left;
-  margin-top: 75px;
-  margin-left: 170px;
+  text-align: left;
   font-family: Ubuntu Condensed, sans-serif;
+}
+/*STATIC INFO*/
+.static-info {
+  float: left;
+  width: auto;
+  height: inherit;
+  padding: 0 0 20px 0;
+  border: 1px solid #ccc;
+}
+
+.static-header {
+  background-color: #006D92;
+  color: white;
+  padding: 5px;
+  margin-bottom: 5px;
+}
+
+.first-name, .stilling-navn {
+  width: auto;
+  height: auto;
+  float: left;
+}
+
+.last-name, .stillingsprosent {
+  width: auto;
+  height: auto;
+  float: left;
+  margin-left: 40px;
+}
+
+/*DYNAMIC INFO*/
+.dynamic-info {
+  float: left;
+  width: auto;
+  height: inherit;
+  margin-left: 50px;
+  padding: 0 0 20px 0;
+  border: 1px solid #ccc;
+}
+
+.dynamic-header {
+  background-color: #006D92;
+  color: white;
+  padding: 5px;
+  margin-bottom: 5px;
+}
+
+.contact-info, .password-one {
+  width: auto;
+  height: auto;
+  float: left;
+}
+
+.residence-info, .password-two {
+  width: auto;
+  height: auto;
+  float: left;
+  margin-left: 40px;
+}
+
+.submit-btn {
+  float: right;
+  width: 150px;
+  box-sizing: border-box;
+  height: 40px;
+  border: 2px solid #ccc;
+  border-radius: 4px;
 }
 
 /* Header under her */
@@ -115,5 +129,50 @@ h4 {
 
 .navbar-header > a:hover {
   text-decoration: none;
+  color: #04A3ED;
+}
+
+/* Venstre navigation bar */
+
+.navigation {
+  height: 100%;
+  width: 150px;
+  float: left;
+  alignment: left;
+  padding-top: 50px;
+  background-color: #006D92;
+  border-right: 4px solid #04A3ED;
+  position: fixed;
+}
+
+.user-name {
+  font-size: 13px !important;
+  background-color: #006D92;
+  color: white;
+  text-align: right;
+}
+
+.navigation .side-menu > li > a:focus {
+  background-color : #006D92;
+  color: #04A3ED;
+}
+
+.navigation .side-menu > li > a {
+  font-size: 13px;
+  background-color: #006D92;
+  color: white;
+  padding: 10px;
+  border-bottom: 1px solid #04A3ED;
+  text-align: right;
+}
+
+.navigation  .side-menu > li > a:hover {
+  background-color: #006D92;
+  color: #04A3ED;
+
+}
+
+.navigation .side-menu > li > a:active {
+  background-color : #006D92;
   color: #04A3ED;
 }

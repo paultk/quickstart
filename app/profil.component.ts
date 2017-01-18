@@ -1,7 +1,6 @@
 /**
  * Created by Trym Todalshaug on 16/01/2017.
  */
-
 import {Component, OnInit} from "@angular/core";
 
 import {User} from './user';

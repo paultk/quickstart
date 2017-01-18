@@ -1,60 +1,3 @@
-<div class="menu">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a href="#">MinVakt</a>
-    </div>
-    <div>
-      <ul class="nav navbar-nav navbar-right">
-        <li>
-          <a href="#">
-            <span class="glyphicon glyphicon-bell"></span>
-            Varsler</a>
-        </li>
-        <li>
-          <a href="#">
-            <span class="glyphicon glyphicon-user"></span>
-            Profil</a>
-        </li>
-        <li>
-          <a href="#">
-            <span class="glyphicon glyphicon-question-sign"></span>
-            Hjelp</a>
-        </li>
-        <li>
-          <a href="#">
-            <span class="glyphicon glyphicon-log-out"></span>
-            Logg ut</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</div>
-<div class="navigation pull-left">
-  <div class="container-fluid">
-    <ul class="nav side-menu">
-      <li>
-        <a class="user-name" href="#">
-          <span class="glyphicon glyphicon-user"></span>Trym Todalshaug<!--{{selectedUser.navn}}-->
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <span class="glyphicon"></span>Vaktliste
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <span class="glyphicon"></span>Brukerinfo
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <span class="glyphicon"></span>Tilgjengelighet
-        </a>
-      </li>
-    </ul>
-  </div>
-</div>
 <div class="content">
   <div [hidden]="submitted">
     <form (ngSubmit)="onSubmit()" #heroForm="ngForm">
@@ -62,7 +5,6 @@
       <input-field [field]='"Fornavn"' [(fieldValue)]="model.fornavn"></input-field>
       <input-field [field] ='"Etternavn"' [(fieldValue)]="model.etternavn"></input-field>
       <input-field [field]='"Fodselsdato"' [(fieldValue)]="model.fodselsdato"></input-field>
-
       <input-field [field]='"Epost"' [(fieldValue)]="model.epost"></input-field>
       <input-field [field]='"Adresse"' [(fieldValue)]="model.adresse"></input-field>
       <input-field [field]='"By"' [(fieldValue)]="model.by"></input-field>
