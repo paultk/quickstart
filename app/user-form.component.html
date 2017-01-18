@@ -5,7 +5,14 @@
 
       <input-field [field]='"Fornavn"' [(fieldValue)]="model.fornavn"></input-field>
       <input-field [field] ='"Etternavn"' [(fieldValue)]="model.etternavn"></input-field>
-      <input-field [field]='"Fodselsdato"' [(fieldValue)]="model.fodselsdato"></input-field>
+
+      <div class="form-group">
+        <label for="fodselsdato">Fødselsdato</label><br>
+        <input type="date" id="fodselsdato"
+               required
+               [(ngModel)]="model.fodselsdato"  name="fodselsdato">
+        </div>
+
       <input-field [field]='"Telefonnummer"' [(fieldValue)]="model.telefonNr"></input-field>
       <input-field [field]='"Epost"' [(fieldValue)]="model.epost"></input-field>
       <input-field [field]='"Adresse"' [(fieldValue)]="model.adresse"></input-field>

@@ -24,7 +24,7 @@ export class UserFormComponent {
 
   stillinger = ['Helsefagarbeider', 'Sykepleier', 'Assistent'];
 
-  avdeling = ['St. Olavs Hospital', 'Aleris sykehus', 'Lade hjelpehjem', 'Ranheim galehjem'];
+  avdeling = ['St. Olavs Hospital', 'Sentrum sykehus', 'Lade hjelpehjem', 'Ranheim eldreboliger'];
 
   model = new User('periphone@gmai.com', 32, 'paul', 'korsvold', "1993-2-2", 99110488, 'prinsens gate', 'Trondheim', 1, 1, 1, 3000, true, 'myPassword');
   submitted = false;
