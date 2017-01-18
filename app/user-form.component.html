@@ -1,10 +1,12 @@
 <div class="content">
   <div [hidden]="submitted">
     <form (ngSubmit)="onSubmit()" #heroForm="ngForm">
+      <h1 class="heading-desc">Lag bruker</h1>
 
       <input-field [field]='"Fornavn"' [(fieldValue)]="model.fornavn"></input-field>
       <input-field [field] ='"Etternavn"' [(fieldValue)]="model.etternavn"></input-field>
       <input-field [field]='"Fodselsdato"' [(fieldValue)]="model.fodselsdato"></input-field>
+      <input-field [field]='"Telefonnummer"' [(fieldValue)]="model.telefonNr"></input-field>
       <input-field [field]='"Epost"' [(fieldValue)]="model.epost"></input-field>
       <input-field [field]='"Adresse"' [(fieldValue)]="model.adresse"></input-field>
       <input-field [field]='"By"' [(fieldValue)]="model.by"></input-field>
@@ -27,6 +29,27 @@
         </select>
       </div>
 
+      <div class="form-group">
+        <label for="avdeling">Avdeling</label>
+        <select class="form-control"  id="avdeling"
+                required
+                [(ngModel)]="model.avdelingId" name="avdelingId">
+          <option *ngFor="let avd of avdeling" [value]="avd">{{avd}}</option>
+        </select>
+      </div>
+
+
+
+      <div class="form-group">
+        <label for="admin">Administrator?:</label><br>
+          <input type="radio" id="admin"
+                    required
+                 [(ngModel)]="model.admin"  name="admin" value="true">
+        Ja &emsp;
+        <input type="radio" id="admin1"
+               required
+               [(ngModel)]="model.admin"  name="admin" value="false">Nei<br>
+      </div>
 
       <input-field [field]='"Timelønn"' [(fieldValue)]="model.timelonn"></input-field>
 

@@ -24,8 +24,9 @@ export class UserFormComponent {
 
   stillinger = ['Helsefagarbeider', 'Sykepleier', 'Assistent'];
 
+  avdeling = ['St. Olavs Hospital', 'Aleris sykehus', 'Lade hjelpehjem', 'Ranheim galehjem'];
 
-  model = new User('periphone@gmai.com', 32, 'paul', 'korsvold', "1993-2-2", 99110488, 'prinsens gate', 'Trondheim', 1, 25, 1, 3000, true, 'myPassword');
+  model = new User('periphone@gmai.com', 32, 'paul', 'korsvold', "1993-2-2", 99110488, 'prinsens gate', 'Trondheim', 1, 1, 1, 3000, true, 'myPassword');
   submitted = false;
 
   jsonTest= new JsonTestClass('dsffsd');
