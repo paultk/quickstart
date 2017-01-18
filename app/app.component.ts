@@ -4,9 +4,10 @@ import {Component} from '@angular/core';
   selector: 'my-app',
   template: `
     <!--<my-userinfo></my-userinfo>-->
-    <my-profil></my-profil>
+    <!--<my-profil></my-profil>-->
+
     <!--<my-login></my-login>-->
-    <!--<user-form></user-form>-->
+    <user-form></user-form>
   `,
 
 })

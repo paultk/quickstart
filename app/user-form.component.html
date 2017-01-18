@@ -8,28 +8,30 @@
       <input-field [field]='"Epost"' [(fieldValue)]="model.epost"></input-field>
       <input-field [field]='"Adresse"' [(fieldValue)]="model.adresse"></input-field>
       <input-field [field]='"By"' [(fieldValue)]="model.by"></input-field>
-      <input-field [field]='"Poststed"' [(fieldValue)]="model.poststed"></input-field>
 
-      <input-field>
+      <div class="form-group">
         <label for="stillingsId">Stilling</label>
-        <select class="form-control" id="stillingsId" required>
+        <select class="form-control"  id="stillingsId"
+                required
+                [(ngModel)]="model.stillingsId" name="stillingsId">
           <option *ngFor="let stil of stillinger" [value]="stil">{{stil}}</option>
         </select>
-      </input-field>
+      </div>
+
+      <div class="form-group">
+        <label for="stillingsProsent">Stillingsprosent</label>
+        <select class="form-control"  id="stillingsProsent"
+                required
+                [(ngModel)]="model.stillingsprosent" name="stillingsprosent">
+          <option *ngFor="let still of stillingsProsent" [value]="still">{{still}}</option>
+        </select>
+      </div>
+
 
       <input-field [field]='"Timelønn"' [(fieldValue)]="model.timelonn"></input-field>
-      <!--<input-field  [field] = '' [(fieldValue)]="model.stillingsId"></input-field>-->
-      <!--<input-field  [field] = 'model.fornavn' [(fieldValue)]="model.avdelingId"></input-field>-->
-      <!--<input-field  [field] = 'model.fornavn' [(fieldValue)]="model.stillingsprosent"></input-field>-->
-      <!--<input-field  [field] = 'model.fornavn' [(fieldValue)]="model.admin"></input-field>-->
-      <!--<h1>Fornavn: {{model.fornavn}}</h1>-->
 
-      <!--todo: fix inputfields that shouldnt be regular input-->
-      <!--todo: fix fix nordic characters-->
+      <input-field [field]='"Passord"' [(fieldValue)]="model.passord"></input-field>
 
-      <!--
-      &lt;!&ndash;todo: fix stillingsprosent&ndash;&gt;
-      -->
       <button type="submit" class="btn btn-default" [disabled]="!heroForm.form.valid">Lagre bruker</button>
     </form>
   </div>
