@@ -8,7 +8,7 @@ import {USERS} from './mock-ansatte';
 
 @Injectable()
 export class UserService {
-  private URL = 'http://localhost:8080/bruker/alle';
+  private UsersURL = 'http://localhost:8080/bruker/alle';
 
   constructor(
     private http: Http
@@ -55,7 +55,7 @@ export class UserService {
 */
 
   getUsers(): Promise<User[]> {
-    return this.http.get(this.URL).toPromise().then(response => response.json().data as User[]).catch(this.handleError)
+    return this.http.get(this.UsersURL).toPromise().then(response => response.json().data as User[]).catch(this.handleError)
   }
 
 

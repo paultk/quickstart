@@ -86,7 +86,7 @@ export class FravaerComponent implements OnInit {
   onSubmit(): void {
     this.submitted = true;
     console.log(this.model);
-    this.fravaerService.registerFravaer(this.model);
+    //this.fravaerService.registerFravaer(this.model);
   }
 
   ngOnInit(): void {

@@ -5,7 +5,7 @@
       <form class="form-inline">
         <div class="form-group">
           <div class="input-group">
-            <input class="form-control" placeholder="yyyy-mm-dd"
+            <input id="dateform" class="form-control" placeholder="Vennligst velg en dato  →"
                    name="dp" [(ngModel)]="timeObject" ngbDatepicker #d="ngbDatepicker">
             <div class="input-group-addon" (click)="d.toggle()" >
               <div class="glyphicon glyphicon-calendar" style="width: 1.2rem; height: 1rem; cursor: pointer;"></div>
@@ -16,8 +16,16 @@
 
       <br>
 
-      <ngb-timepicker [(ngModel)]="fromTime" name="fraTidTime"></ngb-timepicker>
-      <ngb-timepicker [(ngModel)]="toTime" name="tilTidTime"></ngb-timepicker>
+      <div class="datoer">
+        <div class="fra">
+          <label class="label">Fra dato</label>
+          <ngb-timepicker [(ngModel)]="fromTime" name="fraTidTime"></ngb-timepicker>
+        </div>
+        <div class="til">
+          <label class="label">Til dato</label>
+          <ngb-timepicker [(ngModel)]="toTime" name="tilTidTime"></ngb-timepicker>
+        </div>
+      </div>
 
       <!--<label for="vaktlisteId">Velg vakt</label>
       <select class="form-control" id="vaktlisteId">

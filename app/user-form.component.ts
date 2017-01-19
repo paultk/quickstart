@@ -3,6 +3,7 @@ import {Component} from '@angular/core';
 import {User}    from './user';
 import {UserService} from './user.service'
 import {JsonTestClass} from "./json-test-class";
+import {USERS} from "./mock-ansatte";
 
 @Component({
   moduleId: module.id,
@@ -26,7 +27,7 @@ export class UserFormComponent {
 
   avdeling = ['St. Olavs Hospital', 'Sentrum sykehus', 'Lade hjelpehjem', 'Ranheim eldreboliger'];
 
-  model = new User('periphone@gmai.com', 32, 'paul', 'korsvold', "1993-2-2", 99110488, 'prinsens gate', 'Trondheim', 1, 1, 1, 3000, true, 'myPassword');
+  model = USERS[1];
   submitted = false;
 
   jsonTest= new JsonTestClass('dsffsd');

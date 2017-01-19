@@ -10,10 +10,10 @@ import { User } from './user';
 })
 
 export class LoginComponent {
-  model = new User('yo@yo.com');
+  model = new User(1);
   loading = false;
   returnUrl: string;
-  tempUser = new User('yo@yo.com');
+  tempUser = new User(1);
 
 
 

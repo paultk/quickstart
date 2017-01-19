@@ -24,6 +24,7 @@
   padding-top: 30px;
   border-bottom: 1px solid white;
   text-align: right;
+  cursor: pointer;
 }
 
 .navigation .side-menu > li > a:hover {
