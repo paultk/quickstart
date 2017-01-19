@@ -28,6 +28,7 @@ export class UserFormComponent {
   avdeling = ['St. Olavs Hospital', 'Sentrum sykehus', 'Lade hjelpehjem', 'Ranheim eldreboliger'];
 
   model = USERS[1];
+
   submitted = false;
 
   jsonTest= new JsonTestClass('dsffsd');

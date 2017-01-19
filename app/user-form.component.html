@@ -23,7 +23,7 @@
         <select class="form-control"  id="stillingsId"
                 required
                 [(ngModel)]="model.stillingsId" name="stillingsId">
-          <option *ngFor="let stil of stillinger" [value]="stil">{{stil}}</option>
+          <option *ngFor="let stil of stillinger; let index = index" [value]="index">{{stil}}</option>
         </select>
       </div>
 
