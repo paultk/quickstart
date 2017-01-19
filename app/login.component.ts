@@ -15,10 +15,10 @@ export class LoginComponent {
   tempUser = new User('1234');
 
   /*login(email: string, password: string): void {
-    if (email === this.tempUser.email && password === this.tempUser.passord) {
+    if (email === this.tempUser.email && password === this.tempUser.plaintextPassord) {
       alert("Inlogging vellyket!");
     } else {
-      alert("Feil brukernavn/passord.");
+      alert("Feil brukernavn/plaintextPassord.");
     }
   }*/
   login(): void { }

@@ -8,6 +8,8 @@ import {USERS} from './mock-ansatte';
 
 @Injectable()
 export class UserService {
+  private URL = 'http://localhost:8080/bruker/alle';
+
   constructor(
     private http: Http
   ){}
@@ -45,17 +47,25 @@ export class UserService {
       .then(res => res.json().data)
       .catch(this.handleError);
   }
-
+/*
   getUsers(): Promise<User[]> {
     return Promise.resolve(USERS);
   }
 
-  getUser(id: number): Promise<User> {
-    return this.getUsers().then(users => users.find(user => user.id === id));
+*/
+
+  getUsers(): Promise<User[]> {
+    return this.http.get(this.URL).toPromise().then(response => response.json().data as User[]).catch(this.handleError)
   }
 
+
+  getUser(id: number): Promise<User> {
+    return this.getUsers().then(users => users.find(user => user.brukerId === id));
+  }
+
+  /*Brukes i profil.component.ts*/
   getCurrentUser(): User {
-    return new User('narco@minvakt.no', 1, 'Mr. Nice', 'johnson', '01.01.2016', 41414141, 'veigata 5', 'Trondheim', 1, 100, 1, 200, false, 'passord1234');
+    return new User(1, 1, 1, 41414141, 100, 200, false, 'Mr. Nice', 'Johnson', 'narco@minvakt.no', 1, 'passord1234', '01.01.2016', 'veigata 5', 'Trondheim');
   }
 
 }
