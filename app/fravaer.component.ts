@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 
 import { Fravaer } from './fravaer';
 import {Vakt} from './vakt';
+import {VAKTER} from './mock-vakter';
 import {JsonTestClass} from "./json-test-class";
 import {FravaerService} from "./fravaer.service";
 
@@ -17,6 +18,8 @@ export class FravaerComponent implements OnInit {
 
   model = new Fravaer(23, 40, "Mandag", "Torsdag", "Dette er en kommentar");
   timeObject: any;
+
+  mockVakter: Vakt[];
 
   fravaerListe: Fravaer[];
 
@@ -74,13 +77,27 @@ export class FravaerComponent implements OnInit {
       "T" + this.completeDateTo[3] + ":" + this.completeDateTo[4] + ":00";
     console.log(this.model.tilTid);
 
-    this.getVakter();
+    this.refreshMockVakter();
   }
 
   getVakter(): void {
     this.fravaerService
       .getVaktByDate(this.model.fraTid.substr(0, 10))
       .then(vaktliste => this.vaktliste = vaktliste);
+  }
+  refreshMockVakter(): void {
+    this.mockVakter = VAKTER;
+    /*for (let vkt of this.mockVakter) {
+      if (vkt.fra_tid.substr(0, 10) == this.model.fraTid.substr(0, 10)) {
+        this.vaktliste.push(vkt);
+      }
+    }*/
+
+    this.vaktliste = this.mockVakter.filter(vakt => vakt.fra_tid.substr(0, 10) === this.model.fraTid.substr(0, 10));
+
+    for (var i = 0; i < this.vaktliste.length; i++) {
+      console.log("Fant: " + this.vaktliste[i].fra_tid);
+    }
   }
 
   onSubmit(): void {
