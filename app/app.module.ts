@@ -12,6 +12,7 @@ import {UserFormComponent} from './user-form.component';
 import {UserService} from './user.service';
 import {InputFieldComponent} from './input-field.component';
 import {ForgotCredentialsComponent} from './forgot-credentials.component';
+import {FaqComponent} from "./faq.component";
 
 @NgModule({
   imports: [
@@ -28,7 +29,8 @@ import {ForgotCredentialsComponent} from './forgot-credentials.component';
     ProfilComponent,
     UserFormComponent,
     InputFieldComponent,
-    ForgotCredentialsComponent
+    ForgotCredentialsComponent,
+    FaqComponent
   ],
   providers: [UserService],
   bootstrap: [AppComponent]

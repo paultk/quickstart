@@ -19,7 +19,7 @@ export class UserinfoComponent implements OnInit{
   selectedUser: User;
 
   constructor (
-    private userService: UserService,
+    private userService: UserService
   ) {}
 
   getUsers(): void {
