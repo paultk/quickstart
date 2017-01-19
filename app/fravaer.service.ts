@@ -56,7 +56,7 @@ export class FravaerService {
   }
 
   getVaktliste(): Promise<Vakt[]> {
-    const URL = 'http://localhost:8080/vakt';
+    const URL = 'http://localhost:8080/vakt/all';
     return this.http
       .get(URL)
       .toPromise()
@@ -81,8 +81,15 @@ export class FravaerService {
   }
 
   getVaktByDate(date: string): Promise<Vakt[]> {
-    return this.getVaktliste()
-      .then(vaktliste => vaktliste.filter(vaktliste => vaktliste.fra_tid.substr(0, 10) === date));
+    const URL = 'http://localhost:8080/vakt/all/${date}';
+
+    return this.http.get(URL)
+      .toPromise()
+      .then(res => res.json().data as Vakt[])
+      .catch(this.handleError);
+
+    /*return this.getVaktliste()
+      .then(vaktliste => vaktliste.filter(vaktliste => vaktliste.fra_tid.substr(0, 10) === date));*/
   }
 }
 

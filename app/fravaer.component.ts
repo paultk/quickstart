@@ -74,7 +74,7 @@ export class FravaerComponent implements OnInit {
       "T" + this.completeDateTo[3] + ":" + this.completeDateTo[4] + ":00";
     console.log(this.model.tilTid);
 
-    //this.getVakter();
+    this.getVakter();
   }
 
   getVakter(): void {
