@@ -46,3 +46,4 @@ import {FaqComponent} from "./faq.component";
 
 export class AppModule {
 }
+

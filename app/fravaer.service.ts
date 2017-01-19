@@ -85,3 +85,4 @@ export class FravaerService {
       .then(vaktliste => vaktliste.filter(vaktliste => vaktliste.fra_tid.substr(0, 10) === date));
   }
 }
+

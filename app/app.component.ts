@@ -8,7 +8,7 @@ import {Component} from '@angular/core';
     <!--<my-profil></my-profil>
     <!--<my-login></my-login>-->
     <!--<user-form></user-form>-->
-    <!--<my-fravaer></my-fravaer>-->
+    <!--<my-fravaer></my-fravaer>--> 
   `,
 
 })
@@ -16,3 +16,4 @@ import {Component} from '@angular/core';
 export class AppComponent {
   name = 'Angular';
 }
+

@@ -7,3 +7,4 @@ export class Fravaer {
     public kommentar?: string
   ) {}
 }
+

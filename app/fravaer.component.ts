@@ -93,3 +93,4 @@ export class FravaerComponent implements OnInit {
     //this.getFravaer();
   }
 }
+
