@@ -15,6 +15,7 @@ import {FravaerService} from './fravaer.service';
 import {InputFieldComponent} from './input-field.component';
 import {ForgotCredentialsComponent} from './forgot-credentials.component';
 import {FravaerComponent} from './fravaer.component';
+import {FaqComponent} from "./faq.component";
 
 @NgModule({
   imports: [
@@ -33,7 +34,8 @@ import {FravaerComponent} from './fravaer.component';
     UserFormComponent,
     InputFieldComponent,
     ForgotCredentialsComponent,
-    FravaerComponent
+    FravaerComponent,
+    FaqComponent
   ],
   providers: [
     UserService,
