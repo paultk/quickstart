@@ -2,6 +2,7 @@ import {NgModule}      from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import {AppComponent}  from './app.component';
 import {NavigationComponent} from './navigation.component'
@@ -10,11 +11,14 @@ import {UserinfoComponent} from './userinfo.component';
 import {LoginComponent} from './login.component';
 import {UserFormComponent} from './user-form.component';
 import {UserService} from './user.service';
+import {FravaerService} from './fravaer.service';
 import {InputFieldComponent} from './input-field.component';
 import {ForgotCredentialsComponent} from './forgot-credentials.component';
+import {FravaerComponent} from './fravaer.component';
 
 @NgModule({
   imports: [
+    NgbModule.forRoot(),
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
@@ -28,9 +32,13 @@ import {ForgotCredentialsComponent} from './forgot-credentials.component';
     ProfilComponent,
     UserFormComponent,
     InputFieldComponent,
-    ForgotCredentialsComponent
+    ForgotCredentialsComponent,
+    FravaerComponent
   ],
-  providers: [UserService],
+  providers: [
+    UserService,
+    FravaerService
+  ],
   bootstrap: [AppComponent]
 })
 

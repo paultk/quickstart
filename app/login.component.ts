@@ -10,9 +10,12 @@ import { User } from './user';
 })
 
 export class LoginComponent {
-  model = new User('');
+  model = new User('yo@yo.com');
+  loading = false;
+  returnUrl: string;
+  tempUser = new User('yo@yo.com');
 
-  tempUser = new User('1234');
+
 
   /*login(email: string, password: string): void {
     if (email === this.tempUser.email && password === this.tempUser.plaintextPassord) {

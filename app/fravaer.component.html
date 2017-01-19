@@ -1,0 +1,41 @@
+<div class="content">
+  <div [hidden]="submitted">
+    <form (ngSubmit)="onSubmit()" #heroForm="ngForm">
+
+      <form class="form-inline">
+        <div class="form-group">
+          <div class="input-group">
+            <input class="form-control" placeholder="yyyy-mm-dd"
+                   name="dp" [(ngModel)]="timeObject" ngbDatepicker #d="ngbDatepicker">
+            <div class="input-group-addon" (click)="d.toggle()" >
+              <div class="glyphicon glyphicon-calendar" style="width: 1.2rem; height: 1rem; cursor: pointer;"></div>
+            </div>
+          </div>
+        </div>
+      </form>
+
+      <br>
+
+      <ngb-timepicker [(ngModel)]="fromTime" name="fraTidTime"></ngb-timepicker>
+      <ngb-timepicker [(ngModel)]="toTime" name="tilTidTime"></ngb-timepicker>
+
+      <!--<label for="vaktlisteId">Velg vakt</label>
+      <select class="form-control" id="vaktlisteId">
+        <option *ngFor="let vakt of vakter" [value]="vakt">{{vakt.fraTid}}</option>
+      </select>-->
+
+      <ul class="vakter">
+        <li *ngFor="let vakt of vakter" (click)="onSelect()"
+            [class.selected]="vakt === selectedVakt">
+          <span class="badge">{{vakt.vaktId}}</span>
+          <span>{{vakt.fraTid}}</span>
+        </li>
+      </ul>
+
+      <input-field [field]='"Kommentar"' [(fieldValue)]="model.kommentar"></input-field>
+
+      <button (click)="testShit()">test shit</button>
+      <button type="submit" class="btn btn-default btn-primary" [disabled]="!heroForm.form.valid">Lagre bruker</button>
+    </form>
+  </div>
+</div>
