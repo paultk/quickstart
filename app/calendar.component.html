@@ -1,0 +1,94 @@
+<div>
+  <!--<nav-bar-component [headerField2]="date.getFullYear()" [headerField]="months[date.getMonth()]" ></nav-bar-component>-->
+  <nav-bar-component [headerField2]="date.getFullYear()" [(headerField)]="date" (pushed)="date.setFullYear(date.getFullYear() +$event)"  ></nav-bar-component>
+  <nav-bar-component [headerField2]="months[date.getMonth()]" [(headerField)]="date" (pushed)="date.setMonth(date.getMonth() + $event)"  ></nav-bar-component>
+  <nav-bar-component [headerField2]="date.getDate()" [(headerField)]="date" (pushed)="date.setDate($event + date.getDate())"  ></nav-bar-component>
+
+  <!--<nav-bar-component [headerField]="'Week'" ></nav-bar-component>-->
+  <!--<nav-bar-component [headerField2]="date.getDate()" ></nav-bar-component>-->
+</div>
+<div>
+  <table>
+    <thead>
+    <tr>
+      <th>Bruker</th>
+      <th>23:00</th>
+      <th *ngFor="let a of tempArr; let index = index">
+        <div *ngIf="index < 10">0{{index}}:00</div>
+        <div *ngIf="index >= 10">{{index}}:00</div>
+        <!--0700-1500  1500-2300 2300-0700-->
+      </th>
+    </tr>
+    </thead>
+    <tr *ngFor="let shift of takenShift; let rows = index">
+      <td>{{shift.user.fornavn}}</td>
+      <td *ngFor="let b of tempArr; let index = index" ><div *ngIf="index >= shift.fromTime && index <= shift.toTime" class="testForDiv">asd</div></td>
+    </tr>
+  </table>
+</div>
+
+<br>
+<br>
+
+Avdeling:
+<select value="dsf" id="avdeling1">
+  <option value="1">Solbakken</option>
+  <option>2</option>
+  <option>3</option>
+</select>
+<br>
+<br>
+<br>
+Ansatte for Avdeling: .....
+<div>
+  <table>
+    <thead>
+    <th>Bruker</th>
+    <th>  Ordinær tid igjen</th>
+    <th>Overtid</th>
+    <th>Stillingsprosent</th>
+    </thead>
+    <tr *ngFor="let user of users" (click)="setForm(shift)">
+      <!--[class.selected]="shift = "-->
+
+
+      <td>{{user.fornavn}}</td>
+      <td>{{dynamicList[user.brukerId][0]}}</td>
+      <td>{{dynamicList[user.brukerId][1]}}</td>
+      <td>{{dynamicList[user.brukerId][2]}}</td>
+    </tr>
+  </table>
+
+
+  <div>
+    <table>
+      <thead>
+      <th>Ansatt</th>
+      <th>Fra</th>
+      <th>Til</th>
+      </thead>
+      <tr *ngFor="let shift of shiftsUsersCanWork" (click)="setForm(shift)">
+        <td>{{shift.user.fornavn}}</td>
+        <td>{{shift.fromTime}}</td>
+        <td>{{shift.toTime}}</td></tr>
+    </table>
+  </div>
+
+  <form>
+    <input-field  [field]="'Bruker'" [disabled]="true" [fieldValue]="shiftInForm.user.fornavn"></input-field>
+
+    <label for="avdeling">Skift</label>
+    <select class="form-control"  id="avdeling"
+            required
+             name="avdelingId">
+      <option [value]="'23:00'">23:00-07:00</option>
+      <option [value]="'23:00'">07:00-15:00</option>
+      <option [value]="'23:00'">15:00-23:00</option>
+    </select>
+
+    <button type="submit">Registrer skift</button>
+  </form>
+  <button (click)="setTakenShiftDisplay(null)">check</button>
+
+
+</div>

@@ -44,7 +44,7 @@ export class UserService {
     this.http
       .post(URL, JSON.stringify(user), {headers: this.headers},)
       .toPromise()
-      .then(res => res.json().data)
+      .then(res => console.log(res.json().data))
       .catch(this.handleError);
   }
 /*

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 import { User } from './user';
+import {USERS} from "./mock-ansatte";
 
 @Component({
   moduleId: module.id,
@@ -10,10 +11,10 @@ import { User } from './user';
 })
 
 export class LoginComponent {
-  model = new User(1);
+  model = USERS[1];
   loading = false;
   returnUrl: string;
-  tempUser = new User(1);
+  tempUser = USERS[2];
 
 
 

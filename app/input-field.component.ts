@@ -21,9 +21,10 @@ export class InputFieldComponent implements DoCheck {
 
   @Input()
   fieldValue: string;
-
   @Input()
   disabled: boolean;
+
+
 
   @Output()
   fieldValueChange: EventEmitter<string> = new EventEmitter<string>();

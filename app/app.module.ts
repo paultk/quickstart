@@ -16,6 +16,9 @@ import {InputFieldComponent} from './input-field.component';
 import {ForgotCredentialsComponent} from './forgot-credentials.component';
 import {FravaerComponent} from './fravaer.component';
 import {FaqComponent} from "./faq.component";
+import {CalendarComponent} from "./calendar.component";
+import {NavBarComponent} from "./nav-bar.component";
+import {ShiftService} from "./shift.service";
 
 @NgModule({
   imports: [
@@ -35,11 +38,14 @@ import {FaqComponent} from "./faq.component";
     InputFieldComponent,
     ForgotCredentialsComponent,
     FravaerComponent,
-    FaqComponent
+    FaqComponent,
+    CalendarComponent,
+    NavBarComponent,
   ],
   providers: [
     UserService,
-    FravaerService
+    FravaerService,
+    ShiftService
   ],
   bootstrap: [AppComponent]
 })
