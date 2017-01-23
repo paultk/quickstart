@@ -8,7 +8,7 @@ import {Component} from '@angular/core';
     <!--<my-fravaer></my-fravaer>-->
     <calendar-component></calendar-component>
     <!--<my-userinfo></my-userinfo>-->
-    <!--<my-profil></my-profil>
+    <!--<my-profil></my-profil>-->
     <!--<my-login></my-login>-->
     <!--<user-form></user-form>-->
     <!--<my-fravaer></my-fravaer>--> 

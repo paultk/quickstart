@@ -22,11 +22,28 @@
     </thead>
     <tr *ngFor="let shift of takenShift; let rows = index">
       <td>{{shift.user.fornavn}}</td>
-      <td *ngFor="let b of tempArr; let index = index" ><div *ngIf="index >= shift.fromTime && index <= shift.toTime" class="testForDiv">asd</div></td>
+      <td *ngFor="let b of tempArr; let index = index" ><div *ngIf="index >= shift.fromTime && index <= shift.toTime" class="yellowDiv">asd</div></td>
     </tr>
   </table>
 </div>
 
+<div [hidden]="shiftPercentageOk[0]"
+>
+  Det er liten prosentandel av sykepleiere eller Helsefagarbeidere på skift 2300-0700
+</div>
+<div [hidden]="shiftPercentageOk[1]"
+>
+  Det er liten prosentandel av sykepleiere eller Helsefagarbeidere på skift 0700-1500
+</div>
+<div [hidden]="shiftPercentageOk[2]"
+>
+  Det er liten prosentandel av sykepleiere eller Helsefagarbeidere på skift 1500-2300
+</div>
+<div>
+  <h2>Helsefagarbeider:<a class="yellowDiv">s</a></h2>
+  <h2>Sykepleier:<a class="greenDiv">s</a></h2>
+  <h2>Assistent:<a class="redDiv">s</a></h2>
+</div>
 <br>
 <br>
 
@@ -48,14 +65,13 @@ Ansatte for Avdeling: .....
     <th>Overtid</th>
     <th>Stillingsprosent</th>
     </thead>
-    <tr *ngFor="let user of users" (click)="setForm(shift)">
-      <!--[class.selected]="shift = "-->
+    <tr *ngFor="let user of allUsers" (click)="setForm(user)">
+      <!--[class.selected]="shift"-->
 
 
-      <td>{{user.fornavn}}</td>
-      <td>{{dynamicList[user.brukerId][0]}}</td>
-      <td>{{dynamicList[user.brukerId][1]}}</td>
-      <td>{{dynamicList[user.brukerId][2]}}</td>
+      <td>{{user.etternavn}}, {{user.fornavn}}</td>
+      <!--<td>{{dynamicList[user.brukerId][1]}}</td>-->
+      <!--<td>{{dynamicList[user.brukerId][2]}}</td>-->
     </tr>
   </table>
 
@@ -88,7 +104,7 @@ Ansatte for Avdeling: .....
 
     <button type="submit">Registrer skift</button>
   </form>
-  <button (click)="setTakenShiftDisplay(null)">check</button>
+  <button (click)="getAllUsers()">check</button>
 
 
 </div>

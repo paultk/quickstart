@@ -47,21 +47,54 @@ export class UserService {
       .then(res => console.log(res.json().data))
       .catch(this.handleError);
   }
-/*
-  getUsers(): Promise<User[]> {
-    return Promise.resolve(USERS);
-  }
-
-*/
 
   getUsers(): Promise<User[]> {
-    return this.http.get(this.UsersURL).toPromise().then(response => response.json().data as User[]).catch(this.handleError)
+    let returnPromise:User[] = [];
+    let as: Object[] = [];
+    this.http.get(this.UsersURL).toPromise().then(response =>
+      as = (JSON.parse(response['_body'])))
+      .then(
+        () =>
+        as.forEach(user =>
+            returnPromise.push(new User(user['brukerId'], null, user['stillingsId'], null, user['stillingsProsent'],
+              null, null, user['fornavn'], user['etternavn'], user['epost'], user['avdelingId'],
+              null,null, null, null,null,
+            ))
+
+        )).catch(this.handleError);
+
+    return Promise.resolve(returnPromise);
+  }
+  getUsers2(): User[] {
+    let returnPromise:User[] = [];
+    let as: Object[] = [];
+    this.http.get(this.UsersURL).toPromise().then(response =>
+      as = (JSON.parse(response['_body'])))
+      .then(
+        () =>
+        as.forEach(user =>
+            returnPromise.push(new User(user['brukerId'], null, user['stillingsId'], null, user['stillingsProsent'],
+              null, null, user['fornavn'], user['etternavn'], user['epost'], user['avdelingId'],
+              null,null, null, null,null,
+            ))
+
+        )).catch(this.handleError);
+
+    return returnPromise;
+  }
+
+  testObject(obj: Object): void {
+
+    let a = JSON.parse(obj['_body']);
+    console.log(a[1]['brukerId']);
+
+
   }
 
 
-  getUser(id: number): Promise<User> {
-    return this.getUsers().then(users => users.find(user => user.brukerId === id));
-  }
+  // getUser(id: number): Promise<User> {
+  // return this.getUsers().then(users => users.find(user => user.brukerId === id));
+  // }
 
   /*Brukes i profil.component.ts*/
   getCurrentUser(): User {

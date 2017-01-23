@@ -3,8 +3,11 @@ import {User} from "./user";
 import {Shift} from "./shift";
 import {ShiftService} from "./shift.service";
 import {USERS} from "./mock-ansatte";
+import {UserService} from "./user.service";
 
 //todo: possibly fix the way percentage of workers handles shift display
+//todo: Alphabetize users displayed
+//todo: change shifts
 
 
 
@@ -17,7 +20,10 @@ import {USERS} from "./mock-ansatte";
 })
 
 export class CalendarComponent implements OnInit {
-  constructor(private shiftService: ShiftService) {
+  constructor(
+    private shiftService: ShiftService,
+    private userService: UserService
+  ) {
   }
 
 
@@ -32,6 +38,8 @@ export class CalendarComponent implements OnInit {
 
   date: Date;
 
+  allUsers: User[];
+
 
   tempArr = new Array(25);
 
@@ -43,74 +51,116 @@ export class CalendarComponent implements OnInit {
 
   ];
 
-  ngOnInit(): void {
+  restOfInit(): void {
 
-    this.takenShift = this.shiftService.getShifts(new Date(1221));
-    this.shiftsUsersCanWork = this.shiftService.getShiftsUsersCanWork(null);
-    this.shiftInForm = this.shiftsUsersCanWork[0];
-
-    this.date = new Date();
-    // this.date.setDate(this.date.getDate() + 1);
-
-
-    let tempUser1 = new User(2);
-
-    let allUsers: User[];
-
-    // USERS.map(user => console.log(user.brukerId));
 
     let daysInMonth = new Date(this.date.getFullYear(), this.date.getMonth(), 0).getDate();
 
-    USERS.map(user => this.dynamicList[user.brukerId] = [Math.round(user.stillingsProsent / 100 * daysInMonth * 8), 0, user.stillingsProsent]);
+
+    console.log('sd');
+    this.allUsers.forEach(user => console.log('sdsd'));
+
+    this.allUsers.forEach( user =>
+      this.dynamicList[user.brukerId] = [Math.round( (37.5 * daysInMonth / 7 ) * (user.stillingsProsent / 100))]);
+        // user.stillingsProsent / 100 * daysInMonth * 8), 0, user.stillingsProsent]);
 
     // todo: possibly fix the workaround for amount of hours a month
 
 
-    this.shifts.map(
-      shift => this.dynamicList[shift.userId][0] += -8
-    );
+    // this.shifts.forEach(shift => console.log(shift));
+    // for (let i in this.dynamicList) {
+    //   console.log(this.dynamicList[i]);
+    // }
 
+    /*this.shifts.map(
+      shift => this.dynamicList[shift.userId][0] += -8
+    );*/
+/*
     for (let j in this.dynamicList) {
       console.log(this.dynamicList[j]);
 
     }
 
+    // loop to display ordinary time, or overtime
     for (let i in this.dynamicList) {
       if(this.dynamicList[i][0] < 0) {
         this.dynamicList[i][1] = this.dynamicList[i][0] * -1;
         this.dynamicList[i][0] = 0;
 
       }
-    }
+    }*/
+
+  }
+
+
+  ngOnInit(): void {
+    this.allUsers = [];
+    this.getAllUsers();
+
+    // this.takenShift = this.shiftService.getShifts(new Date(1221));
+    this.shiftsUsersCanWork = this.shiftService.getShiftsUsersCanWork(null);
+    this.shiftInForm = this.shiftsUsersCanWork[0];
+
+    this.date = new Date();
+
 
 
   }
 
 
-  setForm(shift: Shift): void {
-    console.log(shift);
-    this.shiftInForm = shift;
+  setForm(user: User): void {
+    console.log(user);
+    this.shiftInForm.user = user;
   }
 
   setTakenShiftDisplay(date: Date): void {
     for (let i in this.shifts) {
       //todo: fix if
       if(this.shifts[i].fromTime == this.date.getDate()) {
-        this.percentageList[this.dynamicList[this.shifts[i].userId].stillingsId] += 1;
+        // 0: 2300-0700, 1: 0700-1500, 2: 1500-2300
+        // todo: fix shift time handling, changes on db would make it easier
+        let shiftTime = 1;
+        this.percentageList[shiftTime][this.dynamicList[this.shifts[i].userId].stillingsId] += 1;
 
       }
     }
   }
 
 
+  testIfPercentageIsOk(): void {
+    for(let i = 0; i < 3; i++) {
+      let total: number;
+      for (let j = 0; i < 3; j++) {
+        total += this.percentageList[i][j];
+      }
+      if (total <= 0) return;
+      else {
+        this.shiftPercentageOk[i] = ((this.percentageList[i][0] / total) >= 0.3 && (this.percentageList[i][0] / total) >= 0.2)
+      }
+    }
+  }
 
 
-  users: User[] = USERS;
 
   dynamicList = {};
-  percentageList = [0,0,0];
+  // 0 = HelsefagArbeider(30 %), 1 = Sykepleier(20%), 2 = Assistent
+  // Three shifts a day
+  percentageList = [[0,0,0], [0,0,0], [0,0,0]];
+  shiftPercentageOk = [false, false, false];
 
-
+  //todo: possibly limit getUsers to avdeling
+  // sets all the users from the db
+  getAllUsers(): void {
+    this.allUsers = this.userService.getUsers()
+      .then(res => this.allUsers = res)
+      .then(() => setTimeout( () =>
+      this.allUsers.forEach( user => console.log(user)), 2000
+      ))
+      .then(() => setTimeout(this.restOfInit(), 100))
+      .catch((error) => console.log(error)));
+    // console.log(this.allUsers[0]);
+    // setTimeout(() =>     console.log(this.allUsers[0]), 3000);
+  }
 
 
   setUsers(): void {

@@ -18,7 +18,7 @@ export class ShiftService {
   ){}
 
 
-  getShifts(date: Date): Shift[] {
+  getShifts(date: Date): {} {
       return shifts;
   }
 
