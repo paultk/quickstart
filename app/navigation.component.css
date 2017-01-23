@@ -40,14 +40,6 @@
   border-bottom: 1px solid #04A3ED;
 }
 
-.container {
-  height: 100%;
-  width: 100%;
-  float: left;
-  padding: 75px 0 0 200px;
-  font-family: "Ubuntu Condensed", sans-serif;
-}
-
 .menu {
   background-color: #006D92;
   border-bottom: 4px solid #04A3ED;
@@ -92,4 +84,12 @@
 .navbar-header > a:hover {
   text-decoration: none;
   color: #04A3ED;
+}
+
+.container {
+  height: auto;
+  width: 100%;
+  float: left;
+  padding: 75px 0 0 200px;
+  font-family: "Ubuntu Condensed", sans-serif;
 }

@@ -27,6 +27,10 @@ export class UserFormComponent {
 
   avdeling = ['St. Olavs Hospital', 'Sentrum sykehus', 'Lade hjelpehjem', 'Ranheim eldreboliger'];
 
+  getAvdeling(): void {
+
+  }
+
   model = USERS[1];
 
   submitted = false;

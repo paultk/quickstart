@@ -47,17 +47,17 @@ export class UserService {
       .then(res => res.json().data)
       .catch(this.handleError);
   }
-/*
+
   getUsers(): Promise<User[]> {
     return Promise.resolve(USERS);
   }
 
-*/
 
+/*
   getUsers(): Promise<User[]> {
     return this.http.get(this.UsersURL).toPromise().then(response => response.json().data as User[]).catch(this.handleError)
   }
-
+*/
 
   getUser(id: number): Promise<User> {
     return this.getUsers().then(users => users.find(user => user.brukerId === id));
