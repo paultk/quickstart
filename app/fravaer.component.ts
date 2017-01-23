@@ -5,6 +5,7 @@ import {Vakt} from './vakt';
 import {VAKTER} from './mock-vakter';
 import {JsonTestClass} from "./json-test-class";
 import {FravaerService} from "./fravaer.service";
+import {User} from "./user";
 
 @Component({
   moduleId: module.id,
@@ -16,8 +17,9 @@ import {FravaerService} from "./fravaer.service";
 export class FravaerComponent implements OnInit {
   constructor(private fravaerService: FravaerService) {}
 
-  model = new Fravaer(23, 40, "Mandag", "Torsdag", "Dette er en kommentar");
+  model = new Fravaer(45, 49, "Mandag", "Torsdag", "Dette er en kommentar");
   timeObject: any;
+
 
   mockVakter: Vakt[];
 
@@ -25,6 +27,7 @@ export class FravaerComponent implements OnInit {
 
   vaktliste: Vakt[];
   selectedVakt: Vakt;
+
 
   fromTime = {hour: 6, minute: 0};
   toTime = {hour: 12, minute: 0};
@@ -77,33 +80,19 @@ export class FravaerComponent implements OnInit {
       "T" + this.completeDateTo[3] + ":" + this.completeDateTo[4] + ":00";
     console.log(this.model.tilTid);
 
-    this.refreshMockVakter();
+    this.getVakter();
   }
 
   getVakter(): void {
-    this.fravaerService
-      .getVaktByDate(this.model.fraTid.substr(0, 10))
-      .then(vaktliste => this.vaktliste = vaktliste);
-  }
-  refreshMockVakter(): void {
-    this.mockVakter = VAKTER;
-    /*for (let vkt of this.mockVakter) {
-      if (vkt.fra_tid.substr(0, 10) == this.model.fraTid.substr(0, 10)) {
-        this.vaktliste.push(vkt);
-      }
-    }*/
-
-    this.vaktliste = this.mockVakter.filter(vakt => vakt.fra_tid.substr(0, 10) === this.model.fraTid.substr(0, 10));
-
-    for (var i = 0; i < this.vaktliste.length; i++) {
-      console.log("Fant: " + this.vaktliste[i].fra_tid);
-    }
+    let response = this.fravaerService.getVaktByDate2(this.model.fraTid.substr(0, 10));
+    Promise.resolve(response).then(res => this.vaktliste = res).then(() => console.log(this.vaktliste));
   }
 
   onSubmit(): void {
     this.submitted = true;
+    this.model.vaktId = this.selectedVakt.vakt_id;
     console.log(this.model);
-    //this.fravaerService.registerFravaer(this.model);
+    this.fravaerService.registerFravaer(this.model);
   }
 
   ngOnInit(): void {
