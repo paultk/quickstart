@@ -2,10 +2,7 @@ import {Component, OnInit} from '@angular/core';
 
 import { Fravaer } from './fravaer';
 import {Vakt} from './vakt';
-import {VAKTER} from './mock-vakter';
-import {JsonTestClass} from "./json-test-class";
 import {FravaerService} from "./fravaer.service";
-import {User} from "./user";
 
 @Component({
   moduleId: module.id,
@@ -19,35 +16,23 @@ export class FravaerComponent implements OnInit {
 
   model = new Fravaer(45, 49, "Mandag", "Torsdag", "Dette er en kommentar");
   timeObject: any;
-
-
-  mockVakter: Vakt[];
-
-  fravaerListe: Fravaer[];
+  fromTime = {hour: 6, minute: 0};
+  toTime = {hour: 12, minute: 0};
 
   vaktliste: Vakt[];
   selectedVakt: Vakt;
 
-
-  fromTime = {hour: 6, minute: 0};
-  toTime = {hour: 12, minute: 0};
-
-  submitted = false;
-
   completeDateFrom = [""];
   completeDateTo = [""];
 
-  getFravaer(): void {
-    this.fravaerService
-      .getFravaerliste()
-      .then(fravaerListe => this.fravaerListe = fravaerListe);
-  }
+  submitted = false;
 
   onSelect(vakt: Vakt): void {
     this.selectedVakt = vakt;
+    this.model.vaktId = this.selectedVakt.vakt_id;
   }
 
-  testShit(): void {
+  refreshVakter(): void {
     this.completeDateFrom[0] = this.timeObject.year.toString();
     this.completeDateFrom[1] = this.timeObject.month.toString();
     this.completeDateFrom[2] = this.timeObject.day.toString();
@@ -90,7 +75,6 @@ export class FravaerComponent implements OnInit {
 
   onSubmit(): void {
     this.submitted = true;
-    this.model.vaktId = this.selectedVakt.vakt_id;
     console.log(this.model);
     this.fravaerService.registerFravaer(this.model);
   }
@@ -99,4 +83,3 @@ export class FravaerComponent implements OnInit {
     //this.getFravaer();
   }
 }
-
