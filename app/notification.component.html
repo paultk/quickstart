@@ -3,6 +3,17 @@
     <h4>Mine varsler</h4>
   </div>
 
+  <table class="messages"><!--knut-->
+    <tr>
+      <th>Fra</th>
+      <th>Overskrift</th>
+    </tr>
+    <tr *ngFor="let message of messages">
+      <td>{{melding.fraBrukerId}}</td>
+      <td>{{melding.overskrift}}</td>
+    </tr>
+  </table>
+
   <button type="submit" (click)="printFunksjon()"
           class="btn btn-default btn-primary"
           [disabled]="!heroForm.form.valid">Åpne melding

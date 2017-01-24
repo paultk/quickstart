@@ -18,6 +18,7 @@ export class NotificationComponent implements OnInit {
     private userService: UserService
   ) {}
 
+
   ngOnInit(): void {
     this.user = this.userService.getCurrentUser();
   }

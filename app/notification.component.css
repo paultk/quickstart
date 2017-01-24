@@ -1,3 +1,18 @@
+th, td {
+  padding-right: 100px;/*knut*/
+}
+
+th, tr, td{
+  border-bottom: 1px solid #ccc; /*knut*/
+  padding: 10px;
+  padding-right: 155px;
+}
+
+th, tr {
+  height: 40px;
+  text-align: left; /*knut*/
+}
+
 .user-form-header {
   background-color: #006D92;
   color: white;
