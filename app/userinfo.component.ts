@@ -23,7 +23,8 @@ export class UserinfoComponent implements OnInit{
   ) {}
 
   getUsers(): void {
-    this.userService.getUsers().then(users => this.users = users);
+    let response = this.userService.getUsers();
+    Promise.resolve(response).then(users => this.users = users).then(() => console.log(this.users));
   }
 
   ngOnInit(): void {

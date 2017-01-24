@@ -5,10 +5,10 @@ import {User} from "./user";
 import 'rxjs/add/operator/toPromise';
 import {JsonTestClass} from "./json-test-class";
 import {USERS} from './mock-ansatte';
+import {Stilling} from "./stilling";
 
 @Injectable()
 export class UserService {
-  private UsersURL = 'http://localhost:8080/bruker/alle';
 
   constructor(
     private http: Http
@@ -48,16 +48,46 @@ export class UserService {
       .catch(this.handleError);
   }
 
+/*
   getUsers(): Promise<User[]> {
     return Promise.resolve(USERS);
   }
 
-
-/*
   getUsers(): Promise<User[]> {
     return this.http.get(this.UsersURL).toPromise().then(response => response.json().data as User[]).catch(this.handleError)
   }
 */
+
+  getStillingOfUser(): Promise<Stilling> {
+    const URL = 'http://localhost:8080/bruker/{id}/stilling';
+    let returnPromise: Stilling[] = [];
+    let as: Object[] = [];
+
+    this.http.get(URL).toPromise()
+      .then(response => as = (JSON.parse(response['_body'])))
+      .then(() => as.forEach(
+        stilling => returnPromise.push(new Stilling(stilling['stillingId'], stilling['beskrivelse']))
+      ))
+      .catch(this.handleError);
+    return Promise.resolve(returnPromise);
+  }
+
+  getUsers(): Promise<User[]> {
+    const URL = 'http://localhost:8080/bruker/alle';
+    let returnPromise: User[] = [];
+    let as: Object[] = [];
+
+    this.http.get(URL).toPromise()
+      .then(response => as = (JSON.parse(response['_body'])))
+      .then(() => as.forEach(
+        user => returnPromise.push(new User(user['brukerId'], user['passordId'], user['stillingsId'], user['telefonNr'],
+          user['stillingsProsent'], user['timelonn'], user['admin'], user['fornavn'], user['etternavn'],
+          user['epost'], user['avdelingId'], user['plaintextPassord'], user['fodselsdato'], user['adresse'],
+          user['by'], user['hash'], user['salt']))
+      ))
+      .catch(this.handleError);
+    return Promise.resolve(returnPromise);
+  }
 
   getUser(id: number): Promise<User> {
     return this.getUsers().then(users => users.find(user => user.brukerId === id));

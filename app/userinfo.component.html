@@ -1,6 +1,6 @@
 <form>
   <input type="text" name="search" placeholder="Søk">
-  <button class="search-button">Søk</button>
+  <button class="btn btn-primary btn-large">Søk</button>
   <br>
   <a href="#">
     <span class="glyphicon glyphicon-plus"></span>
@@ -9,17 +9,16 @@
 <table class="users">
   <tr>
     <th>Fornavn</th>
-    <th>StillingsId</th>
-    <th>Stillingsprosent</th>
+    <th>Stilling</th>
+    <th>Stillingsprosent</th> <!--kun for admin-->
     <th>Telefonnummer</th>
     <th>Epost</th>
   </tr>
   <tr *ngFor="let user of users">
-    <td>{{user.fornavn}}</td>
+    <td>{{user.fornavn}} {{user.etternavn}}</td>
     <td>{{user.stillingsId}}</td>
-    <td>{{user.stillingsprosent}}</td>
+    <td>{{user.stillingsProsent}}</td>
     <td>{{user.telefonNr}}</td>
     <td>{{user.epost}}</td>
   </tr>
 </table>
-<!-- FOOTER -->

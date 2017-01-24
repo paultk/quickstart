@@ -1,6 +1,6 @@
 .navigation {
   height: 100%;
-  width: 150px;
+  width: auto;
   float: left;
   alignment: left;
   padding-top: 50px;
@@ -13,31 +13,73 @@
   font-size: 13px !important;
   background-color: #006D92;
   color: white ;
-  /*border-bottom: 1px solid white !important;*/
   text-align: right;
 }
 
 .navigation .side-menu > li > a {
-  font-size: 13px;
+  position: relative;
+  font-size: 15px;
   background-color: #006D92;
+  font-family: Ubuntu Condensed, sans-serif !important;
   color: white;
-  padding-top: 30px;
-  border-bottom: 1px solid white;
+  padding: 5px 10px 5px 0;
+  margin: 20px 0;
+  /*border-right: 2px solid #006D92;*/
   text-align: right;
   cursor: pointer;
+}
+
+.navigation .side-menu > li > a:after {
+  display: block;
+  position: absolute;
+  left: 0;
+  bottom: -10px;
+  width: 0;
+  height: 2px;
+  background-color: #04A3ED;
+  content: "";
+  transition: width 0.2s;
 }
 
 .navigation .side-menu > li > a:hover {
   background-color: #006D92;
   color: #04A3ED;
-  border-bottom: 1px solid #04A3ED;
-
+  /*border-right: 2px solid #04A3ED;*/
 }
+
+.navigation .side-menu > li > a:hover:after {
+  width: 100%;
+}
+
+/*yo
+.cmn-t-underline {
+  position: relative;
+  color: #ff3296;
+}
+.cmn-t-underline:after {
+  display: block;
+  position: absolute;
+  left: 0;
+  bottom: -10px;
+  width: 0;
+  height: 10px;
+  background-color: #98004a;
+  content: "";
+  transition: width 0.2s;
+}
+.cmn-t-underline:hover {
+  color: #98004a;
+}
+.cmn-t-underline:hover:after {
+  width: 100%;
+}
+*/
+
 
 .navigation .side-menu > li > a:active {
   background-color : #006D92;
   color: #04A3ED;
-  border-bottom: 1px solid #04A3ED;
+  border-bottom: 2px solid #04A3ED;
 }
 
 .menu {
@@ -45,7 +87,7 @@
   border-bottom: 4px solid #04A3ED;
   width: 100%;
   height: auto;
-  padding: 0 10px;
+  padding: 0;
   position: fixed;
   margin: 0px;
   z-index: 1;
@@ -74,10 +116,10 @@
 .navbar-header > a {
   font-family: "Ubuntu Condensed", sans-serif;
   color: white;
-  margin: 0px;
+  margin: 10px 0 0 0;
   text-decoration: none;
   font-size: 25px;
-  padding: 5px 30px;
+  padding: 5px 10px;
   alignment: center;
 }
 

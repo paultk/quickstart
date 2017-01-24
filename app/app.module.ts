@@ -12,6 +12,7 @@ import {LoginComponent} from './login.component';
 import {UserFormComponent} from './user-form.component';
 import {UserService} from './user.service';
 import {FravaerService} from './fravaer.service';
+import {AvdelingService} from './avdeling.service'
 import {InputFieldComponent} from './input-field.component';
 import {ForgotCredentialsComponent} from './forgot-credentials.component';
 import {FravaerComponent} from './fravaer.component';
@@ -39,7 +40,8 @@ import {FaqComponent} from "./faq.component";
   ],
   providers: [
     UserService,
-    FravaerService
+    FravaerService,
+    AvdelingService
   ],
   bootstrap: [AppComponent]
 })

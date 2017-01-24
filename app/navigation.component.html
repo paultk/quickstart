@@ -1,11 +1,16 @@
 <!-- HEADER -->
 <div class="menu">
   <div class="container-fluid">
-    <div class="navbar-header">
+    <div class="navbar-header pull-left">
       <a href="#">MinVakt</a>
     </div>
     <div>
       <ul class="nav navbar-nav navbar-right">
+        <li>
+          <a type="text" class="user-name" href="#">
+            <span class="glyphicon"></span>Trym Todalshaug<!--{{selectedUser.navn}}-->
+          </a>
+        </li>
         <li>
           <a href="#">
             <span class="glyphicon glyphicon-bell"></span>
@@ -36,23 +41,18 @@
   <div class="container-fluid">
     <ul class="nav side-menu">
       <li>
-        <a type="text" class="user-name" href="#">
-          <span class="glyphicon"></span>Trym Todalshaug<!--{{selectedUser.navn}}-->
+        <a href="#">
+          <span class="glyphicon"></span> Vaktliste
         </a>
       </li>
       <li>
         <a href="#">
-          <span class="glyphicon"></span>Vaktliste
+          <span class="glyphicon"></span> Brukerinfo
         </a>
       </li>
       <li>
         <a href="#">
-          <span class="glyphicon"></span>Brukerinfo
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <span class="glyphicon"></span>Tilgjengelighet
+          <span class="glyphicon"></span> Tilgjengelighet
         </a>
       </li>
     </ul>
@@ -61,10 +61,9 @@
 
 <!-- CONTAINER -->
 <div class="container">
-  <faq></faq>
-  <!--<my-userinfo></my-userinfo>-->
+  <my-userinfo></my-userinfo>
   <!--<my-profil></my-profil>-->
   <!--<my-fravaer></my-fravaer>-->
-  <user-form></user-form>
+  <!--<user-form></user-form>-->
   <!--<faq></faq>-->
 </div>
