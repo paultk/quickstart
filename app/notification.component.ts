@@ -23,6 +23,11 @@ export class NotificationComponent implements OnInit {
     private userService : UserService
   ) {}
 
+  createMessage(header : string, message : string, toUser : number, fromUser : number): void {
+    let not = new Notification(0, toUser, fromUser, header, message, '1999-01-01', false);
+    this.notifService.addNotification(not);
+  }
+
   ngOnInit(): void {
     this.user = this.userService.getCurrentUser();
     this.notifService.getNotifications(this.user).then(notifications => this.notifications = notifications);
