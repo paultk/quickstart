@@ -17,7 +17,7 @@ export class ProfilComponent implements OnInit {
   selectedUser: User;
 
   constructor(
-    private userService: UserService,
+    private userService: UserService
   ) {}
 
   ngOnInit(): void {

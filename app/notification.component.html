@@ -4,8 +4,7 @@
   </div>
 
   <button type="submit" (click)="printFunksjon()"
-          class="btn btn-default btn-primary"
-          [disabled]="!heroForm.form.valid">Åpne melding
+          class="btn btn-default btn-primary">Åpne melding
 
   </button>
   <p>Varseler lastes ned i pdf-format</p>
@@ -19,8 +18,7 @@
       <h4>Ny varsel</h4>
   </div>
 
-  <label>Overskrift</label>
-  <input-field class= "inputen" [field]='"tilBrukerId"' [disabled]="true" [(fieldValue)]="notification.tilBrukerId"></input-field>
+  <input-field class= "inputen" [field]='"Overskrift"'></input-field>
   <label>Skriv en melding</label>
   <textarea class= "texten" [(ngModel)] = "melding" rows="5" cols="54" [disabled]="send"></textarea>
 
@@ -28,14 +26,13 @@
     <label for="fornavn">Til</label>
     <select class="select-form form-control" id="fornavn"
             required
-            [(ngModel)]="notification.fornavn" name="fornavn">
-      <option *ngFor="let user of users" [value]="noti">{{user.epost}}</option>
+            [(ngModel)]="user.fornavn" name="fornavn">
+      <option *ngFor="let user of users" [value]="user">{{user.fornavn}} {{user.etternavn}}</option>
     </select>
   </div>
 
   <button type="submit" (click)="printFunksjon()"
-          class="btn btn-default btn-primary"
-          [disabled]="!heroForm.form.valid">Send melding
+          class="btn btn-default btn-primary">Send melding
   </button>
 
   </div>
