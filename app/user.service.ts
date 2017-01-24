@@ -70,6 +70,7 @@ export class UserService {
       ))
       .catch(this.handleError);
     return Promise.resolve(returnPromise);
+
   }
 
   getUsers(): Promise<User[]> {
