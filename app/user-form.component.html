@@ -61,14 +61,14 @@
         </div>
 
         <div class="form-group">
-          <!--AVDELING-->
-          <label for="avdeling">Avdeling</label>
-          <select class="select-form form-control" id="avdeling"
-                  required
-                  [(ngModel)]="model.avdelingId" name="avdelingId">
-            <option *ngFor="let avd of avdeling" [value]="avd">{{avd}}</option>
-          </select>
-        </div>
+        <!--AVDELING-->
+        <label for="avdeling">Avdeling</label>
+        <select class="select-form form-control" id="avdeling"
+                required
+                [(ngModel)]="model.avdelingId" name="avdelingId">
+          <option *ngFor="let avd of avdeling" [value]="avd">{{avd}}</option>
+        </select>
+      </div>
 
         <input-field [field]='"Timelønn"' [(fieldValue)]="model.timelonn"></input-field>
 

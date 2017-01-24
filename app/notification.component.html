@@ -1,0 +1,37 @@
+<div class="left pull-left">
+  <div class="user-form-header">
+    <h4>Mine varsler</h4>
+  </div>
+
+  <button type="submit" (click)="printFunksjon()"
+          class="btn btn-default btn-primary"
+          [disabled]="!heroForm.form.valid">Åpne melding
+
+  </button>
+  <p>Varseler lastes ned i pdf-format</p>
+
+
+  </div>
+
+
+<div class="right pull-right">
+  <div class="user-form-header2">
+    <h4>Ny varsel</h4>
+  </div>
+
+  <input-field [field]='"Fornavn"' [disabled]="true" [(fieldValue)]="user.fornavn"></input-field>
+  <textarea [(ngModel)] = ""
+  <div class="form-group">
+    <label for="fornavn">Til</label>
+    <select class="select-form form-control" id="fornavn"
+            required
+            [(ngModel)]="user.fornavn" name="fornavn">
+      <option *ngFor="let user of users" [value]="user">{{user.fornavn}}</option>
+    </select>
+  </div>
+
+  <button type="submit" (click)="printFunksjon()"
+          class="btn btn-default btn-primary"
+          [disabled]="!heroForm.form.valid">Send melding
+  </button>
+  </div>
