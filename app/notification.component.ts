@@ -13,8 +13,9 @@ import {NotificationService} from './notification.service';
 })
 
 export class NotificationComponent implements OnInit {
-  user: User;
+  user : User;
   users : User[];
+  model = new Notification(0,0,0,"test", "test", "1999-01-01", false);
   notification : Notification;
   notifications : Notification[];
   submitted = false;
@@ -24,10 +25,11 @@ export class NotificationComponent implements OnInit {
     private userService : UserService
   ) {}
 
-  onSubmit(header : string, message : string, toUser : number) {
-    this.notification = new Notification(0, toUser, this.user.brukerId, header, message, '1999-01-01', false);
+  onSubmit() {
+    this.model.fraBrukerId = this.user.brukerId;
+    console.log(this.model);
     this.submitted = true;
-    this.notifService.addNotification(this.notification);
+    this.notifService.addNotification(this.model);
   }
 
   ngOnInit(): void {
