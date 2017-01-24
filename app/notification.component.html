@@ -29,7 +29,7 @@
     <select class="select-form form-control" id="fornavn"
             required
             [(ngModel)]="notification.fornavn" name="fornavn">
-      <option *ngFor="let noti of notification" [value]="noti">{{notification.tilBrukerId}}</option>
+      <option *ngFor="let user of users" [value]="noti">{{user.epost}}</option>
     </select>
   </div>
 
