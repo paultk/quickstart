@@ -17,15 +17,17 @@ export class NotificationComponent implements OnInit {
   users : User[];
   notification : Notification;
   notifications : Notification[];
+  submitted = false;
 
   constructor(
     private notifService : NotificationService,
     private userService : UserService
   ) {}
 
-  createMessage(header : string, message : string, toUser : number, fromUser : number): void {
-    let not = new Notification(0, toUser, fromUser, header, message, '1999-01-01', false);
-    this.notifService.addNotification(not);
+  onSubmit(header : string, message : string, toUser : number, fromUser : number) {
+    this.notification = new Notification(0, toUser, fromUser, header, message, '1999-01-01', false);
+    this.submitted = true;
+    this.notifService.addNotification(this.notification);
   }
 
   ngOnInit(): void {
