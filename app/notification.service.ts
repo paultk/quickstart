@@ -78,8 +78,8 @@ export class NotificationService {
   }*/
 
   /*Brukes i profil.component.ts*/
-  getCurrentUser(): User {
-    return new User(1, 1, 1, 41414141, 100, 200, false, 'Mr. Nice', 'Johnson', 'narco@minvakt.no', 1, 'passord1234', '01.01.2016', 'veigata 5', 'Trondheim');
+  getCurrentNotif(): Notification {
+    return new Notification(1, 1, 1, 'walla', 'balla', '2010-01-01', false)
   }
 
 }

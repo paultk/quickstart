@@ -18,6 +18,7 @@ import {ForgotCredentialsComponent} from './forgot-credentials.component';
 import {FravaerComponent} from './fravaer.component';
 import {FaqComponent} from "./faq.component";
 import {NotificationComponent} from "./notification.component";
+import {NotificationService} from "./notification.service";
 
 @NgModule({
   imports: [
@@ -43,7 +44,8 @@ import {NotificationComponent} from "./notification.component";
   providers: [
     UserService,
     FravaerService,
-    AvdelingService
+    AvdelingService,
+    NotificationService
   ],
   bootstrap: [AppComponent]
 })
