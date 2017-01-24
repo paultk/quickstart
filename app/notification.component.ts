@@ -24,8 +24,8 @@ export class NotificationComponent implements OnInit {
     private userService : UserService
   ) {}
 
-  onSubmit(header : string, message : string, toUser : number, fromUser : number) {
-    this.notification = new Notification(0, toUser, fromUser, header, message, '1999-01-01', false);
+  onSubmit(header : string, message : string, toUser : number) {
+    this.notification = new Notification(0, toUser, this.user.brukerId, header, message, '1999-01-01', false);
     this.submitted = true;
     this.notifService.addNotification(this.notification);
   }
