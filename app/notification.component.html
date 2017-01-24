@@ -1,39 +1,42 @@
-<div class="left pull-left">
-  <div class="user-form-header">
-    <h4>Mine varsler</h4>
-  </div>
+<div [hidden]="submitted">
+  <form (ngSubmit)="onSubmit('test','test2', 'user', '1')" #heroForm="ngForm">
 
-  <button type="submit" (click)="printFunksjon()"
-          class="btn btn-default btn-primary">Åpne melding
+      <div class="left pull-left">
+        <div class="user-form-header">
+          <h4>Mine varsler</h4>
+         </div>
 
-  </button>
-  <p>Varseler lastes ned i pdf-format</p>
+        <button type="submit" (click)="printFunksjon()"
+          class="btn btn-default btn-primary" [disabled]="!heroForm.form.valid" name="test4">Åpne melding
+        </button>
+
+        <p>Varseler lastes ned i pdf-format</p>
+      </div>
 
 
-  </div>
+      <div class="right pull-right">
+        <div class="user-form-header2">
+          <h4>Ny varsel</h4>
+        </div>
 
+        <input-field class= "inputen" [field]='"Overskrift"' name="test"></input-field>
+        <label>Skriv en melding</label>
+        <textarea class= "texten" [(ngModel)] = "melding" rows="5" cols="54" [disabled]="send" name="test2"></textarea>
 
-<div class="right pull-right">
-  <div class="user-form-header2">
-      <h4>Ny varsel</h4>
-  </div>
+        <div class="form-group">
+          <label for="fornavn">Til</label>
+              <select class="select-form form-control" id="fornavn"
+                              required
+                      [(ngModel)]="user.fornavn" name="fornavn">
+                  <option *ngFor="let user of users; let index = index" [value]="index">{{user.fornavn}} {{user.etternavn}}</option>
+              </select>
+        </div>
 
-  <input-field class= "inputen" [field]='"Overskrift"'></input-field>
-  <label>Skriv en melding</label>
-  <textarea class= "texten" [(ngModel)] = "melding" rows="5" cols="54" [disabled]="send"></textarea>
+       <button type="submit" (click)="printFunksjon()"
+          class="btn btn-default btn-primary" [disabled]="!heroForm.form.valid" name="test3">Send melding
+       </button>
 
-  <div class="form-group">
-    <label for="fornavn">Til</label>
-    <select class="select-form form-control" id="fornavn"
-            required
-            [(ngModel)]="user.fornavn" name="fornavn">
-      <option *ngFor="let user of users" [value]="user">{{user.fornavn}} {{user.etternavn}}</option>
-    </select>
-  </div>
+      </div>
 
-  <button type="submit" (click)="printFunksjon()"
-          class="btn btn-default btn-primary">Send melding
-  </button>
-
-  </div>
-
+  </form>
+</div>
