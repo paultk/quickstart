@@ -53,7 +53,7 @@ export class NotificationService {
       .catch(this.handleError);
   }
 
-  getNotifications(user : User): Promise<Fravaer[]> {
+  getNotifications(user : User): Promise<Notification[]> {
     const URL = 'http://localhost:8080/melding/get';
     console.log("from notificationService");
     return this.http
