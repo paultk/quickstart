@@ -46,7 +46,9 @@ th, tr {
   border: 1px solid #ccc;
 }
 
-.inputs{
-  width: 200px;
-  height: 200px;
+.inputen{
+  width: 50px !important;
+  margin-left: 5em;
 }
+
+
