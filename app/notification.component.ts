@@ -18,7 +18,7 @@ export class NotificationComponent implements OnInit {
   model = new Notification(0,0,0,"test", "test", "1999-01-01", false);
   notification : Notification;
   notifications : Notification[];
-  submitted = false;
+  // submitted = false;
 
   constructor(
     private notifService : NotificationService,
@@ -28,7 +28,7 @@ export class NotificationComponent implements OnInit {
   onSubmit() {
     this.model.fraBrukerId = this.user.brukerId;
     console.log(this.model);
-    this.submitted = true;
+    // this.submitted = true;
     this.notifService.addNotification(this.model);
   }
 

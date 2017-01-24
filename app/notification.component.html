@@ -26,7 +26,7 @@
         <div class="form-group">
           <label for="fornavn">Til</label>
               <select class="select-form form-control" id="fornavn" required [(ngModel)]="model.tilBrukerId" name="fornavn">
-                  <option *ngFor="let user of users" [value]="user.brukerId">{{user.brukerId}} {{user.fornavn}}</option>
+                  <option *ngFor="let user of users" [value]="user.brukerId">{{user.fornavn}} {{user.etternavn}}</option>
               </select>
         </div>
 
