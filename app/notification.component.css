@@ -1,0 +1,37 @@
+.user-form-header {
+  background-color: #006D92;
+  color: white;
+  padding: 5px;
+  margin-bottom: 5px;
+}
+
+.user-form-content{
+  padding: 0 20px 20px 20px;
+}
+
+.user-form-header2 {
+  background-color: #006D92;
+  color: white;
+  padding: 5px;
+  margin-bottom: 5px;
+}
+
+.left {
+  width: 30em;
+  height: auto;
+  float: left;
+  border: 1px solid #ccc;
+}
+
+.right {
+  margin-right: 10em;
+  width: 30em;
+  height: auto;
+  float: left;
+  border: 1px solid #ccc;
+}
+
+.inputs{
+  width: 200px;
+  height: 200px;
+}
