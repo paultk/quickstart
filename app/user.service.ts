@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers } from '@angular/http';
+import {Http, Headers, Response} from '@angular/http';
 
 import {User} from "./user";
 import 'rxjs/add/operator/toPromise';
 import {JsonTestClass} from "./json-test-class";
 import {USERS} from './mock-ansatte';
+// import {Observable} from "rxjs";
 
 @Injectable()
 export class UserService {
@@ -55,16 +56,42 @@ export class UserService {
       as = (JSON.parse(response['_body'])))
       .then(
         () =>
-        as.forEach(user =>
+          as.forEach(user =>
+          // console.log(user)
             returnPromise.push(new User(user['brukerId'], null, user['stillingsId'], null, user['stillingsProsent'],
               null, null, user['fornavn'], user['etternavn'], user['epost'], user['avdelingId'],
               null,null, null, null,null,
             ))
 
-        )).catch(this.handleError);
+          )).catch(this.handleError);
 
     return Promise.resolve(returnPromise);
   }
+/*
+
+  getUsers5(): Observable<User> {
+    // let a: Response;
+    let returnPromise:User[] = [];
+    let as: Object[] = [];
+    return this.http.get(this.UsersURL)
+      .map((response:Response) =>response.json())
+        .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+
+    /!*as = (JSON.parse(response['_body'])))
+     .then(
+     () =>
+     as.forEach(user =>
+     returnPromise.push(new User(user['brukerId'], null, user['stillingsId'], null, user['stillingsProsent'],
+     null, null, user['fornavn'], user['etternavn'], user['epost'], user['avdelingId'],
+     null,null, null, null,null,
+     ))
+
+     )).catch(this.handleError);
+
+     return Promise.resolve(returnPromise);*!/
+  }
+*/
+
   getUsers2(): User[] {
     let returnPromise:User[] = [];
     let as: Object[] = [];
@@ -72,15 +99,62 @@ export class UserService {
       as = (JSON.parse(response['_body'])))
       .then(
         () =>
-        as.forEach(user =>
+          as.forEach(user =>
             returnPromise.push(new User(user['brukerId'], null, user['stillingsId'], null, user['stillingsProsent'],
               null, null, user['fornavn'], user['etternavn'], user['epost'], user['avdelingId'],
               null,null, null, null,null,
             ))
 
-        )).catch(this.handleError);
+          )).catch(this.handleError);
 
     return returnPromise;
+  }
+/*
+
+  getUsers3(): Observable<User[]> {
+    let returnPromise:User[] = [];
+    let as: Object[] = [];
+    return this.http.get(this.UsersURL).map(response =>
+      as = (JSON.parse(response['_body'])))
+      .map(
+        () =>
+          as.forEach(user =>
+            new User(user['brukerId'], null, user['stillingsId'], null, user['stillingsProsent'],
+              null, null, user['fornavn'], user['etternavn'], user['epost'], user['avdelingId'],
+              null,null, null, null,null,
+            )
+
+          )).catch(this.handleError);
+
+    // return returnPromise;
+  }
+*/
+
+  getUsers4(allUsers: User[]): void {
+    /*// let returnPromise:User[] = [];
+     let as: Object[] = [];
+     let str: string[]= [];
+     this.http.get(this.UsersURL).then(response =>
+     str = JSON.parse(response['_body']).map(user => console.log(user['fornavn']))
+     .catch());
+     setTimeout(console.log(str), 2000);
+
+     */
+
+    /*
+
+     .forEach(
+     user =>
+     console.log(user)
+     /!*
+     new User(user['brukerId'], null, user['stillingsId'], null, user['stillingsProsent'],
+     null, null, user['fornavn'], user['etternavn'], user['epost'], user['avdelingId'],
+     null,null, null, null,null,
+     )*!/
+     ).catch(this.handleError);
+     */
+
+    // return returnPromise;
   }
 
   testObject(obj: Object): void {

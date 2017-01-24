@@ -2,7 +2,6 @@ import {Component, Input, OnInit} from "@angular/core";
 import {User} from "./user";
 import {Shift} from "./shift";
 import {ShiftService} from "./shift.service";
-import {USERS} from "./mock-ansatte";
 import {UserService} from "./user.service";
 
 //todo: possibly fix the way percentage of workers handles shift display
@@ -38,7 +37,7 @@ export class CalendarComponent implements OnInit {
 
   date: Date;
 
-  allUsers: User[];
+  allUsers: User[] = [];
 
 
   tempArr = new Array(25);
@@ -54,15 +53,14 @@ export class CalendarComponent implements OnInit {
   restOfInit(): void {
 
 
-    let daysInMonth = new Date(this.date.getFullYear(), this.date.getMonth(), 0).getDate();
 
 
     console.log('sd');
-    this.allUsers.forEach(user => console.log('sdsd'));
+    this.allUsers.forEach(user => console.log('ping'));
 
-    this.allUsers.forEach( user =>
+    /*this.allUsers.forEach( user =>
       this.dynamicList[user.brukerId] = [Math.round( (37.5 * daysInMonth / 7 ) * (user.stillingsProsent / 100))]);
-        // user.stillingsProsent / 100 * daysInMonth * 8), 0, user.stillingsProsent]);
+    // user.stillingsProsent / 100 * daysInMonth * 8), 0, user.stillingsProsent]);*/
 
     // todo: possibly fix the workaround for amount of hours a month
 
@@ -73,35 +71,40 @@ export class CalendarComponent implements OnInit {
     // }
 
     /*this.shifts.map(
-      shift => this.dynamicList[shift.userId][0] += -8
-    );*/
-/*
-    for (let j in this.dynamicList) {
-      console.log(this.dynamicList[j]);
+     shift => this.dynamicList[shift.userId][0] += -8
+     );*/
+    /*
+     for (let j in this.dynamicList) {
+     console.log(this.dynamicList[j]);
 
-    }
+     }
 
-    // loop to display ordinary time, or overtime
-    for (let i in this.dynamicList) {
-      if(this.dynamicList[i][0] < 0) {
-        this.dynamicList[i][1] = this.dynamicList[i][0] * -1;
-        this.dynamicList[i][0] = 0;
+     // loop to display ordinary time, or overtime
+     for (let i in this.dynamicList) {
+     if(this.dynamicList[i][0] < 0) {
+     this.dynamicList[i][1] = this.dynamicList[i][0] * -1;
+     this.dynamicList[i][0] = 0;
 
-      }
-    }*/
+     }
+     }*/
 
   }
 
 
   ngOnInit(): void {
-    this.allUsers = [];
-    this.getAllUsers();
-
-    // this.takenShift = this.shiftService.getShifts(new Date(1221));
-    this.shiftsUsersCanWork = this.shiftService.getShiftsUsersCanWork(null);
-    this.shiftInForm = this.shiftsUsersCanWork[0];
 
     this.date = new Date();
+
+    let daysInMonth = new Date(this.date.getFullYear(), this.date.getMonth(), 0).getDate();
+
+
+    this.getAllUsers();
+    // this.restOfInit();
+
+    // this.takenShift = this.shiftService.getShifts(new Date(1221));
+    // this.shiftsUsersCanWork = this.shiftService.getShiftsUsersCanWork(null);
+    // this.shiftInForm = this.shiftsUsersCanWork[0];
+
 
 
 
@@ -151,19 +154,42 @@ export class CalendarComponent implements OnInit {
   //todo: possibly limit getUsers to avdeling
   // sets all the users from the db
   getAllUsers(): void {
-    this.allUsers = this.userService.getUsers()
-      .then(res => this.allUsers = res)
-      .then(() => setTimeout( () =>
-      this.allUsers.forEach( user => console.log(user)), 2000
-      ))
-      .then(() => setTimeout(this.restOfInit(), 100))
-      .catch((error) => console.log(error)));
+    /*this.userService.getUsers5().subscribe(
+      res => console.log(res)
+    );*/
+    /*this.userService.getUsers3().subscribe(array => this.allUsers = array,
+      err => console.log(err),
+      () => console.log("Completed")
+    )*/
+
+    /*this.allUsers = await Promise.resolve(this.userService.getUsers());
+    this.allUsers = this.userService.getUsers2();
+*/
+    // .then(res => this.allUsers = res)
+    // .then(() => setTimeout( () =>
+    // this.allUsers.forEach( user => console.log(user)), 2000
+
+    // .then(() => setTimeout(this.restOfInit(), 100))
+    // .catch((error) => console.log(error)));
     // console.log(this.allUsers[0]);
     // setTimeout(() =>     console.log(this.allUsers[0]), 3000);
+
+    let a = this.userService.getUsers();
+    Promise.resolve(a).then(e => this.allUsers = e).then(
+      () =>
+    setTimeout(this.restOfInit, 6000));
+    /*
+    this.userService.getUsers().then(
+      (users) => setTimeout(users => this.allUsers = Promise.resolve(users), 1000)
+    ).then(
+      () => setTimeout(this.restOfInit, 3000)
+    )*/
   }
 
 
   setUsers(): void {
+    console.log(this.allUsers);
+
 
 
 

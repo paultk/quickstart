@@ -19,6 +19,7 @@ import {FaqComponent} from "./faq.component";
 import {CalendarComponent} from "./calendar.component";
 import {NavBarComponent} from "./nav-bar.component";
 import {ShiftService} from "./shift.service";
+// import "./rxjs-extensions";
 
 @NgModule({
   imports: [
@@ -27,6 +28,7 @@ import {ShiftService} from "./shift.service";
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
+
   ],
   declarations: [
     AppComponent,
