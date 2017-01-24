@@ -48,31 +48,6 @@ export class UserService {
       .catch(this.handleError);
   }
 
-/*
-  getUsers(): Promise<User[]> {
-    return Promise.resolve(USERS);
-  }
-
-  getUsers(): Promise<User[]> {
-    return this.http.get(this.UsersURL).toPromise().then(response => response.json().data as User[]).catch(this.handleError)
-  }
-*/
-
-  getStillingOfUser(): Promise<Stilling> {
-    const URL = 'http://localhost:8080/bruker/{id}/stilling';
-    let returnPromise: Stilling[] = [];
-    let as: Object[] = [];
-
-    this.http.get(URL).toPromise()
-      .then(response => as = (JSON.parse(response['_body'])))
-      .then(() => as.forEach(
-        stilling => returnPromise.push(new Stilling(stilling['stillingId'], stilling['beskrivelse']))
-      ))
-      .catch(this.handleError);
-    return Promise.resolve(returnPromise);
-
-  }
-
   getUsers(): Promise<User[]> {
     const URL = 'http://localhost:8080/bruker/alle';
     let returnPromise: User[] = [];
@@ -81,7 +56,7 @@ export class UserService {
     this.http.get(URL).toPromise()
       .then(response => as = (JSON.parse(response['_body'])))
       .then(() => as.forEach(
-        user => returnPromise.push(new User(user['brukerId'], user['passordId'], user['stillingsId'], user['telefonNr'],
+        user => returnPromise.push(new User(user['brukerId'], user['passordId'], user['stillingsBeskrivelse'], user['telefonNr'],
           user['stillingsProsent'], user['timelonn'], user['admin'], user['fornavn'], user['etternavn'],
           user['epost'], user['avdelingId'], user['plaintextPassord'], user['fodselsdato'], user['adresse'],
           user['by'], user['hash'], user['salt']))
@@ -96,7 +71,7 @@ export class UserService {
 
   /*Brukes i profil.component.ts*/
   getCurrentUser(): User {
-    return new User(1, 1, 1, 41414141, 100, 200, false, 'Mr. Nice', 'Johnson', 'narco@minvakt.no', 1, 'passord1234', '01.01.2016', 'veigata 5', 'Trondheim');
+    return new User(1, 1, 'helsefagebeider', 41414141, 100, 200, false, 'Mr. Nice', 'Johnson', 'narco@minvakt.no', 1, 'passord1234', '01.01.2016', 'veigata 5', 'Trondheim');
   }
 
 }
