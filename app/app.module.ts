@@ -1,3 +1,5 @@
+import './rxjs-extensions';
+
 import {NgModule}      from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -19,6 +21,7 @@ import {FravaerComponent} from './fravaer.component';
 import {FaqComponent} from "./faq.component";
 import {NotificationComponent} from "./notification.component";
 import {NotificationService} from "./notification.service";
+import {UserSearchcomponent} from './user-search.component'
 
 @NgModule({
   imports: [
@@ -39,7 +42,8 @@ import {NotificationService} from "./notification.service";
     ForgotCredentialsComponent,
     FravaerComponent,
     FaqComponent,
-    NotificationComponent
+    NotificationComponent,
+    UserSearchcomponent
   ],
   providers: [
     UserService,
