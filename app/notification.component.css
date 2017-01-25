@@ -32,7 +32,8 @@
 }
 
 .inputen{
-  width: 300px !important;
+  width: 380px !important;
+  margin-left: 20px;
 }
 
 
@@ -57,9 +58,11 @@ input[type=text]:focus {
 
 .btn {
   float: left;
-  width: 60px;
+  width: 120px;
   box-sizing: border-box;
   height: 40px;
+  margin-left: 20px;
+  margin-bottom: 20px;
 }
 
 table {
@@ -92,6 +95,25 @@ th, tr {
   font-family: "Ubuntu Condensed", sans-serif;
 }
 
-.btn{
-  width: 120px;
+.texten{
+  margin-left: 20px;
+}
+
+label{
+  margin-left: 20px;
+}
+
+#fornavn{
+  width: 380px;
+  margin-left: 20px;
+}
+
+.alert{
+  float:right;
+  margin-right: 10px;
+  text-align: center;
+}
+
+.sendt{
+  color: green;
 }
