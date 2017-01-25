@@ -53,14 +53,30 @@ export class NotificationService {
       .catch(this.handleError);
   }
 
-  getNotifications(user : User): Promise<Notification[]> {
+  /*getNotifications(user : User): Promise<Notification[]> {
     const URL = 'http://localhost:8080/melding/get';
     console.log("from notificationService");
     return this.http
       .post(URL, JSON.stringify(user), {headers: this.headers},)
       .toPromise()
-      .then(res => res.json().data as Notification[])
+      .then(res => res.json().data)
       .catch(this.handleError)
+  }*/
+
+  getNotifications(user : User): Promise<Notification[]> {
+    const URL = 'http://localhost:8080/melding/get';
+    let returnPromise: Notification[] = [];
+    let as: Object[] = [];
+    // console.log(JSON.stringify(user));
+
+    this.http.post(URL, JSON.stringify(user), {headers: this.headers}).toPromise()
+      .then(response => as = (JSON.parse(response['_body'])))
+      .then(() => as.forEach(
+        notif => returnPromise.push(new Notification(notif['meldingId'], notif['tilBrukerId'], notif['fraBrukerId'],
+          notif['overskrift'], notif['melding'], notif['tid_sendt'], notif['sett'])
+      )))
+      .catch(this.handleError);
+    return Promise.resolve(returnPromise);
   }
 
   //      .then(res => res.json().data as Fravaer[])

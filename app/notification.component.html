@@ -1,14 +1,14 @@
 <div [hidden]="submitted">
-  <form (ngSubmit)="onSubmit('test','test2', 'user', '1')" #heroForm="ngForm">
+  <form (ngSubmit)="onSubmit()" #heroForm="ngForm">
 
       <div class="left pull-left">
         <div class="user-form-header">
           <h4>Mine varsler</h4>
          </div>
 
-        <button type="submit" (click)="printFunksjon()"
+        <!--<button type="submit" (click)="printFunksjon()"
           class="btn btn-default btn-primary" [disabled]="!heroForm.form.valid" name="test4">Åpne melding
-        </button>
+        </button>-->
 
         <p>Varseler lastes ned i pdf-format</p>
       </div>
@@ -19,22 +19,22 @@
           <h4>Ny varsel</h4>
         </div>
 
-        <input-field class= "inputen" [field]='"Overskrift"' name="test"></input-field>
+        <input class= "inputen" name="overskrift" [(ngModel)]="model.overskrift">
         <label>Skriv en melding</label>
-        <textarea class= "texten" [(ngModel)] = "melding" rows="5" cols="54" [disabled]="send" name="test2"></textarea>
+        <textarea class= "texten" [(ngModel)] = "model.melding" rows="5" cols="54" [disabled]="send" name="test2"></textarea>
 
         <div class="form-group">
           <label for="fornavn">Til</label>
-              <select class="select-form form-control" id="fornavn"
-                              required
-                      [(ngModel)]="user.fornavn" name="fornavn">
-                  <option *ngFor="let user of users; let index = index" [value]="index">{{user.fornavn}} {{user.etternavn}}</option>
+              <select class="select-form form-control" id="fornavn" required [(ngModel)]="model.tilBrukerId" name="fornavn">
+                  <option *ngFor="let user of users" [value]="user.brukerId">{{user.fornavn}} {{user.etternavn}}</option>
               </select>
         </div>
 
-       <button type="submit" (click)="printFunksjon()"
+       <button type="submit"
           class="btn btn-default btn-primary" [disabled]="!heroForm.form.valid" name="test3">Send melding
        </button>
+
+        <div *ngFor="let notif of notifications">{{notif.overskrift}}  {{notif.melding}}</div>
 
       </div>
 

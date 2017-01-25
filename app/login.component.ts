@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 
 import { User } from './user';
+import {Authentication} from "./Authentication";
+import {Http, Headers} from "@angular/http";
+import {Token} from "./Token";
 
 @Component({
   moduleId: module.id,
@@ -10,10 +13,16 @@ import { User } from './user';
 })
 
 export class LoginComponent {
-  model = new User(1);
+  model = new Authentication("dummy", "dummy");
   loading = false;
   returnUrl: string;
   tempUser = new User(1);
+
+  constructor(
+    private http: Http
+  ){}
+
+  private headers = new Headers({'Content-Type': 'application/json'});
 
 
 
@@ -24,7 +33,13 @@ export class LoginComponent {
       alert("Feil brukernavn/plaintextPassord.");
     }
   }*/
-  login(): void { }
+  login(): void {
+    let toke = new Token("lol");
+    const url = "http://localhost:8080/login";
+    let token = this.http.post(url, JSON.stringify(this.model), {headers: this.headers}).toPromise();
+    console.log(token);
+    token.then(token => toke = token);
+  }
 
   onSubmit(): void {
     console.log("Boop");
