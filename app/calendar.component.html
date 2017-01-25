@@ -1,8 +1,16 @@
 <div>
   <!--<nav-bar-component [headerField2]="date.getFullYear()" [headerField]="months[date.getMonth()]" ></nav-bar-component>-->
+  <nav-bar-component [headerField2]="date.getFullYear()" [(headerField)]="date" (pushed)="changeDate(date.getFullYear() +$event, date.getMonth(), date.getDate())"  ></nav-bar-component>
+  <nav-bar-component [headerField2]="months[date.getMonth()]" [(headerField)]="date" (pushed)="changeDate(date.getFullYear(), date.getMonth() + $event, date.getDate())"  ></nav-bar-component>
+  <nav-bar-component [headerField2]="date.getDate()" [(headerField)]="date" (pushed)="changeDate(date.getFullYear(), date.getMonth(), date.getDate() + $event )"  ></nav-bar-component>
+
+
+
+  <!--
   <nav-bar-component [headerField2]="date.getFullYear()" [(headerField)]="date" (pushed)="date.setFullYear(date.getFullYear() +$event)"  ></nav-bar-component>
   <nav-bar-component [headerField2]="months[date.getMonth()]" [(headerField)]="date" (pushed)="date.setMonth(date.getMonth() + $event)"  ></nav-bar-component>
   <nav-bar-component [headerField2]="date.getDate()" [(headerField)]="date" (pushed)="date.setDate($event + date.getDate())"  ></nav-bar-component>
+-->
 
   <!--<nav-bar-component [headerField]="'Week'" ></nav-bar-component>-->
   <!--<nav-bar-component [headerField2]="date.getDate()" ></nav-bar-component>-->
@@ -20,9 +28,20 @@
       </th>
     </tr>
     </thead>
-    <tr *ngFor="let shift of takenShift; let rows = index">
-      <td>{{shift.user.fornavn}}</td>
-      <td *ngFor="let b of tempArr; let index = index" ><div *ngIf="index >= shift.fromTime && index <= shift.toTime" class="yellowDiv">asd</div></td>
+    <tr *ngFor="let shift of daysShifts[this.date.getDate()]; let rows = index">
+      <!--<td>{{shift.etternavn}}</td>-->
+      <td>{{usersIndexed[shift.userId].etternavn}}, {{usersIndexed[shift.userId].fornavn}}</td>
+      <td *ngFor="let b of tempArr; let index = index" >
+        <div *ngIf="index <= 8 && shift.toTime == 7" class="yellowDiv">asd</div>
+        <div *ngIf="index >= 8 && index <= 15 && shift.toTime == 15" class="yellowDiv">asd</div>
+        <div *ngIf="index >= 15 && index <= 23 && shift.toTime == 23" class="yellowDiv">asd</div>
+        <!--<div *ngIf="index <= 15 && shift.toTime == 15" class="yellowDiv">asd</div>-->
+        <!--<div *ngIf="index <= 23 && shift.toTime == 23" class="yellowDiv">asd</div>-->
+        <!--<div *ngIf="index <= shift.toTime " class="yellowDiv">asd</div>-->
+        <!--<div *ngIf="index <= shift.toTime " class="yellowDiv">asd</div>-->
+        <!--<div *ngIf="index <= shift.toTime * 8" class="yellowDiv">asd</div>-->
+        <!--<div *ngIf="index <= shift.toTime * 8" class="yellowDiv">asd</div>-->
+      </td>
     </tr>
   </table>
 </div>
@@ -70,8 +89,9 @@ Ansatte for Avdeling: .....
 
 
       <td>{{user.etternavn}}, {{user.fornavn}}</td>
-      <!--<td>{{dynamicList[user.brukerId][1]}}</td>-->
-      <!--<td>{{dynamicList[user.brukerId][2]}}</td>-->
+      <td>{{user.brukerId}}</td>
+      <td>{{dynamicList[user.brukerId]}}</td>
+      <!--<td>{{dynamicList?[user.brukerId][1]}}</td>-->
     </tr>
   </table>
 
@@ -90,7 +110,7 @@ Ansatte for Avdeling: .....
     </table>
   </div>
 
-  <!--<form>
+  <form>
     <input-field  [field]="'Bruker'" [disabled]="true" [fieldValue]="shiftInForm.user.fornavn"></input-field>
 
     <label for="avdeling">Skift</label>
@@ -103,7 +123,7 @@ Ansatte for Avdeling: .....
     </select>
 
     <button type="submit">Registrer skift</button>
-  </form>-->
+  </form>
   <button (click)="getAllUsers()">check</button>
   <button (click)="setUsers()">check</button>
 

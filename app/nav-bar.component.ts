@@ -20,7 +20,6 @@ export class NavBarComponent implements OnInit{
 
 
   checkVal(number:number): void {
-    console.log('ping');
     this.pushed.emit(number);
   }
 
