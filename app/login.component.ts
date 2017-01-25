@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 import { User } from './user';
-import {Authentication} from "./Authentication";
+import {Authentication} from "./authentication";
 import {Http, Headers} from "@angular/http";
 import {Token} from "./Token";
 
