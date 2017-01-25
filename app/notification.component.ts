@@ -37,6 +37,7 @@ export class NotificationComponent implements OnInit {
     this.notifService.getNotifications(this.user).then(notifications => this.notifications = notifications);
     this.userService.getUsers().then(users => this.users = users);
     //    this.userService.getUsers().then(users => this.users = users);
-
   }
+
+
 }
