@@ -28,5 +28,6 @@ export class NavigationComponent implements OnInit{
 
   ngOnInit(): void {
     this.getUsers();
+    this.selectedUser = this.userService.getCurrentUser();
   }
 }
