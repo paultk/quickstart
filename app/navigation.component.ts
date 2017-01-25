@@ -40,7 +40,8 @@ export class NavigationComponent implements OnInit{
       .toPromise()
       .then((res) => {
         this.numMessages = parseInt(res.text());
-        console.log(this.numMessages);})
+    //    console.log(this.numMessages);
+    })
       .catch((res) => {
         console.log(res);
     })
