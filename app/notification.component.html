@@ -6,6 +6,8 @@
           <h4>Mine varsler</h4>
          </div>
 
+
+
         <!--<button type="submit" (click)="printFunksjon()"
           class="btn btn-default btn-primary" [disabled]="!heroForm.form.valid" name="test4">Åpne melding
         </button>-->
@@ -19,8 +21,11 @@
           <h4>Ny varsel</h4>
         </div>
 
-        <input class= "inputen" name="overskrift" [(ngModel)]="model.overskrift">
-        <label>Skriv en melding</label>
+        <br>
+        <label>Overskrift</label><br>
+        <input class= "inputen" name="overskrift" [(ngModel)]="model.overskrift"><br><br>
+
+        <label>Melding</label>
         <textarea class= "texten" [(ngModel)] = "model.melding" rows="5" cols="54" [disabled]="send" name="test2"></textarea>
 
         <div class="form-group">
