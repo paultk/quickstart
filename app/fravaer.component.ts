@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 
 import { Fravaer } from './fravaer';
 import {Vakt} from './vakt';
-import {JsonTestClass} from "./json-test-class";
 import {FravaerService} from "./fravaer.service";
 
 @Component({
@@ -15,33 +14,25 @@ import {FravaerService} from "./fravaer.service";
 export class FravaerComponent implements OnInit {
   constructor(private fravaerService: FravaerService) {}
 
-  model = new Fravaer(23, 40, "Mandag", "Torsdag", "Dette er en kommentar");
+  model = new Fravaer(45, 49, "Mandag", "Torsdag", "Dette er en kommentar");
   timeObject: any;
-
-  fravaerListe: Fravaer[];
+  fromTime = {hour: 6, minute: 0};
+  toTime = {hour: 12, minute: 0};
 
   vaktliste: Vakt[];
   selectedVakt: Vakt;
 
-  fromTime = {hour: 6, minute: 0};
-  toTime = {hour: 12, minute: 0};
-
-  submitted = false;
-
   completeDateFrom = [""];
   completeDateTo = [""];
 
-  getFravaer(): void {
-    this.fravaerService
-      .getFravaerliste()
-      .then(fravaerListe => this.fravaerListe = fravaerListe);
-  }
+  submitted = false;
 
   onSelect(vakt: Vakt): void {
     this.selectedVakt = vakt;
+    this.model.vaktId = this.selectedVakt.vakt_id;
   }
 
-  testShit(): void {
+  refreshVakter(): void {
     this.completeDateFrom[0] = this.timeObject.year.toString();
     this.completeDateFrom[1] = this.timeObject.month.toString();
     this.completeDateFrom[2] = this.timeObject.day.toString();
@@ -78,9 +69,8 @@ export class FravaerComponent implements OnInit {
   }
 
   getVakter(): void {
-    this.fravaerService
-      .getVaktByDate(this.model.fraTid.substr(0, 10))
-      .then(vaktliste => this.vaktliste = vaktliste);
+    let response = this.fravaerService.getVaktByDate2(this.model.fraTid.substr(0, 10));
+    Promise.resolve(response).then(res => this.vaktliste = res).then(() => console.log(this.vaktliste));
   }
 
   onSubmit(): void {
@@ -93,4 +83,3 @@ export class FravaerComponent implements OnInit {
     //this.getFravaer();
   }
 }
-

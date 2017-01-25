@@ -55,14 +55,14 @@ export class FravaerService {
       .catch(this.handleError);
   }
 
-  getVaktliste(): Promise<Vakt[]> {
+  getVaktliste(): Promise<any> {
     const URL = 'http://localhost:8080/vakt/all';
     return this.http
       .get(URL)
       .toPromise()
-      .then(res => res.json().data as Vakt[])
+      .then(res => JSON.parse(res['_body']))
+      //.then(res => res.json().data as Vakt[])
       .catch(this.handleError);
-
   }
 
   getFravaerByUser(id: number): Promise<Fravaer[]> {
@@ -80,16 +80,32 @@ export class FravaerService {
       .then(fravaerliste => fravaerliste.filter(fravaerliste => fravaerliste.fraTid));
   }
 
-  getVaktByDate(date: string): Promise<Vakt[]> {
-    const URL = 'http://localhost:8080/vakt/all/${date}';
-
+  getVaktByDate1(date: string): Promise<any> {
+    const URL = `http://localhost:8080/vakt/all/${date}`;
     return this.http.get(URL)
       .toPromise()
-      .then(res => res.json().data as Vakt[])
+      .then(res => JSON.parse(res['_body']))
+      //.then(res => res.json().data as Vakt[])
       .catch(this.handleError);
+  }
 
-    /*return this.getVaktliste()
-      .then(vaktliste => vaktliste.filter(vaktliste => vaktliste.fra_tid.substr(0, 10) === date));*/
+  getVaktByDate2(date: string): Promise<Vakt[]> {
+    const URL = `http://localhost:8080/vakt/all/${date}`;
+    let returnPromise: Vakt[] = [];
+    let as: Object[] = [];
+
+    this.http.get(URL).toPromise().then(response =>
+      as = (JSON.parse(response['_body'])))
+      .then(
+        () =>
+          as.forEach(vakt =>
+            returnPromise.push(new Vakt(vakt['vaktId'], vakt['vaktansvarligId'], vakt['avdelingId'],
+              vakt['fraTid'], vakt['tilTid'], vakt['antPers']
+            ))
+
+          )).catch(this.handleError);
+
+    return Promise.resolve(returnPromise);
   }
 }
 

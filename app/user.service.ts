@@ -1,15 +1,14 @@
 import { Injectable } from '@angular/core';
-import {Http, Headers, Response} from '@angular/http';
+import { Http, Headers } from '@angular/http';
 
 import {User} from "./user";
 import 'rxjs/add/operator/toPromise';
 import {JsonTestClass} from "./json-test-class";
 import {USERS} from './mock-ansatte';
-// import {Observable} from "rxjs";
+import {Stilling} from "./stilling";
 
 @Injectable()
 export class UserService {
-  private UsersURL = 'http://localhost:8080/bruker/alle';
 
   constructor(
     private http: Http
@@ -45,134 +44,34 @@ export class UserService {
     this.http
       .post(URL, JSON.stringify(user), {headers: this.headers},)
       .toPromise()
-      .then(res => console.log(res.json().data))
+      .then(res => res.json().data)
       .catch(this.handleError);
   }
 
   getUsers(): Promise<User[]> {
-    let returnPromise:User[] = [];
+    const URL = 'http://localhost:8080/bruker/alle';
+    let returnPromise: User[] = [];
     let as: Object[] = [];
-    this.http.get(this.UsersURL).toPromise().then(response =>
-      as = (JSON.parse(response['_body'])))
-      .then(
-        () =>
-          as.forEach(user =>
-          // console.log(user)
-            returnPromise.push(new User(user['brukerId'], null, user['stillingsId'], null, user['stillingsProsent'],
-              null, null, user['fornavn'], user['etternavn'], user['epost'], user['avdelingId'],
-              null,null, null, null,null,
-            ))
 
-          )).catch(this.handleError);
-
+    this.http.get(URL).toPromise()
+      .then(response => as = (JSON.parse(response['_body'])))
+      .then(() => as.forEach(
+        user => returnPromise.push(new User(user['brukerId'], user['passordId'], user['stillingsBeskrivelse'], user['telefonNr'],
+          user['stillingsProsent'], user['timelonn'], user['admin'], user['fornavn'], user['etternavn'],
+          user['epost'], user['avdelingId'], user['plaintextPassord'], user['fodselsdato'], user['adresse'],
+          user['by'], user['hash'], user['salt']))
+      ))
+      .catch(this.handleError);
     return Promise.resolve(returnPromise);
   }
-/*
 
-  getUsers5(): Observable<User> {
-    // let a: Response;
-    let returnPromise:User[] = [];
-    let as: Object[] = [];
-    return this.http.get(this.UsersURL)
-      .map((response:Response) =>response.json())
-        .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
-
-    /!*as = (JSON.parse(response['_body'])))
-     .then(
-     () =>
-     as.forEach(user =>
-     returnPromise.push(new User(user['brukerId'], null, user['stillingsId'], null, user['stillingsProsent'],
-     null, null, user['fornavn'], user['etternavn'], user['epost'], user['avdelingId'],
-     null,null, null, null,null,
-     ))
-
-     )).catch(this.handleError);
-
-     return Promise.resolve(returnPromise);*!/
+  getUser(id: number): Promise<User> {
+    return this.getUsers().then(users => users.find(user => user.brukerId === id));
   }
-*/
-
-  getUsers2(): User[] {
-    let returnPromise:User[] = [];
-    let as: Object[] = [];
-    this.http.get(this.UsersURL).toPromise().then(response =>
-      as = (JSON.parse(response['_body'])))
-      .then(
-        () =>
-          as.forEach(user =>
-            returnPromise.push(new User(user['brukerId'], null, user['stillingsId'], null, user['stillingsProsent'],
-              null, null, user['fornavn'], user['etternavn'], user['epost'], user['avdelingId'],
-              null,null, null, null,null,
-            ))
-
-          )).catch(this.handleError);
-
-    return returnPromise;
-  }
-/*
-
-  getUsers3(): Observable<User[]> {
-    let returnPromise:User[] = [];
-    let as: Object[] = [];
-    return this.http.get(this.UsersURL).map(response =>
-      as = (JSON.parse(response['_body'])))
-      .map(
-        () =>
-          as.forEach(user =>
-            new User(user['brukerId'], null, user['stillingsId'], null, user['stillingsProsent'],
-              null, null, user['fornavn'], user['etternavn'], user['epost'], user['avdelingId'],
-              null,null, null, null,null,
-            )
-
-          )).catch(this.handleError);
-
-    // return returnPromise;
-  }
-*/
-
-  getUsers4(allUsers: User[]): void {
-    /*// let returnPromise:User[] = [];
-     let as: Object[] = [];
-     let str: string[]= [];
-     this.http.get(this.UsersURL).then(response =>
-     str = JSON.parse(response['_body']).map(user => console.log(user['fornavn']))
-     .catch());
-     setTimeout(console.log(str), 2000);
-
-     */
-
-    /*
-
-     .forEach(
-     user =>
-     console.log(user)
-     /!*
-     new User(user['brukerId'], null, user['stillingsId'], null, user['stillingsProsent'],
-     null, null, user['fornavn'], user['etternavn'], user['epost'], user['avdelingId'],
-     null,null, null, null,null,
-     )*!/
-     ).catch(this.handleError);
-     */
-
-    // return returnPromise;
-  }
-
-  testObject(obj: Object): void {
-
-    let a = JSON.parse(obj['_body']);
-    console.log(a[1]['brukerId']);
-
-
-  }
-
-
-  // getUser(id: number): Promise<User> {
-  // return this.getUsers().then(users => users.find(user => user.brukerId === id));
-  // }
 
   /*Brukes i profil.component.ts*/
   getCurrentUser(): User {
-    return new User(1, 1, 1, 41414141, 100, 200, false, 'Mr. Nice', 'Johnson', 'narco@minvakt.no', 1, 'passord1234', '01.01.2016', 'veigata 5', 'Trondheim');
+    return new User(49, 1, 'helsefagebeider', 41414141, 100, 200, false, 'Mr. Nice', 'Johnson', 'narco@minvakt.no', 1, 'Admin@@@', '01.01.2016', 'veigata 5', 'Trondheim');
   }
 
 }

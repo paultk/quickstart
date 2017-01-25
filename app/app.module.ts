@@ -12,6 +12,7 @@ import {LoginComponent} from './login.component';
 import {UserFormComponent} from './user-form.component';
 import {UserService} from './user.service';
 import {FravaerService} from './fravaer.service';
+import {AvdelingService} from './avdeling.service'
 import {InputFieldComponent} from './input-field.component';
 import {ForgotCredentialsComponent} from './forgot-credentials.component';
 import {FravaerComponent} from './fravaer.component';
@@ -20,6 +21,9 @@ import {CalendarComponent} from "./calendar.component";
 import {NavBarComponent} from "./nav-bar.component";
 import {ShiftService} from "./shift.service";
 // import "./rxjs-extensions";
+import {NotificationComponent} from "./notification.component";
+import {NotificationService} from "./notification.service";
+import {UserSearchcomponent} from './user-search.component'
 
 @NgModule({
   imports: [
@@ -28,7 +32,6 @@ import {ShiftService} from "./shift.service";
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
-
   ],
   declarations: [
     AppComponent,
@@ -43,11 +46,17 @@ import {ShiftService} from "./shift.service";
     FaqComponent,
     CalendarComponent,
     NavBarComponent,
+    FaqComponent,
+    NotificationComponent,
+    UserSearchcomponent
   ],
   providers: [
     UserService,
     FravaerService,
     ShiftService
+    FravaerService,
+    AvdelingService,
+    NotificationService
   ],
   bootstrap: [AppComponent]
 })

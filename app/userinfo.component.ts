@@ -6,6 +6,7 @@ import {Component, OnInit} from "@angular/core";
 
 import {User} from './user';
 import {UserService} from './user.service';
+/*var $ = require("jquery");*/
 
 @Component({
   moduleId: module.id,
@@ -15,6 +16,7 @@ import {UserService} from './user.service';
 })
 
 export class UserinfoComponent implements OnInit{
+
   users: User[];
   selectedUser: User;
 
@@ -23,10 +25,31 @@ export class UserinfoComponent implements OnInit{
   ) {}
 
   getUsers(): void {
-    this.userService.getUsers().then(users => this.users = users);
+    let response = this.userService.getUsers();
+    Promise.resolve(response).then(users => this.users = users).then(() => console.log(this.users));
   }
 
   ngOnInit(): void {
     this.getUsers();
   }
+
+
+
+  // Change the selector if needed
+  /*var $table = $('table.users');
+  var $bodyCells = $table.find('tbody tr:first').children();
+  colWidth: number;
+
+  // Adjust the width of thead cells when window resizes
+  $(window).resize(function() {
+    // Get the tbody columns width array
+    colWidth = $bodyCells.map(function() {
+      return $(this).width();
+    }).get();
+
+    // Set the width of thead columns
+    $table.find('thead tr').children().each(function(i, v) {
+      $(v).width(colWidth[i]);
+    });
+  }).resize(); // Trigger resize handler*/
 }
