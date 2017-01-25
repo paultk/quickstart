@@ -135,3 +135,12 @@
   padding: 75px 0 0 200px;
   font-family: "Ubuntu Condensed", sans-serif;
 }
+
+.badge{
+  background-color: #ff3232;
+  color: white;
+  font-size: xx-small;
+  position: relative;
+  margin-bottom: 12px;
+  margin-left: 2px;
+}
