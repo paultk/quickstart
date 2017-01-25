@@ -14,6 +14,7 @@ import {NotificationService} from './notification.service';
 
 export class NotificationComponent implements OnInit {
   user : User;
+  fraUser : User;
   users : User[];
   model = new Notification(0,0,0,"test", "test", "1999-01-01", false);
   notification : Notification;
@@ -24,6 +25,14 @@ export class NotificationComponent implements OnInit {
     private notifService : NotificationService,
     private userService : UserService
   ) {}
+
+  selectUser(id : number) : User{
+    for (let u of this.users) {
+      if (u.brukerId == id) {
+        return u;
+      }
+    }
+  }
 
   onSubmit() {
     this.model.fraBrukerId = this.user.brukerId;
