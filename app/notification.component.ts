@@ -26,10 +26,11 @@ export class NotificationComponent implements OnInit {
     private userService : UserService
   ) {}
 
-  selectUser(id : number) : User{
+  selectUser(id : number){
     for (let u of this.users) {
       if (u.brukerId == id) {
-        return u;
+        this.fraUser = u;
+        console.log(u);
       }
     }
   }
