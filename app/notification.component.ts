@@ -31,7 +31,7 @@ export class NotificationComponent implements OnInit {
     for (let u of this.users) {
       if (u.brukerId == id) {
         this.fraUser = u;
-        console.log(u);
+        // console.log(u);
       }
     }
   }

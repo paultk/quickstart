@@ -18,7 +18,7 @@ import {Http, Headers} from "@angular/http";
 export class NavigationComponent implements OnInit{
   users: User[];
   selectedUser: User;
-  numMessages: number;
+  numMessages = 0;
 
   private headers = new Headers({'Content-Type': 'application/json'});
 
@@ -49,6 +49,8 @@ export class NavigationComponent implements OnInit{
   ngOnInit(): void {
     this.getUsers();
     this.selectedUser = this.userService.getCurrentUser();
-    this.setNumMessages();
+    setInterval(() => {
+      this.setNumMessages();
+    }, 2000);
   }
 }
