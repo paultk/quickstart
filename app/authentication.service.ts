@@ -22,13 +22,12 @@ export class AuthenticationService {
     return this.http
       .post(URL, JSON.stringify(auth), {headers: this.headers})
       .map((response: Response) => {
-        console.log(response);
         let re = /@/gi;
-        auth.username = auth.username.replace(re, "%40");
-        let user = response.json();
-        if (user && user.token) {
-          localStorage.setItem('sessionToken', JSON.stringify(user));
-          localStorage.setItem('currentUserEmail', auth.username);
+        let str = auth.username.replace(re, "%40");
+        let responseToken = response.json();
+        if (responseToken && responseToken.token) {
+          localStorage.setItem('sessionToken', JSON.stringify(responseToken));
+          localStorage.setItem('currentUserEmail', str);
         }
       });
   }
@@ -42,6 +41,8 @@ export class AuthenticationService {
     const URL = `http://localhost:8080/bruker/epost/${email}`;
     let returnPromise: User[] = [];
     let as: Object[] = [];
+
+    console.log("yoooooooooooooo");
 
     this.http.get(URL).toPromise().then(response =>
       as = (JSON.parse(response['_body'])))
