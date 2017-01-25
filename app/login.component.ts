@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { User } from './user';
 import {Authentication} from "./authentication";
@@ -42,7 +43,7 @@ export class LoginComponent {
         },
         error => {
           this.loading = false;
-          console.log("failure");
+          console.log("failure: " + error);
         });
   }
 

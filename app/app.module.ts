@@ -29,7 +29,7 @@ import {AuthenticationService} from './authentication.service';
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
-    routing
+    //routing
   ],
   declarations: [
     AppComponent,
