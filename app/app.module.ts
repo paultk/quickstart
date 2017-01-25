@@ -51,7 +51,8 @@ import {AppRoutingModule} from './app-routing.module';
     UserService,
     FravaerService,
     AvdelingService,
-    NotificationService
+    NotificationService,
+    AuthenticationService
   ],
   bootstrap: [AppComponent]
 })
