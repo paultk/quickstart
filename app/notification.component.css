@@ -135,3 +135,7 @@ label{
 .sendt{
   color: green;
 }
+
+.selected {
+  background-color:#8a8a8a!important;
+}
