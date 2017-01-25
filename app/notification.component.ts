@@ -36,6 +36,16 @@ export class NotificationComponent implements OnInit {
     }
   }
 
+  onSelect(idNum: number): void{
+    console.log(idNum);
+    for (let u of this.notifications){
+      if(u.meldingId ==idNum){
+        this.notification=u;
+        console.log(u);
+      }
+    }
+
+  }
 
   onSubmit() {
     this.model.fraBrukerId = this.user.brukerId;
@@ -58,6 +68,7 @@ export class NotificationComponent implements OnInit {
     this.user = this.userService.getCurrentUser();
     this.notifService.getNotifications(this.user).then(notifications => this.notifications = notifications);
     this.userService.getUsers().then(users => this.users = users);
+    this.notification = new Notification();
     //    this.userService.getUsers().then(users => this.users = users);
   }
 }

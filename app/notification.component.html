@@ -11,12 +11,16 @@
             <th>Overskrift</th>
           </tr>
 
-          <tr *ngFor="let notif of notifications">
+          <tr *ngFor="let notif of notifications" (click)="onSelect(notif.meldingId)">
               <td>{{selectUser(notif.fraBrukerId)}} {{fraUser.fornavn}} {{fraUser.etternavn}}</td>
               <td>{{notif.overskrift}}</td>
               <!--<td *ngFor="let u of users">{{u.fornavn}}</td>-->
           </tr>
         </table>
+
+
+        <textarea class= "texten2"rows="5" cols="49" name="test2">{{notification.melding}}
+        </textarea>
 
 
 
