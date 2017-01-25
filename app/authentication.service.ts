@@ -23,7 +23,10 @@ export class AuthenticationService {
       .post(URL, JSON.stringify(auth), {headers: this.headers})
       .map((response: Response) => {
         let re = /@/gi;
-        let str = auth.username.replace(re, "%40");
+        let str = auth.username.replace(re, "&at");
+        re = /\./gi;
+        str = str.replace(re, "&dot");
+        console.log(str);
         let responseToken = response.json();
         if (responseToken && responseToken.token) {
           localStorage.setItem('sessionToken', JSON.stringify(responseToken));
@@ -42,19 +45,16 @@ export class AuthenticationService {
     let returnPromise: User[] = [];
     let as: Object[] = [];
 
-    console.log("yoooooooooooooo");
 
     this.http.get(URL).toPromise().then(response =>
       as = (JSON.parse(response['_body'])))
-      .then(
-        () =>
-          as.forEach(user =>
+      .then( user  =>
             returnPromise.push(new User(user['brukerId'], user['passordId'], user['stillingsBeskrivelse'], user['telefonNr'],
               user['stillingsProsent'], user['timelonn'], user['admin'], user['fornavn'], user['etternavn'],
               user['epost'], user['avdelingId'], user['plaintextPassord'], user['fodselsdato'], user['adresse'],
-              user['by'], user['hash'], user['salt']))
+              user['by'], user['hash'], user['salt']
 
-          )).catch(this.handleError);
+            ))).catch(this.handleError);
 
     let response = Promise.resolve(returnPromise);
 
