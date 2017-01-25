@@ -1,18 +1,25 @@
 th, td {
   padding-right: 100px;/*knut*/
+
 }
 
 th, tr, td{
   border-bottom: 1px solid #ccc; /*knut*/
-  padding: 10px;
-  padding-right: 155px;
+  padding-left: 10px;
+  padding-right: 100px;
+  border-right: 1px solid #ccc;
+
+  width:100%;
+
 }
 
 th, tr {
   height: 40px;
   text-align: left; /*knut*/
 }
-
+.notifications {
+  width:100%;
+}
 .user-form-header {
   background-color: #006D92;
   color: white;
@@ -89,19 +96,7 @@ table {
   text-align: left;
 }
 
-th, td {
-  padding-right: 100px;
-}
 
-th, tr, td{
-  border-bottom: 1px solid #ccc;
-  padding: 10px;
-}
-
-th, tr {
-  height: 20px;
-  text-align: left;
-}
 
 .content {
   height: 100%;

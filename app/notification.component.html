@@ -5,6 +5,18 @@
         <div class="user-form-header">
           <h4>Mine varsler</h4>
          </div>
+        <table class="notifications">
+          <tr>
+            <th>Fra</th>
+            <th>Overskrift</th>
+          </tr>
+
+          <tr *ngFor="let notif of notifications">
+              <td>{{selectUser(notif.fraBrukerId)}} {{fraUser.fornavn}} {{fraUser.etternavn}}</td>
+              <td>{{notif.overskrift}}</td>
+              <!--<td *ngFor="let u of users">{{u.fornavn}}</td>-->
+          </tr>
+        </table>
 
 
 
@@ -42,9 +54,6 @@
         <div *ngIf="edited" class="alert">
           <label class="sendt">Melding sendt!</label>
         </div>
-
-
-        <div *ngFor="let notif of notifications">{{notif.overskrift}}  {{notif.melding}} {{notif.tilBrukerId}} {{selectUser(notif.tilBrukerId)}} {{fraUser.fornavn}}</div>
 
       </div>
 
