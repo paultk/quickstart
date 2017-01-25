@@ -17,8 +17,16 @@ th, tr {
   height: 40px;
   text-align: left; /*knut*/
 }
-.notifications {
-  width:100%;
+
+.texten2{
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+.notifications{
+  margin-bot: 20px;
+  margin-left: 20px;
+  width: 380px;
 }
 .user-form-header {
   background-color: #006D92;
@@ -60,8 +68,8 @@ th, tr {
 
 
 th {
-  background-color: #006D92;
-  color: white;
+  background-color: lightgrey;
+  color: black;
 }
 
 tr:nth-child(odd) {

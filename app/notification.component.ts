@@ -38,6 +38,7 @@ export class NotificationComponent implements OnInit {
 
   onSelect(idNum: number): void{
     console.log(idNum);
+    this.notifService.setLest(idNum);
     for (let u of this.notifications){
       if(u.meldingId ==idNum){
         this.notification=u;

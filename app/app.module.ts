@@ -20,6 +20,7 @@ import {FaqComponent} from "./faq.component";
 import {NotificationComponent} from "./notification.component";
 import {NotificationService} from "./notification.service";
 import {AuthenticationService} from './authentication.service';
+import {UserSearchcomponent} from './user-search.component'
 
 import {AppRoutingModule} from './app-routing.module';
 
@@ -43,14 +44,14 @@ import {AppRoutingModule} from './app-routing.module';
     ForgotCredentialsComponent,
     FravaerComponent,
     FaqComponent,
-    NotificationComponent
+    NotificationComponent,
+    UserSearchcomponent
   ],
   providers: [
     UserService,
     FravaerService,
     AvdelingService,
-    NotificationService,
-    AuthenticationService
+    NotificationService
   ],
   bootstrap: [AppComponent]
 })
