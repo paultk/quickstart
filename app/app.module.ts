@@ -5,6 +5,7 @@ import {HttpModule} from '@angular/http';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import {AppComponent}  from './app.component';
+import {routing} from './app.routing';
 import {NavigationComponent} from './navigation.component'
 import {ProfilComponent} from './profil.component';
 import {UserinfoComponent} from './userinfo.component';
@@ -28,6 +29,7 @@ import {AuthenticationService} from './authentication.service';
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
+    routing
   ],
   declarations: [
     AppComponent,

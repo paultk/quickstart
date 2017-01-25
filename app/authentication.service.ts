@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Http, Headers, Response} from '@angular/http';
 
-import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map'
 import {Authentication} from "./authentication";
@@ -17,10 +16,10 @@ export class AuthenticationService {
     return Promise.reject(error.message || error);
   }
 
-  login(email: string, password: string) {
+  login(auth: Authentication) {
     const URL = `http://localhost:8080/login`;
     return this.http
-      .post(URL, JSON.stringify(new Authentication(email, password)))
+      .post(URL, JSON.stringify(auth))
       .map((response: Response) => {
         let user = response.json();
         if (user && user.token) {
