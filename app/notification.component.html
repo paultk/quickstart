@@ -34,6 +34,8 @@
           class="btn btn-default btn-primary" [disabled]="!heroForm.form.valid" name="test3">Send melding
        </button>
 
+        <div *ngFor="let notif of notifications">{{notif.overskrift}}  {{notif.melding}}</div>
+
       </div>
 
   </form>
