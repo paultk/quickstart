@@ -8,14 +8,16 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
           <a type="text" class="user-name" href="#">
-            <span class="glyphicon"></span>Trym Todalshaug<!--{{selectedUser.navn}}-->
+            <span class="glyphicon"></span>{{selectedUser.fornavn}} {{selectedUser.etternavn}}<!--{{selectedUser.navn}}-->
           </a>
         </li>
+
         <li>
           <a href="#">
-            <span class="glyphicon glyphicon-bell"></span>
-            Varsler</a>
+            <span class="glyphicon glyphicon-bell" ></span>
+            Varsler<span class="badge">{{numMessages}}</span></a>
         </li>
+
         <li>
           <a href="#">
             <span class="glyphicon glyphicon-user"></span>

@@ -4,12 +4,19 @@ import {Component} from '@angular/core';
   selector: 'my-app',
   template: `
     <!--<my-navigation></my-navigation>-->
+    <my-navigation></my-navigation>-->
+    <!--<my-userinfo></my-userinfo>-->
+    <!--<my-profil></my-profil>
     <!--<my-login></my-login>-->
     <router-outlet></router-outlet>
+    <!--<user-form></user-form>-->
+    <!--<my-fravaer></my-fravaer>-->
+    
   `,
 
 })
 
 export class AppComponent {
+  name = 'Angular';
 }
 
