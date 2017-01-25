@@ -73,5 +73,4 @@ export class UserService {
   getCurrentUser(): User {
     return new User(7, 1, 'helsefagebeider', 41414141, 100, 200, false, 'Mr. Nice', 'Johnson', 'narco@minvakt.no', 1, 'Admin@@@', '01.01.2016', 'veigata 5', 'Trondheim');
   }
-
 }

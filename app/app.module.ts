@@ -5,7 +5,6 @@ import {HttpModule} from '@angular/http';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import {AppComponent}  from './app.component';
-import {routing} from './app.routing';
 import {NavigationComponent} from './navigation.component'
 import {ProfilComponent} from './profil.component';
 import {UserinfoComponent} from './userinfo.component';
@@ -22,6 +21,8 @@ import {NotificationComponent} from "./notification.component";
 import {NotificationService} from "./notification.service";
 import {AuthenticationService} from './authentication.service';
 
+import {AppRoutingModule} from './app-routing.module';
+
 @NgModule({
   imports: [
     NgbModule.forRoot(),
@@ -29,7 +30,7 @@ import {AuthenticationService} from './authentication.service';
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
-    //routing
+    AppRoutingModule
   ],
   declarations: [
     AppComponent,

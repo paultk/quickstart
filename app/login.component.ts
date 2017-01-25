@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { User } from './user';
@@ -14,14 +14,16 @@ import {AuthenticationService} from "./authentication.service";
   styleUrls: [ 'login.component.css' ]
 })
 
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   model = new Authentication("dummy", "dummy");
+  rememberMe = false;
   loading = false;
   returnUrl: string;
 
   constructor(
     private http: Http,
-    private authService: AuthenticationService
+    private authService: AuthenticationService,
+    private router: Router
   ){}
 
   private headers = new Headers({'Content-Type': 'application/json'});
@@ -29,25 +31,33 @@ export class LoginComponent {
 
 
   login() {
-    /*let toke = new Token("lol");
-    const url = "http://localhost:8080/login";
-    let token = this.http.post(url, JSON.stringify(this.model), {headers: this.headers}).toPromise();
-    console.log(token);
-    token.then(token => toke = token);*/
-
     this.loading = true;
     this.authService.login(this.model)
       .subscribe(
         data => {
           console.log("success");
+          this.authService.setCurrentUser(localStorage.getItem('currentUserEmail'));
+          //this.goToNavigation();
         },
         error => {
           this.loading = false;
           console.log("failure: " + error);
         });
+
+    //this.authService.login2(this.model)
   }
+
+  goToNavigation() {
+    this.router.navigate(['/navigation']);
+  }
+
+
 
   onSubmit(): void {
     console.log("Boop");
+    this.login();
+    console.log(localStorage.getItem('currentUser'));
   }
+
+  ngOnInit() {}
 }

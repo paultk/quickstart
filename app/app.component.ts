@@ -4,7 +4,8 @@ import {Component} from '@angular/core';
   selector: 'my-app',
   template: `
     <!--<my-navigation></my-navigation>-->
-    <my-login></my-login>
+    <!--<my-login></my-login>-->
+    <router-outlet></router-outlet>
   `,
 
 })
