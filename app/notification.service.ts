@@ -63,6 +63,11 @@ export class NotificationService {
       .catch(this.handleError)
   }*/
 
+  setLest(id : number) {
+    const URL = 'http://localhost:8080/melding/sett/' + id;
+    this.http.put(URL, "");
+  }
+
   getNotifications(user : User): Promise<Notification[]> {
     const URL = 'http://localhost:8080/melding/get';
     let returnPromise: Notification[] = [];
@@ -94,8 +99,5 @@ export class NotificationService {
   }*/
 
   /*Brukes i profil.component.ts*/
-  getCurrentUser(): User {
-    return new User(1, 1, '1', 41414141, 100, 200, false, 'Mr. Nice', 'Johnson', 'narco@minvakt.no', 1, 'passord1234', '01.01.2016', 'veigata 5', 'Trondheim');
-  }
 
 }
