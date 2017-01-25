@@ -1,5 +1,5 @@
 <div [hidden]="submitted">
-  <form (ngSubmit)="onSubmit()" #heroForm="ngForm">
+  <form (ngSubmit)="onSubmit()" #heroForm="ngForm" name="heihei">
 
       <div class="left pull-left">
         <div class="user-form-header">
@@ -26,7 +26,7 @@
         <input class= "inputen" name="overskrift" [(ngModel)]="model.overskrift"><br><br>
 
         <label>Melding</label>
-        <textarea class= "texten" [(ngModel)] = "model.melding" rows="5" cols="54" [disabled]="send" name="test2"></textarea>
+        <textarea class= "texten" [(ngModel)] = "model.melding" rows="5" cols="49" [disabled]="send" name="test2"></textarea>
 
         <div class="form-group">
           <label for="fornavn">Til</label>
@@ -38,6 +38,11 @@
        <button type="submit"
           class="btn btn-default btn-primary" [disabled]="!heroForm.form.valid" name="test3">Send melding
        </button>
+
+        <div *ngIf="edited" class="alert">
+          <label class="sendt">Melding sendt!</label>
+        </div>
+
 
         <div *ngFor="let notif of notifications">{{notif.overskrift}}  {{notif.melding}} {{notif.tilBrukerId}} {{selectUser(notif.tilBrukerId)}} {{fraUser.fornavn}}</div>
 

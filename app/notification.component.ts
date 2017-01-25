@@ -16,10 +16,11 @@ export class NotificationComponent implements OnInit {
   user : User;
   fraUser : User;
   users : User[];
-  model = new Notification(0,0,0,"test", "test", "1999-01-01", false);
+  model = new Notification(0,0,0,"", "", "1999-01-01", false);
   notification : Notification;
   notifications : Notification[];
   // submitted = false;
+  edited = false;
 
   constructor(
     private notifService : NotificationService,
@@ -35,11 +36,22 @@ export class NotificationComponent implements OnInit {
     }
   }
 
+
   onSubmit() {
     this.model.fraBrukerId = this.user.brukerId;
     console.log(this.model);
     // this.submitted = true;
     this.notifService.addNotification(this.model);
+
+    this.edited = true;
+    //wait 3 Seconds and hide
+    setTimeout(function() {
+      this.edited = false;
+      console.log(this.edited);
+    }.bind(this), 3000);
+
+    return this.model = new Notification(0,0,0,"", "", "1999-01-01", false);
+
   }
 
   ngOnInit(): void {
@@ -48,6 +60,4 @@ export class NotificationComponent implements OnInit {
     this.userService.getUsers().then(users => this.users = users);
     //    this.userService.getUsers().then(users => this.users = users);
   }
-
-
 }
