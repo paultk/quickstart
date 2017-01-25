@@ -15,7 +15,7 @@ import {AuthenticationService} from "./authentication.service";
 })
 
 export class LoginComponent implements OnInit {
-  model = new Authentication("dummy", "dummy");
+  model = new Authentication("root@minvakt.no", "abcDEF!#");
   rememberMe = false;
   loading = false;
   returnUrl: string;
@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
         data => {
           console.log("success");
           this.authService.setCurrentUser(localStorage.getItem('currentUserEmail'));
-          //this.goToNavigation();
+          this.goToNavigation();
         },
         error => {
           this.loading = false;
