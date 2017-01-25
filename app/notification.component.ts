@@ -37,7 +37,7 @@ export class NotificationComponent implements OnInit {
   }
 
   onSelect(idNum: number): void{
-    console.log(idNum);
+    console.log('onSelect() ' + idNum);
     this.notifService.setLest(idNum);
     for (let u of this.notifications){
       if(u.meldingId ==idNum){
@@ -47,6 +47,14 @@ export class NotificationComponent implements OnInit {
     }
 
   }
+
+  /*updateMessages() {
+    let tempNotif = [
+    this.notifService.getNotifications(this.user).then(notifications => tempNotif = notifications);
+    if (tempNotif != null && this.notifications != tempNotif) {
+      this.notifications = tempNotif;
+    }
+  }*/
 
   onSubmit() {
     this.model.fraBrukerId = this.user.brukerId;
@@ -70,6 +78,9 @@ export class NotificationComponent implements OnInit {
     this.notifService.getNotifications(this.user).then(notifications => this.notifications = notifications);
     this.userService.getUsers().then(users => this.users = users);
     this.notification = new Notification();
+    /*setInterval(() => {
+      this.updateMessages();
+    }, 2000);*/
     //    this.userService.getUsers().then(users => this.users = users);
   }
 }
