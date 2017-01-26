@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { User } from './user';
@@ -14,7 +14,7 @@ import {AuthenticationService} from "./authentication.service";
   styleUrls: [ 'login.component.css' ]
 })
 
-export class LoginComponent implements OnInit {
+export class LoginComponent {
   model = new Authentication("root@minvakt.no", "abcDEF!#");
   rememberMe = false;
   loading = false;
@@ -37,50 +37,33 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.model)
       .subscribe(
         data => {
-
-          this.authService.setCurrentUserGet(localStorage.getItem('currentUserEmail'))
-            .subscribe((observable) => this.setThatUserBrah(observable));
-          /*console.log("success");
-          let response = this.authService.setCurrentUser(localStorage.getItem('currentUserEmail'));
-          Promise.resolve(response)
-            .then(res => this.theUser = res)
-            .then(() => console.log(this.theUser))
-            .then(() => {
-              for (let user of this.theUser) {
-                console.log("-----------");
-                console.log(user);
-              }
-            });
-
-          //this.goToNavigation();*/
+          this.authService.setCurrentUser(localStorage.getItem('currentUserEmail'))
+            .subscribe((observable) => this.restOfSetUser(observable));
+          this.goToNavigation();
         },
         error => {
           this.loading = false;
           console.log("failure: " + error);
         });
-
-    //this.authService.login2(this.model)
   }
 
   goToNavigation() {
     this.router.navigate(['/navigation']);
   }
 
-  setThatUserBrah(users: User[]): void {
-
-    console.log(users);
+  restOfSetUser(users: User[]): void {
 
     this.theUser = users.map(user => new User(user['brukerId'], null, user['stillingsBeskrivelse'], null, user['stillingsProsent'],
       null, null, user['fornavn'], user['etternavn'], user['epost'], user['avdelingId']));
 
-    console.log(this.theUser);
+    localStorage.setItem('currentUser', JSON.stringify(this.theUser[0]));
+
+    let globalDeadMan = this.authService.getGlobalUser();
+    console.log(globalDeadMan);
   }
 
 
   onSubmit(): void {
     this.login();
-    console.log(localStorage.getItem('currentUser'));
   }
-
-  ngOnInit() {}
 }

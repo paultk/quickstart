@@ -42,31 +42,19 @@ export class AuthenticationService {
     localStorage.removeItem('currentUserEmail');
   }
 
-  setCurrentUser(email: string): Promise<User[]> {
-    const URL = `http://localhost:8080/bruker/epost/${email}`;
-    let returnPromise: User[] = [];
-    let as: Object[] = [];
-
-
-    this.http.get(URL).toPromise().then(response =>
-      as = (JSON.parse(response['_body'])))
-      .then(
-        () =>
-            as.forEach( user =>
-              returnPromise.push(new User(user['brukerId'], user['passordId'], user['stillingsBeskrivelse'], user['telefonNr'],
-              user['stillingsProsent'], user['timelonn'], user['admin'], user['fornavn'], user['etternavn'],
-              user['epost'], user['avdelingId'], user['plaintextPassord'], user['fodselsdato'], user['adresse'],
-              user['by'], user['hash'], user['salt']
-
-            )))).catch(this.handleError);
-
-    return Promise.resolve(returnPromise);
-  }
-
-  setCurrentUserGet(email: string): Observable<User[]> {
+  setCurrentUser(email: string): Observable<User[]> {
     const URL = `http://localhost:8080/bruker/epost/${email}`;
 
     return this.http.get(URL, {headers: this.headers},).map((response: Response) =>
       response.json());
+  }
+
+  getGlobalUser(): User {
+    let obj = JSON.parse(localStorage.getItem('currentUser'));
+
+    return new User(obj['brukerId'], obj['passordId'], obj['stillingsBeskrivelse'], obj['telefonNr'],
+      obj['stillingsProsent'], obj['timelonn'], obj['admin'], obj['fornavn'], obj['etternavn'],
+      obj['epost'], obj['avdelingId'], obj['plaintextPassord'], obj['fodselsdato'], obj['adresse'],
+      obj['by'], obj['hash'], obj['salt']);
   }
 }
