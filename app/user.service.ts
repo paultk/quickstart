@@ -79,10 +79,28 @@ export class UserService {
     return this.getUsers().then(users => users.find(user => user.brukerId === id));
   }
 
+  getUserByEmail(email: string): Promise<User[]> {
+    const URL = `http://localhost:8080/bruker/epost/${email}`;
+    let returnPromise: User[] = [];
+    let as: Object[] = [];
+
+    this.http.get(URL, {headers: this.headers},).toPromise()
+      .then(response => as = (JSON.parse(response['_body'])))
+      .then(() => as.forEach(
+        user => returnPromise.push(new User(user['brukerId'], user['passordId'], user['stillingsBeskrivelse'], user['telefonNr'],
+          user['stillingsProsent'], user['timelonn'], user['admin'], user['fornavn'], user['etternavn'],
+          user['epost'], user['avdelingId'], user['plaintextPassord'], user['fodselsdato'], user['adresse'],
+          user['by'], user['hash'], user['salt']))
+        )).catch(this.handleError);
+    return Promise.resolve(returnPromise);
+
+  }
+
   getCurrentUser(): User {
     /*let ret : User = JSON.parse(localStorage.getItem('currentUser'));
     console.log(ret);
     return ret;*/
     return new User(49, 1, 'helsefagebeider', 41414141, 100, 200, false, 'Mr. Nice', 'Johnson', 'narco@minvakt.no', 1, 'Admin@@@', '01.01.2016', 'veigata 5', 'Trondheim');
   }
+
 }

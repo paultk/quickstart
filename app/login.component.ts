@@ -53,8 +53,11 @@ export class LoginComponent {
 
   restOfSetUser(users: User[]): void {
 
-    this.theUser = users.map(user => new User(user['brukerId'], null, user['stillingsBeskrivelse'], null, user['stillingsProsent'],
-      null, null, user['fornavn'], user['etternavn'], user['epost'], user['avdelingId']));
+    this.theUser = users.map(user => new User(user['brukerId'], user['passordId'], user['stillingsBeskrivelse'], user['telefonNr'], user['stillingsProsent'],
+      user['timelonn'], user['admin'], user['fornavn'], user['etternavn'], user['epost'], user['avdelingId'], user['plaintextPassord'],
+      user['fodselsdato'], user['adresse'], user['by'], user['hash'], user['salt']));
+
+    localStorage.setItem('currentUser', JSON.stringify(this.theUser));
 
     localStorage.setItem('currentUser', JSON.stringify(this.theUser[0]));
 
