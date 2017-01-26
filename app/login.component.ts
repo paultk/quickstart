@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
           console.log("success");
           let response = this.authService.setCurrentUser(localStorage.getItem('currentUserEmail'));
           Promise.resolve(response).then(res => this.theUser = res).then(() => console.log(this.theUser));
-          //this.goToNavigation();
+          this.goToNavigation();
         },
         error => {
           this.loading = false;
