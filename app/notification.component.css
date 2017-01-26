@@ -139,3 +139,13 @@ label{
 .selected {
   background-color:#8a8a8a!important;
 }
+
+tbody{
+  overflow-y: auto;
+  height: 200px;
+}
+
+tbody, thead{
+  width: 380px;
+  display: block;
+}

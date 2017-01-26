@@ -7,16 +7,19 @@
          </div>
 
         <table class="notifications">
+          <thead>
           <tr>
             <th>Fra</th>
             <th>Overskrift</th>
           </tr>
-
+          </thead>
+          <tbody>
           <tr *ngFor="let notif of notifications" (click)="onSelect(notif.meldingId)" [class.selected]="notif==notification">
               <td>{{selectUser(notif.fraBrukerId)}} {{fraUser.fornavn}} {{fraUser.etternavn}}</td>
               <td>{{notif.overskrift}}</td>
               <!--<td *ngFor="let u of users">{{u.fornavn}}</td>-->
           </tr>
+          </tbody>
         </table>
 
 
