@@ -8,6 +8,7 @@ import {User} from './user';
 import {UserService} from './user.service';
 import {Http, Headers} from "@angular/http";
 import {Router} from "@angular/router";
+import {AuthenticationService} from "./authentication.service";
 
 @Component({
   moduleId: module.id,
@@ -27,7 +28,8 @@ export class NavigationComponent implements OnInit{
   constructor (
     private userService: UserService,
     private http: Http,
-    private router: Router
+    private router: Router,
+    private authService: AuthenticationService
 ) {}
 
   getUsers(): void {
@@ -41,12 +43,10 @@ export class NavigationComponent implements OnInit{
   setNumMessages(): void {
     this.selectedUser = this.userService.getCurrentUser();
     const URL = 'http://localhost:8080/melding/get/ulest/ant';
-    // console.log("from navigation.component.setNumMessages()");
     this.http.post(URL, JSON.stringify(this.selectedUser), {headers: this.headers},)
       .toPromise()
       .then((res) => {
         this.numMessages = parseInt(res.text());
-        // console.log(this.numMessages);
     })
       .catch((res) => {
         console.log(res);
@@ -59,5 +59,10 @@ export class NavigationComponent implements OnInit{
     console.log(this.selectedUser);
     this.setNumMessages();
     setInterval(() => {this.setNumMessages();}, 2000);
+  }
+
+  logout(): void {
+    this.authService.logout();
+    this.router.navigate(['/login']);
   }
 }

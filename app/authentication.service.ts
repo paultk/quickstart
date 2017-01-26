@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {Http, Headers, Response} from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
-import 'rxjs/add/operator/map'
+import 'rxjs/add/operator/map';
 import  "rxjs/Rx";
 import {Observable} from "rxjs";
 
@@ -40,6 +40,7 @@ export class AuthenticationService {
   logout() {
     localStorage.removeItem('sessionToken');
     localStorage.removeItem('currentUserEmail');
+    localStorage.removeItem('currentUser');
   }
 
   setCurrentUser(email: string): Observable<User[]> {

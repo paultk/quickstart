@@ -27,6 +27,7 @@ import {AuthenticationService} from './authentication.service';
 import {UserSearchcomponent} from './user-search.component'
 
 import {AppRoutingModule} from './app-routing.module';
+import {AuthGuard} from "./auth.guard";
 
 @NgModule({
   imports: [
@@ -61,7 +62,8 @@ import {AppRoutingModule} from './app-routing.module';
     FravaerService,
     AvdelingService,
     NotificationService,
-    AuthenticationService
+    AuthenticationService,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })
