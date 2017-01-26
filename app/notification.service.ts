@@ -37,7 +37,7 @@ export class NotificationService {
   testConnect(): void {
     console.log('ping');
     this.http
-      .get('http://localhost:8080/test',)
+      .get('http://localhost:8080/test', { headers: this.headers })
       .toPromise()
       .then(res => console.log(res))
       .catch(this.handleError);

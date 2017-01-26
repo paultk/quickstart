@@ -38,7 +38,7 @@ export class AvdelingService {
     let returnPromise: Avdeling[] = [];
     let as: Object[] = [];
 
-    this.http.get(URL).toPromise()
+    this.http.get(URL, { headers: this.headers }).toPromise()
       .then(response => as = (JSON.parse(response['_body'])))
       .then(() => as.forEach(
         avdeling => returnPromise.push(new Avdeling(avdeling['avdelingId'], avdeling['navn'])
