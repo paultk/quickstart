@@ -10,7 +10,7 @@ import {User} from "./user";
 export class AuthenticationService {
   constructor(private http: Http) {}
 
-  private headers = new Headers({'Content-Type': 'application/json'});
+  private headers = new Headers({'Content-Type': 'application/json', 'token': localStorage.getItem('sessionToken')});
 
   private handleError(error: any): Promise<any> {
     console.error('An error occured', error);
@@ -27,9 +27,9 @@ export class AuthenticationService {
         re = /\./gi;
         str = str.replace(re, "&dot");
         console.log(str);
-        let responseToken = response.json();
-        if (responseToken && responseToken.token) {
-          localStorage.setItem('sessionToken', JSON.stringify(responseToken));
+        let responseToken = response.text();
+        if (responseToken) {
+          localStorage.setItem('sessionToken', responseToken);
           localStorage.setItem('currentUserEmail', str);
         }
       });
@@ -46,7 +46,7 @@ export class AuthenticationService {
     let as: Object[] = [];
 
 
-    this.http.get(URL).toPromise().then(response =>
+    this.http.get(URL, { headers: this.headers }).toPromise().then(response =>
       as = (JSON.parse(response['_body'])))
       .then( user  =>
             returnPromise.push(new User(user['brukerId'], user['passordId'], user['stillingsBeskrivelse'], user['telefonNr'],

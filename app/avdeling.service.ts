@@ -20,13 +20,13 @@ export class AvdelingService {
     return Promise.reject(error.message || error);
   }
 
-  private headers = new Headers({'Content-Type': 'application/json'});
+  private headers = new Headers({'Content-Type': 'application/json', 'token': localStorage.getItem('sessionToken')});
 
   getAvdeling(): Promise<any> {
     const URL = 'http://localhost:8080/avdeling/all';
 
     return this.http
-      .get(URL)
+      .get(URL, { headers: this.headers })
       .toPromise()
       .then(res => JSON.parse(res['_body']))
       //.then(res => res.json().data as Avdeling[])
