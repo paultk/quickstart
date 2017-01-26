@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Http, Headers, Response} from '@angular/http';
 
 import {User} from "./user";
@@ -13,9 +13,9 @@ import {Observable} from "rxjs";
 export class UserService {
 
   private UsersURL = 'http://localhost:8080/bruker/alle';
-  constructor(
-    private http: Http
-  ){}
+
+  constructor(private http: Http) {
+  }
 
   private headers = new Headers({'Content-Type': 'application/json'});
 
