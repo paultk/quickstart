@@ -20,6 +20,8 @@ export class LoginComponent implements OnInit {
   loading = false;
   returnUrl: string;
 
+  theUser: User[] = [];
+
   constructor(
     private http: Http,
     private authService: AuthenticationService,
@@ -36,8 +38,9 @@ export class LoginComponent implements OnInit {
       .subscribe(
         data => {
           console.log("success");
-          this.authService.setCurrentUser(localStorage.getItem('currentUserEmail'));
-          this.goToNavigation();
+          let response = this.authService.setCurrentUser(localStorage.getItem('currentUserEmail'));
+          Promise.resolve(response).then(res => this.theUser = res).then(() => console.log(this.theUser));
+          //this.goToNavigation();
         },
         error => {
           this.loading = false;
@@ -54,7 +57,6 @@ export class LoginComponent implements OnInit {
 
 
   onSubmit(): void {
-    console.log("Boop");
     this.login();
     console.log(localStorage.getItem('currentUser'));
   }

@@ -26,7 +26,6 @@ export class AuthenticationService {
         let str = auth.username.replace(re, "&at");
         re = /\./gi;
         str = str.replace(re, "&dot");
-        console.log(str);
         let responseToken = response.json();
         if (responseToken && responseToken.token) {
           localStorage.setItem('sessionToken', JSON.stringify(responseToken));
@@ -40,26 +39,43 @@ export class AuthenticationService {
     localStorage.removeItem('currentUserEmail');
   }
 
-  setCurrentUser(email: string): void {
+  setCurrentUser(email: string): Promise<User[]> {
     const URL = `http://localhost:8080/bruker/epost/${email}`;
+    //let users: User[] = [];
     let returnPromise: User[] = [];
     let as: Object[] = [];
 
 
     this.http.get(URL).toPromise().then(response =>
       as = (JSON.parse(response['_body'])))
-      .then( user  =>
-            returnPromise.push(new User(user['brukerId'], user['passordId'], user['stillingsBeskrivelse'], user['telefonNr'],
+      .then(
+        () =>
+            as.forEach( user =>
+              returnPromise.push(new User(user['brukerId'], user['passordId'], user['stillingsBeskrivelse'], user['telefonNr'],
               user['stillingsProsent'], user['timelonn'], user['admin'], user['fornavn'], user['etternavn'],
               user['epost'], user['avdelingId'], user['plaintextPassord'], user['fodselsdato'], user['adresse'],
               user['by'], user['hash'], user['salt']
 
-            ))).catch(this.handleError);
+            )))).catch(this.handleError);
 
-    let response = Promise.resolve(returnPromise);
+    return Promise.resolve(returnPromise);
 
-    Promise.resolve(response).then(res => {
-      localStorage.setItem('currentUser', JSON.stringify(res));
-    });
+    /*Promise.resolve(response).then(res => {
+      let user: User = res;
+      console.log("BRUKÆRN: " + user);
+      localStorage.setItem('currentUser', JSON.stringify(user));
+    });*/
+
+    //Promise.resolve(response).then(res => users = res).then(() => console.log(users));
+
+    /*.then(() => {
+      console.log(user);
+      localStorage.setItem('currentUser', JSON.stringify(user));
+      console.log(localStorage.getItem('currentUser'));
+      let test: User = JSON.parse(localStorage.getItem('currentUser'));
+      console.log(test);
+    });*/
+
+
   }
 }
