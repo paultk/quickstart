@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
         data => {
 
           this.authService.setCurrentUserGet(localStorage.getItem('currentUserEmail'))
-            .subscribe((observable) => this.setThatUserBrah(observable));
+            .subscribe((observable) => this.restOfSetUser(observable));
           /*console.log("success");
           let response = this.authService.setCurrentUser(localStorage.getItem('currentUserEmail'));
           Promise.resolve(response)
@@ -66,12 +66,15 @@ export class LoginComponent implements OnInit {
     this.router.navigate(['/navigation']);
   }
 
-  setThatUserBrah(users: User[]): void {
+  restOfSetUser(users: User[]): void {
 
     console.log(users);
 
-    this.theUser = users.map(user => new User(user['brukerId'], null, user['stillingsBeskrivelse'], null, user['stillingsProsent'],
-      null, null, user['fornavn'], user['etternavn'], user['epost'], user['avdelingId']));
+    this.theUser = users.map(user => new User(user['brukerId'], user['passordId'], user['stillingsBeskrivelse'], user['telefonNr'], user['stillingsProsent'],
+      user['timelonn'], user['admin'], user['fornavn'], user['etternavn'], user['epost'], user['avdelingId'], user['plaintextPassord'],
+      user['fodselsdato'], user['adresse'], user['by'], user['hash'], user['salt']));
+
+    localStorage.setItem('currentUser', JSON.stringify(this.theUser));
 
     console.log(this.theUser);
   }
