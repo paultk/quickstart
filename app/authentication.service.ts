@@ -29,9 +29,9 @@ export class AuthenticationService {
         let str = auth.username.replace(re, "&at");
         re = /\./gi;
         str = str.replace(re, "&dot");
-        let responseToken = response.json();
-        if (responseToken && responseToken.token) {
-          localStorage.setItem('sessionToken', JSON.stringify(responseToken));
+        let responseToken = response.text();
+        if (responseToken) {
+          localStorage.setItem('sessionToken', responseToken);
           localStorage.setItem('currentUserEmail', str);
         }
       });
