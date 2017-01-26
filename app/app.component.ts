@@ -6,7 +6,8 @@ import {Component} from '@angular/core';
     <!--<my-navigation></my-navigation>-->
     <!--<user-form></user-form>-->
     <!--<my-fravaer></my-fravaer>-->
-    <calendar-component></calendar-component>
+    <!--<calendar-component></calendar-component>-->
+    <router-outlet></router-outlet>
     <!--<my-userinfo></my-userinfo>-->
     <!--<my-profil></my-profil>-->
     <!--<my-login></my-login>-->

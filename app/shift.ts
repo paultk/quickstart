@@ -5,6 +5,8 @@ export class Shift {
     public fromTime?: number,
     public toTime?: number,
     public userId?: number,
+    public vaktAnsvarlig?: number,
+
   ){}
 
 

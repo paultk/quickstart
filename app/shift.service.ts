@@ -22,23 +22,19 @@ export class ShiftService {
   // todo: fix avdelingsId
   getShifts(date: Date): Observable<any>{
     let url = `http://localhost:8080/vakt/all/month/${date.toISOString().substr(0, 7)}-01T12:00:00+01:00/2`;
-    console.log(url);
+    let time = new Date();
+    console.log('first' + time);
     return this.http.get(url).map(
       (response: Response) => response.json()
     );
-    // console.log(url);
-    // console.log('ping');
-      /*
-      *
-       getUsers(): Observable<User[]> {
-       return this.http.get(this.UsersURL).map((response: Response) =>
-       response.json());
-       }*/
+
+
   }
 
 
   getShifts1(date: Date): void{
     let url = 'http://localhost:8080/vakt/all/month/2017-01-01T12:00:00+01:00/2';
+
     this.http.get(url).toPromise().then(
       (response) => console.log(response)
     );

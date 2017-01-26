@@ -57,7 +57,7 @@ import {AppRoutingModule} from './app-routing.module';
   providers: [
     UserService,
     FravaerService,
-    ShiftService
+    ShiftService,
     FravaerService,
     AvdelingService,
     NotificationService,

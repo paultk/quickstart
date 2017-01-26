@@ -1,15 +1,18 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers } from '@angular/http';
+import {Http, Headers, Response} from '@angular/http';
 
 import {User} from "./user";
 import 'rxjs/add/operator/toPromise';
 import {JsonTestClass} from "./json-test-class";
 import {USERS} from './mock-ansatte';
 import {Stilling} from "./stilling";
+import  "rxjs/Rx";
+import {Observable} from "rxjs";
 
 @Injectable()
 export class UserService {
 
+  private UsersURL = 'http://localhost:8080/bruker/alle';
   constructor(
     private http: Http
   ){}
@@ -46,6 +49,11 @@ export class UserService {
       .toPromise()
       .then(res => res.json().data)
       .catch(this.handleError);
+  }
+
+  getUsers1(): Observable<User[]> {
+    return this.http.get(this.UsersURL).map((response: Response) =>
+      response.json());
   }
 
   getUsers(): Promise<User[]> {

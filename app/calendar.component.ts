@@ -3,6 +3,8 @@ import {User} from "./user";
 import {Shift} from "./shift";
 import {ShiftService} from "./shift.service";
 import {UserService} from "./user.service";
+import {isUndefined} from "util";
+import {isNullOrUndefined} from "util";
 
 //todo: possibly fix the way percentage of workers handles shift display
 //todo: Alphabetize users displayed
@@ -25,6 +27,10 @@ export class CalendarComponent implements OnInit {
   ) {
   }
 
+  cssClasses: string[] =[];
+
+
+
   // array where index = userId
   usersIndexed: User[] = [];
 
@@ -36,7 +42,6 @@ export class CalendarComponent implements OnInit {
   daysShifts: Shift[][] = [];
 
   //  list of shifts that are in the system
-  takenShift: Shift[];
   //  list of users that can work that day, with from and to time
   shiftsUsersCanWork: Shift[];
   shiftInForm: Shift;
@@ -54,33 +59,57 @@ export class CalendarComponent implements OnInit {
   restOfInit(users: User[]): void {
 
 
-    this.allUsers = users.map(user => new User(user['brukerId'], null, user['stillingsId'], null, user['stillingsProsent'],
-      null, null, user['fornavn'], user['etternavn'], user['epost'], user['avdelingId'],
-      null, null, null, null, null,
+    this.allUsers = users.map(user => new User(user['brukerId'], null, user['stillingsBeskrivelse'], null, user['stillingsProsent'],
+      null, null, user['fornavn'], user['etternavn'], user['epost'], user['avdelingId']
+
+
     ));
+    console.log(this.allUsers);
   }
 
 
   ngOnInit(): void {
+
+    this.cssClasses['Helsefagarbeider'] = 'yellowDiv';
+    this.cssClasses['Assistent'] = 'greenDiv';
+    this.cssClasses['Sykepleier'] = 'redDiv';
+
+
+    let time1 = new Date();
+    console.log('zero' + time1);
+
+
     this.date = new Date();
 
-    this.userService.getUsers()
+    this.shiftInForm = new Shift(new User(null, null, null, null, null, null, null, 'Fornavn', 'Etternavn'), 0, 0)
+
+
+    this.userService.getUsers1()
       .subscribe(
         (observable) => this.restOfInit(observable)
       )    ;
     // this.restOfInit();
     // this.takenShift = this.shiftService.getShifts(new Date(1221));
     this.shiftsUsersCanWork = this.shiftService.getShiftsUsersCanWork(null);
-    this.shiftInForm = this.shiftsUsersCanWork[0];
-
     this.getShifts();
+
+    let time = new Date();
+    console.log('third' + time);
+
+    this.setPercentageList();
+    this.checkIfPercentageIsOk();
+
+
+    time = new Date();
+    console.log('fourth' + time);
+
   }
 
   setForm(user: User): void {
     this.shiftInForm.user = user;
   }
 
-  setTakenShiftDisplay(): void {
+  setPercentageList(): void {
 
     let stillingsIdStrings: string[] = [];
     stillingsIdStrings['Helsefagarbeider'] = 0;
@@ -88,22 +117,22 @@ export class CalendarComponent implements OnInit {
     stillingsIdStrings['Sykepleier'] = 2;
 
 
-    for (let i in this.daysShifts[this.date.getDate()]) {
-      //todo: fix if
-      for (let j in this.daysShifts[i]) {
-         {
-        // 0: 2300-0700, 1: 0700-1500, 2: 1500-2300
-        // todo: fix shift time handling, changes on db would make it easier
-        //   todo: needs fix
-        this.percentageList[this.daysShifts[i][j].toTime % 7][this.dynamicList[this.shifts[i].userId].stillingsId] += 1;
-      }
-      }
+    let currDate = this.date.getDate();
+    for (let i in this.daysShifts[currDate]) {
+
+      // 0: 2300-0700, 1: 0700-1500, 2: 1500-2300
+      // todo: fix shift time handling, changes on db would make it easier
+      //   todo: needs fix
+      let shiftPeriod = this.daysShifts[currDate][i].toTime % 7;
+      let stilling = stillingsIdStrings[this.usersIndexed[this.daysShifts[currDate][i].userId].stillingsBeskrivelse];
+      this.percentageList[shiftPeriod][stilling] += 1;
+
     }
   }
 
-  testIfPercentageIsOk(): void {
+  checkIfPercentageIsOk(): void {
     for(let i = 0; i < 3; i++) {
-      let total: number;
+      let total = 0;
       for (let j = 0; j < 3; j++) {
         total += this.percentageList[i][j];
       }
@@ -114,7 +143,7 @@ export class CalendarComponent implements OnInit {
     }
   }
 
-  dynamicList = {};
+  ordinaryTimeAndOvertime = {};
   // 0 = HelsefagArbeider(30 %), 1 = Sykepleier(20%), 2 = Assistent
   // Three shifts a day
   percentageList = [[0,0,0], [0,0,0], [0,0,0]];
@@ -129,11 +158,17 @@ export class CalendarComponent implements OnInit {
     this.shiftService.getShifts(this.date).subscribe(
       (val) => this.setShifts(val)
     );
+
+
   }
 
   //todo: minimalize shift
-
   setShifts(shifts: any[]): void {
+
+    let time = new Date();
+    console.log('second' + time);
+
+    console.log('shifts:');
     console.log(shifts);
     this.monthShifts = shifts;
     for (let i = 0; i < 32; i++) {
@@ -148,7 +183,6 @@ export class CalendarComponent implements OnInit {
       if (toTimeSliced > 7 && toTimeSliced < 1500) shiftDescript = 15;
       else if (toTimeSliced > 1500) shiftDescript = 23;
 
-      // console.log(this.monthShifts[i]['vakt']['tilTid'].slice(11, 13));
       this.daysShifts[date.getDate()].push(
         new Shift(null, 0, shiftDescript, this.monthShifts[i]['brukerId'] ));
     }
@@ -158,11 +192,11 @@ export class CalendarComponent implements OnInit {
 
     this.allUsers.forEach(
       user =>
-      this.usersIndexed[user.brukerId] = user
+        this.usersIndexed[user.brukerId] = user
     );
 
     this.allUsers.forEach( user =>
-      this.dynamicList[user.brukerId] = [Math.round( (37.5 * daysInMonth / 7 ) * (user.stillingsProsent / 100)), 0]);
+      this.ordinaryTimeAndOvertime[user.brukerId] = [Math.round( (37.5 * daysInMonth / 7 ) * (user.stillingsProsent / 100)), 0]);
     // user.stillingsProsent / 100 * daysInMonth * 8), 0, user.stillingsProsent]);
 
     // todo: possibly fix the workaround for amount of hours a month
@@ -170,39 +204,26 @@ export class CalendarComponent implements OnInit {
 
     this.daysShifts.forEach(
       shiftarr =>
-        shiftarr.forEach( (shift) => this.dynamicList[shift.userId][0] += 8));
+        shiftarr.forEach( (shift) => this.ordinaryTimeAndOvertime[shift.userId][0] += 8));
 
 
     // loop to display ordinary time, or overtime
-    for (let i in this.dynamicList) {
-      if(this.dynamicList[i][0] < 0) {
-        this.dynamicList[i][1] = this.dynamicList[i][0] * -1;
-        this.dynamicList[i][0] = 0;
+    for (let i in this.ordinaryTimeAndOvertime) {
+      if(this.ordinaryTimeAndOvertime[i][0] < 0) {
+        this.ordinaryTimeAndOvertime[i][1] = this.ordinaryTimeAndOvertime[i][0] * -1;
+        this.ordinaryTimeAndOvertime[i][0] = 0;
       }
     }
-/*    for (let i in this.dynamicList) {
-      console.log(this.dynamicList[i]);
-      console.log(i);
-    }*/
-    // console.log(this.daysShifts[this.date.getDate()]);
+  }
+  registerShift(): void {
+    console.log(this.daysShifts);
 
   }
 
 
-
-
-
-
-  setUsers(): void {
-    console.log(this.monthShifts);
-    this.setTakenShiftDisplay();
-    console.log('ping1');
-    this.testIfPercentageIsOk();
-    console.log('ping2');
-      console.log(this.percentageList);
-  }
 
   changeDate(year: number, month: number, date: number): void {
+
     let prevMonth = this.date.getMonth();
     let prevYear = this.date.getFullYear();
 
@@ -216,12 +237,12 @@ export class CalendarComponent implements OnInit {
       this.date.setFullYear(year);
     }
     if (this.date.getFullYear() != prevYear || this.date.getMonth() != prevMonth){
-      console.log('myping');
       this.getShifts();
-    }
 
-    console.log(this.date.getDate());
-    console.log(this.daysShifts[this.date.getDate()]);
-    // let date2 = new Date()
+
+    }
+    this.setPercentageList();
+    this.checkIfPercentageIsOk();
+
   }
 }

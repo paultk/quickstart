@@ -32,9 +32,9 @@
       <!--<td>{{shift.etternavn}}</td>-->
       <td>{{usersIndexed[shift.userId].etternavn}}, {{usersIndexed[shift.userId].fornavn}}</td>
       <td *ngFor="let b of tempArr; let index = index" >
-        <div *ngIf="index <= 8 && shift.toTime == 7" class="yellowDiv">asd</div>
-        <div *ngIf="index >= 8 && index <= 15 && shift.toTime == 15" class="yellowDiv">asd</div>
-        <div *ngIf="index >= 15 && index <= 23 && shift.toTime == 23" class="yellowDiv">asd</div>
+        <div *ngIf="index <= 8 && shift.toTime == 7" class="{{cssClasses[usersIndexed[shift.userId].stillingsBeskrivelse]}}">asd</div>
+        <div *ngIf="index >= 8 && index <= 15 && shift.toTime == 15" class="{{cssClasses[usersIndexed[shift.userId].stillingsBeskrivelse]}}">asd</div>
+        <div *ngIf="index >= 15 && index <= 23 && shift.toTime == 23" class="{{cssClasses[usersIndexed[shift.userId].stillingsBeskrivelse]}}">asd</div>
         <!--<div *ngIf="index <= 15 && shift.toTime == 15" class="yellowDiv">asd</div>-->
         <!--<div *ngIf="index <= 23 && shift.toTime == 23" class="yellowDiv">asd</div>-->
         <!--<div *ngIf="index <= shift.toTime " class="yellowDiv">asd</div>-->
@@ -90,8 +90,8 @@ Ansatte for Avdeling: .....
 
       <td>{{user.etternavn}}, {{user.fornavn}}</td>
       <td>{{user.brukerId}}</td>
-      <td>{{dynamicList[user.brukerId]}}</td>
-      <!--<td>{{dynamicList?[user.brukerId][1]}}</td>-->
+      <td>{{ordinaryTimeAndOvertime[user.brukerId]}}</td>
+      <!--<td>{{ordinaryTimeAndOvertime?[user.brukerId][1]}}</td>-->
     </tr>
   </table>
 
@@ -103,29 +103,31 @@ Ansatte for Avdeling: .....
       <th>Fra</th>
       <th>Til</th>
       </thead>
-      <tr *ngFor="let shift of shiftsUsersCanWork" (click)="setForm(shift)">
-        <td>{{shift.user.fornavn}}</td>
+      <!--<tr *ngFor="let shift of shiftsUsersCanWork" (click)="setForm(shift)">
+        <td>{{usersIndexed[shift.brukerId]}}</td>
         <td>{{shift.fromTime}}</td>
-        <td>{{shift.toTime}}</td></tr>
+        <td>{{shift.toTime}}</td></tr>-->
     </table>
   </div>
 
   <form>
-    <input-field  [field]="'Bruker'" [disabled]="true" [fieldValue]="shiftInForm.user.fornavn"></input-field>
+    <input-field  [field]="'Ansatt'" [disabled]="true" [fieldValue]="(shiftInForm?.user.etternavn + ', ' + shiftInForm?.user.fornavn)"></input-field>
 
     <label for="avdeling">Skift</label>
     <select class="form-control"  id="avdeling"
             required
-             name="avdelingId">
-      <option [value]="'23:00'">23:00-07:00</option>
-      <option [value]="'23:00'">07:00-15:00</option>
-      <option [value]="'23:00'">15:00-23:00</option>
+            name="avdelingId"
+            (ngModel)="shiftInForm.fromTime"
+    >
+      <option  [value]="'0'" selected>23:00-07:00</option>
+      <option [value]="'1'">07:00-15:00</option>
+      <option [value]="'2'">15:00-23:00</option>
+      <
     </select>
 
-    <button type="submit">Registrer skift</button>
   </form>
-  <button (click)="getAllUsers()">check</button>
-  <button (click)="setUsers()">check</button>
+  <button type="button" (click)="registerShift()" >Registrer skift</button>
+  <button>check</button>
 
 
 </div>
