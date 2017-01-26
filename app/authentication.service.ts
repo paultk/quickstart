@@ -10,7 +10,7 @@ import {User} from "./user";
 export class AuthenticationService {
   constructor(private http: Http) {}
 
-  private headers = new Headers({'Content-Type': 'application/json'});
+  private headers = new Headers({'Content-Type': 'application/json', 'token': localStorage.getItem('sessionToken')});
 
   private handleError(error: any): Promise<any> {
     console.error('An error occured', error);
@@ -41,7 +41,6 @@ export class AuthenticationService {
 
   setCurrentUser(email: string): Promise<User[]> {
     const URL = `http://localhost:8080/bruker/epost/${email}`;
-    //let users: User[] = [];
     let returnPromise: User[] = [];
     let as: Object[] = [];
 

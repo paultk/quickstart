@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Http, Headers, Response} from '@angular/http';
 
 import {User} from "./user";
@@ -8,16 +8,18 @@ import {USERS} from './mock-ansatte';
 import {Stilling} from "./stilling";
 import  "rxjs/Rx";
 import {Observable} from "rxjs";
+import {Token} from "./token";
 
 @Injectable()
 export class UserService {
 
   private UsersURL = 'http://localhost:8080/bruker/alle';
-  constructor(
-    private http: Http
-  ){}
 
-  private headers = new Headers({'Content-Type': 'application/json'});
+  constructor(private http: Http) {
+  }
+
+  private currentUser : User;
+  private headers = new Headers({'Content-Type': 'application/json', 'token': localStorage.getItem('sessionToken')});
 
   private handleError(error: any): Promise<any> {
     console.error('An error occured', error);
@@ -35,7 +37,7 @@ export class UserService {
   testConnect(): void {
     console.log('ping');
     this.http
-      .get('http://localhost:8080/test',)
+      .get('http://localhost:8080/test', {headers: this.headers},)
       .toPromise()
       .then(res => console.log(res))
       .catch(this.handleError);
@@ -52,7 +54,7 @@ export class UserService {
   }
 
   getUsers1(): Observable<User[]> {
-    return this.http.get(this.UsersURL).map((response: Response) =>
+    return this.http.get(this.UsersURL, {headers: this.headers},).map((response: Response) =>
       response.json());
   }
 
@@ -61,7 +63,7 @@ export class UserService {
     let returnPromise: User[] = [];
     let as: Object[] = [];
 
-    this.http.get(URL).toPromise()
+    this.http.get(URL, {headers: this.headers},).toPromise()
       .then(response => as = (JSON.parse(response['_body'])))
       .then(() => as.forEach(
         user => returnPromise.push(new User(user['brukerId'], user['passordId'], user['stillingsBeskrivelse'], user['telefonNr'],
@@ -77,8 +79,10 @@ export class UserService {
     return this.getUsers().then(users => users.find(user => user.brukerId === id));
   }
 
-  /*Brukes i profil.component.ts*/
   getCurrentUser(): User {
+    /*let ret : User = JSON.parse(localStorage.getItem('currentUser'));
+    console.log(ret);
+    return ret;*/
     return new User(49, 1, 'helsefagebeider', 41414141, 100, 200, false, 'Mr. Nice', 'Johnson', 'narco@minvakt.no', 1, 'Admin@@@', '01.01.2016', 'veigata 5', 'Trondheim');
   }
 }
