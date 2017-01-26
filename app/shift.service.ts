@@ -1,4 +1,4 @@
-import {Http, Response} from "@angular/http";
+import {Http, Response, Headers} from "@angular/http";
 import {Shift} from "./shift";
 import {User} from "./user";
 import {Injectable} from "@angular/core";
@@ -12,8 +12,12 @@ const shifts = [
   new Shift(USERS[2], 3, 17),
 ];
 
+
+
 @Injectable()
 export class ShiftService {
+  private headers = new Headers({'Content-Type': 'application/json', 'token': localStorage.getItem('sessionToken')});
+
   constructor(
     private http: Http,
   ){}
@@ -24,7 +28,7 @@ export class ShiftService {
     let url = `http://localhost:8080/vakt/all/month/${date.toISOString().substr(0, 7)}-01T12:00:00+01:00/2`;
     let time = new Date();
     console.log('first' + time);
-    return this.http.get(url).map(
+    return this.http.get(url,  {headers: this.headers}).map(
       (response: Response) => response.json()
     );
 
@@ -35,7 +39,7 @@ export class ShiftService {
   getShifts1(date: Date): void{
     let url = 'http://localhost:8080/vakt/all/month/2017-01-01T12:00:00+01:00/2';
 
-    this.http.get(url).toPromise().then(
+    this.http.get(url,  {headers: this.headers}).toPromise().then(
       (response) => console.log(response)
     );
     console.log(url);
