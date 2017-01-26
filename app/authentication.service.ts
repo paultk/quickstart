@@ -3,6 +3,9 @@ import {Http, Headers, Response} from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map'
+import  "rxjs/Rx";
+import {Observable} from "rxjs";
+
 import {Authentication} from "./authentication";
 import {User} from "./user";
 
@@ -58,23 +61,12 @@ export class AuthenticationService {
             )))).catch(this.handleError);
 
     return Promise.resolve(returnPromise);
+  }
 
-    /*Promise.resolve(response).then(res => {
-      let user: User = res;
-      console.log("BRUKÆRN: " + user);
-      localStorage.setItem('currentUser', JSON.stringify(user));
-    });*/
+  setCurrentUserGet(email: string): Observable<User[]> {
+    const URL = `http://localhost:8080/bruker/epost/${email}`;
 
-    //Promise.resolve(response).then(res => users = res).then(() => console.log(users));
-
-    /*.then(() => {
-      console.log(user);
-      localStorage.setItem('currentUser', JSON.stringify(user));
-      console.log(localStorage.getItem('currentUser'));
-      let test: User = JSON.parse(localStorage.getItem('currentUser'));
-      console.log(test);
-    });*/
-
-
+    return this.http.get(URL, {headers: this.headers},).map((response: Response) =>
+      response.json());
   }
 }

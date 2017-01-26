@@ -37,10 +37,22 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.model)
       .subscribe(
         data => {
-          console.log("success");
+
+          this.authService.setCurrentUserGet(localStorage.getItem('currentUserEmail'))
+            .subscribe((observable) => this.setThatUserBrah(observable));
+          /*console.log("success");
           let response = this.authService.setCurrentUser(localStorage.getItem('currentUserEmail'));
-          Promise.resolve(response).then(res => this.theUser = res).then(() => console.log(this.theUser));
-          this.goToNavigation();
+          Promise.resolve(response)
+            .then(res => this.theUser = res)
+            .then(() => console.log(this.theUser))
+            .then(() => {
+              for (let user of this.theUser) {
+                console.log("-----------");
+                console.log(user);
+              }
+            });
+
+          //this.goToNavigation();*/
         },
         error => {
           this.loading = false;
@@ -54,6 +66,15 @@ export class LoginComponent implements OnInit {
     this.router.navigate(['/navigation']);
   }
 
+  setThatUserBrah(users: User[]): void {
+
+    console.log(users);
+
+    this.theUser = users.map(user => new User(user['brukerId'], null, user['stillingsBeskrivelse'], null, user['stillingsProsent'],
+      null, null, user['fornavn'], user['etternavn'], user['epost'], user['avdelingId']));
+
+    console.log(this.theUser);
+  }
 
 
   onSubmit(): void {
