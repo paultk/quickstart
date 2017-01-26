@@ -48,13 +48,9 @@ export class NotificationComponent implements OnInit {
 
   }
 
-  /*updateMessages() {
-    let tempNotif = [
-    this.notifService.getNotifications(this.user).then(notifications => tempNotif = notifications);
-    if (tempNotif != null && this.notifications != tempNotif) {
-      this.notifications = tempNotif;
-    }
-  }*/
+  updateMessages() {
+    this.notifService.getNotifications(this.user).then(notifications => this.notifications = notifications);
+  }
 
   onSubmit() {
     this.model.fraBrukerId = this.user.brukerId;
