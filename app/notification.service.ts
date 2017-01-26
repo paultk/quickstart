@@ -65,7 +65,11 @@ export class NotificationService {
 
   setLest(id : number) {
     const URL = 'http://localhost:8080/melding/sett/' + id;
-    this.http.put(URL, "");
+    console.log(URL);
+    this.http.post(URL, "", { headers:this.headers },)
+      .toPromise()
+      .then(res => res.json().data)
+      .catch(this.handleError);
   }
 
   getNotifications(user : User): Promise<Notification[]> {

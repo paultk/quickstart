@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <form class="form-signin mg-btm" name="form" (ngSubmit)="login()" #f="ngForm">
+    <form class="form-signin mg-btm" name="form" (ngSubmit)="onSubmit()" #f="ngForm">
       <h1 class="heading-desc">MinVakt</h1>
       <div class="social-box">
         <h3>Logg inn for å starte din sesjon</h3>
@@ -20,7 +20,7 @@
           Oppgi passord.
         </div>
 
-        <input type="checkbox" id="huskMeg">
+        <input type="checkbox" id="huskMeg" [(ngModel)]="rememberMe" #huskMeg="ngModel" name="huskMeg">
         <label for="huskMeg">&nbsp;Husk meg</label>
         <span class="clearfix"></span>
       </div>

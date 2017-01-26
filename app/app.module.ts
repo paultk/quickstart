@@ -23,7 +23,10 @@ import {ShiftService} from "./shift.service";
 // import "./rxjs-extensions";
 import {NotificationComponent} from "./notification.component";
 import {NotificationService} from "./notification.service";
+import {AuthenticationService} from './authentication.service';
 import {UserSearchcomponent} from './user-search.component'
+
+import {AppRoutingModule} from './app-routing.module';
 
 @NgModule({
   imports: [
@@ -32,6 +35,7 @@ import {UserSearchcomponent} from './user-search.component'
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
+    AppRoutingModule
   ],
   declarations: [
     AppComponent,
@@ -56,7 +60,8 @@ import {UserSearchcomponent} from './user-search.component'
     ShiftService
     FravaerService,
     AvdelingService,
-    NotificationService
+    NotificationService,
+    AuthenticationService
   ],
   bootstrap: [AppComponent]
 })

@@ -35,12 +35,13 @@ export class NavigationComponent implements OnInit{
   setNumMessages(): void {
     this.selectedUser = this.userService.getCurrentUser();
     const URL = 'http://localhost:8080/melding/get/ulest/ant';
-    console.log("from navigation.component.setNumMessages()");
+    // console.log("from navigation.component.setNumMessages()");
     this.http.post(URL, JSON.stringify(this.selectedUser), {headers: this.headers},)
       .toPromise()
       .then((res) => {
         this.numMessages = parseInt(res.text());
-        console.log(this.numMessages);})
+        // console.log(this.numMessages);
+    })
       .catch((res) => {
         console.log(res);
     })
@@ -49,6 +50,7 @@ export class NavigationComponent implements OnInit{
   ngOnInit(): void {
     this.getUsers();
     this.selectedUser = this.userService.getCurrentUser();
+    this.setNumMessages();
     setInterval(() => {
       this.setNumMessages();
     }, 2000);

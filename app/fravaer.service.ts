@@ -108,4 +108,3 @@ export class FravaerService {
     return Promise.resolve(returnPromise);
   }
 }
-

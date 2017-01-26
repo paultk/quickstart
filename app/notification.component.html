@@ -5,13 +5,14 @@
         <div class="user-form-header">
           <h4>Mine varsler</h4>
          </div>
+
         <table class="notifications">
           <tr>
             <th>Fra</th>
             <th>Overskrift</th>
           </tr>
 
-          <tr *ngFor="let notif of notifications" (click)="onSelect(notif.meldingId)">
+          <tr *ngFor="let notif of notifications" (click)="onSelect(notif.meldingId)" [class.selected]="notif==notification">
               <td>{{selectUser(notif.fraBrukerId)}} {{fraUser.fornavn}} {{fraUser.etternavn}}</td>
               <td>{{notif.overskrift}}</td>
               <!--<td *ngFor="let u of users">{{u.fornavn}}</td>-->

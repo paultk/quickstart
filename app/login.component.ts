@@ -1,9 +1,11 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { User } from './user';
-import {Authentication} from "./Authentication";
+import {Authentication} from "./authentication";
 import {Http, Headers} from "@angular/http";
 import {Token} from "./Token";
+import {AuthenticationService} from "./authentication.service";
 
 @Component({
   moduleId: module.id,
@@ -12,36 +14,50 @@ import {Token} from "./Token";
   styleUrls: [ 'login.component.css' ]
 })
 
-export class LoginComponent {
-  model = new Authentication("dummy", "dummy");
+export class LoginComponent implements OnInit {
+  model = new Authentication("root@minvakt.no", "abcDEF!#");
+  rememberMe = false;
   loading = false;
   returnUrl: string;
-  tempUser = new User(1);
 
   constructor(
-    private http: Http
+    private http: Http,
+    private authService: AuthenticationService,
+    private router: Router
   ){}
 
   private headers = new Headers({'Content-Type': 'application/json'});
 
 
 
-  /*login(email: string, password: string): void {
-    if (email === this.tempUser.email && password === this.tempUser.plaintextPassord) {
-      alert("Inlogging vellyket!");
-    } else {
-      alert("Feil brukernavn/plaintextPassord.");
-    }
-  }*/
-  login(): void {
-    let toke = new Token("lol");
-    const url = "http://localhost:8080/login";
-    let token = this.http.post(url, JSON.stringify(this.model), {headers: this.headers}).toPromise();
-    console.log(token);
-    token.then(token => toke = token);
+  login() {
+    this.loading = true;
+    this.authService.login(this.model)
+      .subscribe(
+        data => {
+          console.log("success");
+          this.authService.setCurrentUser(localStorage.getItem('currentUserEmail'));
+          this.goToNavigation();
+        },
+        error => {
+          this.loading = false;
+          console.log("failure: " + error);
+        });
+
+    //this.authService.login2(this.model)
   }
+
+  goToNavigation() {
+    this.router.navigate(['/navigation']);
+  }
+
+
 
   onSubmit(): void {
     console.log("Boop");
+    this.login();
+    console.log(localStorage.getItem('currentUser'));
   }
+
+  ngOnInit() {}
 }
