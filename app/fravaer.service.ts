@@ -49,7 +49,7 @@ export class FravaerService {
   getFravaerliste(): Promise<Fravaer[]> {
     const URL = 'http://localhost:8080/fravaer';
     return this.http
-      .get(URL)
+      .get(URL, { headers: this.headers })
       .toPromise()
       .then(res => res.json().data as Fravaer[])
       .catch(this.handleError);
@@ -58,7 +58,7 @@ export class FravaerService {
   getVaktliste(): Promise<any> {
     const URL = 'http://localhost:8080/vakt/all';
     return this.http
-      .get(URL)
+      .get(URL, { headers: this.headers })
       .toPromise()
       .then(res => JSON.parse(res['_body']))
       //.then(res => res.json().data as Vakt[])
@@ -82,7 +82,7 @@ export class FravaerService {
 
   getVaktByDate1(date: string): Promise<any> {
     const URL = `http://localhost:8080/vakt/all/${date}`;
-    return this.http.get(URL)
+    return this.http.get(URL, { headers: this.headers })
       .toPromise()
       .then(res => JSON.parse(res['_body']))
       //.then(res => res.json().data as Vakt[])
@@ -94,7 +94,7 @@ export class FravaerService {
     let returnPromise: Vakt[] = [];
     let as: Object[] = [];
 
-    this.http.get(URL).toPromise().then(response =>
+    this.http.get(URL, { headers: this.headers }).toPromise().then(response =>
       as = (JSON.parse(response['_body'])))
       .then(
         () =>
