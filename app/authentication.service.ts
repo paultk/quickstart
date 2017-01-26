@@ -18,7 +18,7 @@ export class AuthenticationService {
   }
 
   login(auth: Authentication) {
-    const URL = `http://localhost:8080/login`;
+    const URL = 'http://localhost:8080/login';
     return this.http
       .post(URL, JSON.stringify(auth), {headers: this.headers})
       .map((response: Response) => {

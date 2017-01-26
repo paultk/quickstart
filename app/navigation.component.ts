@@ -7,6 +7,7 @@ import {Component, OnInit} from "@angular/core";
 import {User} from './user';
 import {UserService} from './user.service';
 import {Http, Headers} from "@angular/http";
+import {Router} from "@angular/router";
 
 @Component({
   moduleId: module.id,
@@ -26,11 +27,16 @@ export class NavigationComponent implements OnInit{
   constructor (
     private userService: UserService,
     private http: Http,
+    private router: Router
 ) {}
 
   getUsers(): void {
     // this.userService.getUsers().then(users => this.users = users);
   }
+
+  /*goToCalendar() {
+    this.router.navigate(['/calendar']);
+  }*/
 
   setNumMessages(): void {
     this.selectedUser = this.userService.getCurrentUser();
@@ -51,8 +57,6 @@ export class NavigationComponent implements OnInit{
     this.getUsers();
     this.selectedUser = this.userService.getCurrentUser();
     this.setNumMessages();
-    setInterval(() => {
-      this.setNumMessages();
-    }, 2000);
+    setInterval(() => {this.setNumMessages();}, 2000);
   }
 }

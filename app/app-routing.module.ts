@@ -6,7 +6,7 @@ import {NavigationComponent} from "./navigation.component";
 import {CalendarComponent} from "./calendar.component";
 
 const routes: Routes = [
-  { path: '', redirectTo: '/calendar', pathMatch: 'full' },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login',  component: LoginComponent },
   { path: 'navigation', component: NavigationComponent },
   { path: 'calendar', component: CalendarComponent }
