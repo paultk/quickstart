@@ -19,7 +19,7 @@ export class NotificationService {
     private http: Http
   ){}
 
-  private headers = new Headers({'Content-Type': 'application/json'});
+  private headers = new Headers({'Content-Type': 'application/json', 'token': localStorage.getItem('sessionToken')});
 
   private handleError(error: any): Promise<any> {
     console.error('An error occured', error);

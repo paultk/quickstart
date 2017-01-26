@@ -21,7 +21,7 @@ export class NavigationComponent implements OnInit{
   selectedUser: User;
   numMessages = 0;
 
-  private headers = new Headers({'Content-Type': 'application/json'});
+  private headers = new Headers({'Content-Type': 'application/json', 'token': localStorage.getItem('sessionToken')});
 
 
   constructor (
@@ -56,6 +56,7 @@ export class NavigationComponent implements OnInit{
   ngOnInit(): void {
     this.getUsers();
     this.selectedUser = this.userService.getCurrentUser();
+    console.log(this.selectedUser);
     this.setNumMessages();
     setInterval(() => {this.setNumMessages();}, 2000);
   }
