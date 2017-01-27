@@ -28,6 +28,7 @@ import {UserSearchcomponent} from './userinfo/user-search.component'
 
 import {AppRoutingModule} from './app-routing.module';
 import {AuthGuard} from "./_guards/auth.guard";
+import {FravaerInfoComponent} from "./fravaer-info/fravaer-info.component";
 
 @NgModule({
   imports: [
@@ -53,7 +54,8 @@ import {AuthGuard} from "./_guards/auth.guard";
     NavBarComponent,
     FaqComponent,
     NotificationComponent,
-    UserSearchcomponent
+    UserSearchcomponent,
+    FravaerInfoComponent
   ],
   providers: [
     UserService,
