@@ -6,8 +6,8 @@ import {Component, OnInit} from '@angular/core';
 import {Observable}        from 'rxjs/Observable';
 import {Subject}           from 'rxjs/Subject';
 
-import {UserSearchService} from './user-search.service';
-import {User} from './user';
+import {UserSearchService} from '../_services/user-search.service';
+import {User} from '../_models/user';
 
 @Component({
   moduleId: module.id,

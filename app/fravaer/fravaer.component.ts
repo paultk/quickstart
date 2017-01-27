@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 
-import { Fravaer } from './fravaer';
-import {Vakt} from './vakt';
-import {FravaerService} from "./fravaer.service";
+import { Fravaer } from '../_models/fravaer';
+import {Vakt} from '../_models/vakt';
+import {FravaerService} from "../_services/fravaer.service";
 
 @Component({
   moduleId: module.id,
@@ -11,10 +11,12 @@ import {FravaerService} from "./fravaer.service";
   styleUrls: [ 'fravaer.component.css' ]
 })
 
-export class FravaerComponent implements OnInit {
+export class FravaerComponent {
+
   constructor(private fravaerService: FravaerService) {}
 
   model = new Fravaer(45, 49, "Mandag", "Torsdag", "Dette er en kommentar");
+
   timeObject: any;
   fromTime = {hour: 6, minute: 0};
   toTime = {hour: 12, minute: 0};
@@ -32,7 +34,10 @@ export class FravaerComponent implements OnInit {
     this.model.vaktId = this.selectedVakt.vakt_id;
   }
 
-  refreshVakter(): void {
+  refreshVakter(newValue: any): void {
+
+    this.timeObject = newValue;
+
     this.completeDateFrom[0] = this.timeObject.year.toString();
     this.completeDateFrom[1] = this.timeObject.month.toString();
     this.completeDateFrom[2] = this.timeObject.day.toString();
@@ -70,16 +75,17 @@ export class FravaerComponent implements OnInit {
 
   getVakter(): void {
     let response = this.fravaerService.getVaktByDate2(this.model.fraTid.substr(0, 10));
-    Promise.resolve(response).then(res => this.vaktliste = res).then(() => console.log(this.vaktliste));
+    Promise.resolve(response)
+      .then(res => this.vaktliste = res)
+      .then(() => console.log(this.vaktliste));
   }
 
   onSubmit(): void {
+    if (this.selectedVakt == null) {
+      return;
+    }
     this.submitted = true;
     console.log(this.model);
     this.fravaerService.registerFravaer(this.model);
-  }
-
-  ngOnInit(): void {
-    //this.getFravaer();
   }
 }

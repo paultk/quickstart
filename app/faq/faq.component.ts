@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 
-import {Sporsmaal} from './sporsmaal';
+import {Sporsmaal} from '../_models/sporsmaal';
 
 const SPORSMAAL : Sporsmaal [] = [
   { sprs: 'Hvordan kan jeg se mine vakter?', svar: 'For å se dine vakter må du trykke på knappen "Vaktliste" i sidebaren til høyere.' +

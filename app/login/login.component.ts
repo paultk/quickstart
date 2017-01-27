@@ -1,11 +1,11 @@
 import {Component} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { User } from './user';
-import {Authentication} from "./authentication";
+import { User } from '../_models/user';
+import {Authentication} from "../_models/authentication";
 import {Http, Headers} from "@angular/http";
-import {Token} from "./Token";
-import {AuthenticationService} from "./authentication.service";
+import {AuthenticationService} from "../_services/authentication.service";
+import 'rxjs/add/operator/map';
 
 @Component({
   moduleId: module.id,
@@ -30,8 +30,6 @@ export class LoginComponent {
 
   private headers = new Headers({'Content-Type': 'application/json'});
 
-
-
   login() {
     this.loading = true;
     this.authService.login(this.model)
@@ -44,6 +42,7 @@ export class LoginComponent {
         error => {
           this.loading = false;
           console.log("failure: " + error);
+          alert("Feil brukernavn/passord! Prøv igjen");
         });
   }
 
@@ -57,14 +56,11 @@ export class LoginComponent {
       user['timelonn'], user['admin'], user['fornavn'], user['etternavn'], user['epost'], user['avdelingId'], user['plaintextPassord'],
       user['fodselsdato'], user['adresse'], user['by'], user['hash'], user['salt']));
 
-    localStorage.setItem('currentUser', JSON.stringify(this.theUser));
-
     localStorage.setItem('currentUser', JSON.stringify(this.theUser[0]));
 
     let globalDeadMan = this.authService.getGlobalUser();
     console.log(globalDeadMan);
   }
-
 
   onSubmit(): void {
     this.login();

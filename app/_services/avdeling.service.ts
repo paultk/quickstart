@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
-import {Avdeling} from "./avdeling";
+import {Avdeling} from "../_models/avdeling";
 
 @Injectable()
 export class AvdelingService {

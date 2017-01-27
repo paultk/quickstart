@@ -1,4 +1,4 @@
-import {Vakt} from './vakt';
+import {Vakt} from '../_models/vakt';
 
 export const VAKTER: Vakt[] = [
   {vakt_id: 0, vaktansvarlig_id: 1, avdeling_id: 1, fra_tid: "2017-01-16T15:00:00",

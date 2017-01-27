@@ -4,11 +4,11 @@
 
 import {Component, OnInit} from "@angular/core";
 
-import {User} from './user';
-import {UserService} from './user.service';
+import {User} from '../_models/user';
+import {UserService} from '../_services/user.service';
 import {Http, Headers} from "@angular/http";
 import {Router} from "@angular/router";
-import {AuthenticationService} from "./authentication.service";
+import {AuthenticationService} from "../_services/authentication.service";
 
 @Component({
   moduleId: module.id,

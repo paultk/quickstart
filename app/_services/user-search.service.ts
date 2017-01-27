@@ -6,7 +6,7 @@ import {Injectable} from '@angular/core';
 import {Http, Response} from '@angular/http';
 import {Observable} from 'rxjs';
 
-import {User} from './user'
+import {User} from '../_models/user'
 
 @Injectable()
 export class UserSearchService {

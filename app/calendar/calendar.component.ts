@@ -1,8 +1,8 @@
 import {Component, Input, OnInit} from "@angular/core";
-import {User} from "./user";
-import {Shift} from "./shift";
-import {ShiftService} from "./shift.service";
-import {UserService} from "./user.service";
+import {User} from "../_models/user";
+import {Shift} from "../_models/shift";
+import {ShiftService} from "../_services/shift.service";
+import {UserService} from "../_services/user.service";
 import {isUndefined} from "util";
 import {isNullOrUndefined} from "util";
 

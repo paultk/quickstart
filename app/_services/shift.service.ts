@@ -1,8 +1,8 @@
 import {Http, Response, Headers} from "@angular/http";
-import {Shift} from "./shift";
-import {User} from "./user";
+import {Shift} from "../_models/shift";
+import {User} from "../_models/user";
 import {Injectable} from "@angular/core";
-import { USERS } from './mock-ansatte';
+import { USERS } from '../_mock/mock-ansatte';
 import {Observable} from "rxjs";
 
 const shifts = [
