@@ -47,7 +47,7 @@ export class FravaerService {
   }
 
   getFravaerliste(): Promise<Fravaer[]> {
-    const URL = 'http://localhost:8080/fravaer';
+    const URL = 'http://localhost:8080/fravaer/all';
     return this.http
       .get(URL, { headers: this.headers })
       .toPromise()

@@ -4,10 +4,10 @@
   background-color: #f7f7f7;
   -moz-box-shadow: 0 0 3px 3px #888;
   -webkit-box-shadow: 0 0 3px 3px #888;
-  box-shadow: 15px 15px 3px 3px #888;
-  border-radius:2px;
+  box-shadow: 10px 10px 16px -5px #888;
+  border-radius: 2px;
   border: 1px solid #888;
-  margin: auto;
+  margin: 30px auto;
 }
 .main{
   padding: 25px 38px 15px 38px;

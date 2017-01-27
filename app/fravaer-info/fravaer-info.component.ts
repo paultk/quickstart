@@ -5,6 +5,7 @@
 import {Component, OnInit} from "@angular/core";
 
 import {User} from '../_models/user';
+import {UserService} from '../_services/user.service';
 import {FravaerService} from '../_services/fravaer.service';
 import {Fravaer} from '../_models/fravaer'
 /*var $ = require("jquery");*/
@@ -17,19 +18,30 @@ import {Fravaer} from '../_models/fravaer'
 })
 
 export class FravaerInfoComponent implements OnInit {
+  user:User;
+  users:User[];
+  fraUser:User;
+  fravaer:Fravaer;
+  fravaers :Fravaer[];
 
-  fravaer: Fravaer[];
-  selectedFravaer: Fravaer;
-
-  constructor(private fravaerService: FravaerService) {
+  constructor(private fravaerService:FravaerService,
+              private userService:UserService) {
   }
 
-  getFravaer(): void {
-    let response = this.fravaerService.getFravaerliste();
-    Promise.resolve(response).then(fravaer => this.fravaer = fravaer).then(() => console.log(this.fravaer));
-  }
 
-  ngOnInit(): void {
-    this.getFravaer();
+  ngOnInit():void {
+    this.user = this.userService.getCurrentUser();
+    this.fravaerService.getFravaerliste().then(fravaers => this.fravaers = fravaers);
+    this.userService.getUsers().then(users => this.users = users);
+    this.fravaer = new Fravaer();
+    console.log("yo yo " + this.fravaers);
+  }
+  selectUser(id : number){
+    for (let u of this.users) {
+      if (u.brukerId == id) {
+        this.fraUser = u;
+        // console.log(u);
+      }
+    }
   }
 }
