@@ -1,10 +1,10 @@
 import {Component} from '@angular/core';
 
-import {Sporsmaal} from '../_models/sporsmaal';
+import {Sporsmaal} from './sporsmaal';
 
 const SPORSMAAL : Sporsmaal [] = [
-  { sprs: 'Hvordan kan jeg se mine vakter?', svar: 'For å se dine vakter må du trykke på knappen "Vaktliste" i sidebaren til høyere.' +
-  ' Dette tar deg videre til en side med en timeplane for en gitt måned. Timeplanen inneholder alle ansattes vakter på de gitte datoene.'
+  { sprs: 'Hvordan kan jeg se mine vakter?', svar: 'For å se dine vakter må du trykke på knappen "Vaktliste" i sidebaren til venstre.' +
+  ' Dette tar deg videre til en side med en timeplane for en gitt måned. Timeplanen inneholder alle ansattes vakter.'
  + 'Trykk på en ønsket dag i timeplanen for å kunne se en mer detaljert oversikt over hvem som jobber på den gitte datoen, ' +
   'hvor de jobber, og når de jobber.'},
   { sprs: 'Hvordan bytter man vakter?', svar:'For å kunne bytte vakt må man gå inn på "Vaktliste" for så å velge den datoen som du ikke ønsker å jobbe.' +
@@ -24,7 +24,7 @@ const SPORSMAAL : Sporsmaal [] = [
   moduleId: module.id,
   selector: 'faq',
   templateUrl: 'faq.component.html',
-  // styleUrls: ['faq.component.css']
+  styleUrls: ['faq.component.css']
 })
 
 export class FaqComponent{

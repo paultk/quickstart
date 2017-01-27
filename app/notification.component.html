@@ -1,12 +1,11 @@
-<div [hidden]="submitted">
-  <form (ngSubmit)="onSubmit()" #heroForm="ngForm" name="heihei">
+
 
       <div class="left pull-left">
         <div class="user-form-header">
           <h4>Mine varsler</h4>
          </div>
 
-        <table class="notifications">
+        <table class="notifications" id="notify">
           <thead>
           <tr>
             <th>Fra</th>
@@ -14,25 +13,36 @@
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let notif of notifications" (click)="onSelect(notif.meldingId)" [class.selected]="notif==notification">
-              <td>{{selectUser(notif.fraBrukerId)}} {{fraUser.fornavn}} {{fraUser.etternavn}}</td>
-              <td>{{notif.overskrift}}</td>
+          <tr *ngFor="let notif of notifications" (click)="onSelect(notif.meldingId)">
+
+              <td [ngStyle]="{'background-color': notif.sett? 'white' : 'lightblue'}" [class.selected]="notif==notification">{{selectUser(notif.fraBrukerId)}} {{fraUser.fornavn}} {{fraUser.etternavn}}</td>
+              <td [ngStyle]="{'background-color': notif.sett? 'white' : 'lightblue'}" [class.selected]="notif==notification">{{notif.overskrift}}</td>
               <!--<td *ngFor="let u of users">{{u.fornavn}}</td>-->
           </tr>
+            <!--<td *ngFor="let u of users">{{u.fornavn}}</td>-->
           </tbody>
         </table>
 
 
-        <textarea class= "texten2" rows="5" cols="49" name="test2">{{notification.melding}}
+        <textarea class= "texten2" id="test2" rows="5" cols="49" name="test2" disabled>{{tekst}}
         </textarea>
 
+        <button class="btn btn-default btn-primary" (click)=" slett(notification) ">Slett melding
+        </button>
 
+        <button type="button" id="forfrisk" class="glyphicon glyphicon-refresh btn btn default btn-primary" (click)="updateMessages()"></button>
+
+        <div *ngIf="edited2" class="alert">
+          <label class="sendt1">Melding slettet!</label>
+        </div>
 
         <!--<button type="submit" (click)="printFunksjon()"
           class="btn btn-default btn-primary" [disabled]="!heroForm.form.valid" name="test4">Åpne melding
         </button>-->
       </div>
 
+      <div [hidden]="submitted">
+        <form (ngSubmit)="onSubmit()" #heroForm="ngForm" name="heihei">
 
       <div class="right pull-right">
         <div class="user-form-header2">

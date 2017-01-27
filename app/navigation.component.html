@@ -14,8 +14,10 @@
 
         <li>
           <a href="#">
-            <span class="glyphicon glyphicon-bell"></span>
-            Varsler<span class="badge">{{numMessages}}</span></a>
+            <span class="glyphicon glyphicon-bell" ></span>
+            Varsler<span class="badge" id="b" *ngIf="visible">{{numMessages}}</span>
+            <span class="badge" id="a" *ngIf="!visible">{{numMessages}}</span>
+          </a>
         </li>
 
         <li>
@@ -43,7 +45,7 @@
   <div class="container-fluid">
     <ul class="nav side-menu">
       <li>
-        <a href="../calendar">
+        <a href="calendar">
           <span class="glyphicon"></span> Vaktliste
         </a>
       </li>
@@ -63,10 +65,10 @@
 
 <!-- CONTAINER -->
 <div class="container">
+  <faq></faq>
   <!--<my-userinfo></my-userinfo>-->
   <!--<my-profil></my-profil>-->
-  <my-fravaer></my-fravaer>
+  <!--<my-fravaer></my-fravaer>-->
   <!--<user-form></user-form>
-  <!--<faq></faq>-->
-  <!--notification></notification>-->
+  <!--<notification></notification>-->
 </div>

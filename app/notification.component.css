@@ -136,6 +136,10 @@ label{
   color: green;
 }
 
+.sendt1{
+  color:red;
+}
+
 .selected {
   background-color:#8a8a8a!important;
 }
@@ -149,3 +153,9 @@ tbody, thead{
   width: 380px;
   display: block;
 }
+
+#forfrisk{
+
+width: 60px;
+}
+

@@ -4,11 +4,11 @@
 
 import {Component, OnInit} from "@angular/core";
 
-import {User} from '../_models/user';
-import {UserService} from '../_services/user.service';
+import {User} from './user';
+import {UserService} from './user.service';
 import {Http, Headers} from "@angular/http";
 import {Router} from "@angular/router";
-import {AuthenticationService} from "../_services/authentication.service";
+import {AuthenticationService} from "./authentication.service";
 
 @Component({
   moduleId: module.id,
@@ -21,6 +21,7 @@ export class NavigationComponent implements OnInit{
   users: User[];
   selectedUser: User;
   numMessages = 0;
+  visible: boolean;
 
   private headers = new Headers({'Content-Type': 'application/json', 'token': localStorage.getItem('sessionToken')});
 
@@ -47,6 +48,13 @@ export class NavigationComponent implements OnInit{
       .toPromise()
       .then((res) => {
         this.numMessages = parseInt(res.text());
+        if (this.numMessages > 0) {
+          this.visible = true;
+        }
+        else {
+          this.visible = false;
+        }
+        // console.log(this.numMessages);
     })
       .catch((res) => {
         console.log(res);

@@ -4,11 +4,11 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 
-import {Notification} from "../_models/notification";
+import {Notification} from "./notification";
 import 'rxjs/add/operator/toPromise';
-import {JsonTestClass} from "../_models/json-test-class";
-import {User} from "../_models/user";
-import {Fravaer} from "../_models/fravaer";
+import {JsonTestClass} from "./json-test-class";
+import {User} from "./user";
+import {Fravaer} from "./fravaer";
 // import {USERS} from './mock-ansatte';
 
 @Injectable()
@@ -46,6 +46,16 @@ export class NotificationService {
   addNotification(notification : Notification): void {
     const URL = 'http://localhost:8080/melding/add';
     console.log("from notificationService");
+    this.http
+      .post(URL, JSON.stringify(notification), {headers: this.headers},)
+      .toPromise()
+      .then(res => res.json().data)
+      .catch(this.handleError);
+  }
+
+  delete(notification : Notification): void {
+    const URL = 'http://localhost:8080/melding/delete';
+    console.log("from notificationService -delete");
     this.http
       .post(URL, JSON.stringify(notification), {headers: this.headers},)
       .toPromise()
