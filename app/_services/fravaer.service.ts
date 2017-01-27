@@ -54,6 +54,20 @@ export class FravaerService {
       .then(res => res.json().data as Fravaer[])
       .catch(this.handleError);
   }
+  getFravaers(): Promise<Fravaer[]> {
+    const URL = 'http://localhost:8080/fravaer/all';
+    let returnPromise: Fravaer[] = [];
+    let as: Object[] = [];
+
+    this.http.get(URL, {headers: this.headers},).toPromise()
+      .then(response => as = (JSON.parse(response['_body'])))
+      .then(() => as.forEach(
+        frav => returnPromise.push(new Fravaer(frav['brukerVaktId'], frav['fraTid'], frav['tilTid'],
+          frav['kommentar']))
+      ))
+      .catch(this.handleError);
+    return Promise.resolve(returnPromise);
+  }
 
   getVaktliste(): Promise<any> {
     const URL = 'http://localhost:8080/vakt/all';
@@ -65,7 +79,7 @@ export class FravaerService {
       .catch(this.handleError);
   }
 
-  getFravaerByUser(id: number): Promise<Fravaer[]> {
+  /*getFravaerByUser(id: number): Promise<Fravaer[]> {
     return this.getFravaerliste()
       .then(fravaerliste => fravaerliste.filter(fravaerliste => fravaerliste.brukerId === id));
   }
@@ -73,7 +87,7 @@ export class FravaerService {
   getFravaerByVakt(id: number): Promise<Fravaer[]> {
     return this.getFravaerliste()
       .then(fravaerliste => fravaerliste.filter(fravaerliste => fravaerliste.vaktId === id));
-  }
+  }*/
 
   getFravaerByDate(date: string): Promise<Fravaer[]> {
     return this.getFravaerliste()
