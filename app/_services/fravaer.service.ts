@@ -109,6 +109,8 @@ export class FravaerService {
       .catch(this.handleError);
   }
 
+
+
   getVaktByDate2(date: string): Promise<Vakt[]> {
     const URL = `http://localhost:8080/vakt/all/${date}`;
     let returnPromise: Vakt[] = [];
