@@ -1,6 +1,5 @@
 <div>
-  <div class="content">
-
+  <div class="contents">
     <div class="static-info pull-left">
       <div class="static-header">
         <h4>Personlig informasjon</h4>
@@ -22,7 +21,8 @@
             <input-field [field]='"Stilling"' [disabled]="true" [(fieldValue)]="user.stillingsId"></input-field>
           </div>
           <div class="stillingsprosent">
-            <input-field [field]='"Stillingsprosent"' [disabled]="true" [(fieldValue)]="user.stillingsprosent"></input-field>
+            <input-field [field]='"Stillingsprosent"' [disabled]="true"
+                         [(fieldValue)]="user.stillingsprosent"></input-field>
           </div>
         </div>
         <div class="department">
@@ -30,7 +30,6 @@
         </div>
       </div>
     </div>
-
     <div class="dynamic-info">
       <div class="dynamic-header">
         <h4>Kontaktinformasjon</h4>
@@ -64,6 +63,6 @@
         </button>
       </div>
     </div>
-  </div>
+  </div><!--contents-->
 </div>
 

@@ -1,17 +1,21 @@
-.content {
-  height: 100%;
-  width: 100%;
-  float: left;
-  text-align: left;
-  font-family: Ubuntu Condensed, sans-serif;
+.contents {
+  height: 422px;
+  margin: 10px;
+  background-color: whitesmoke;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 10px;
 }
 
 /*STATIC INFO*/
 .static-info {
   float: left;
   width: auto;
-  height: auto;
+  height: 400px;
   border: 1px solid #ccc;
+  border-collapse: collapse;
+  border-radius: 4px;
+  background-color: white;
 }
 
 .static-header {
@@ -19,6 +23,9 @@
   color: white;
   padding: 5px;
   margin-bottom: 5px;
+  border-collapse: collapse;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
 }
 
 .static-content {
@@ -40,11 +47,14 @@
 
 /*DYNAMIC INFO*/
 .dynamic-info {
-  float: left;
+  float: right;
   width: auto;
-  height: auto;
+  height: 400px;
   margin-left: 50px;
   border: 1px solid #ccc;
+  border-collapse: collapse;
+  border-radius: 4px;
+  background-color: white;
 }
 
 .dynamic-header {
@@ -52,6 +62,9 @@
   color: white;
   padding: 5px;
   margin-bottom: 5px;
+  border-collapse: collapse;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
 }
 
 .dynamic-content {

@@ -2,7 +2,7 @@
   <div  [hidden]="submitted">
     <label>{{field}}</label>
       <div class="form-group">
-        <label for= {{field}}></label>
+        <label for= {{field}}></label><br>
         <input type="text" class="form-control" id="{{field}}" [disabled]="disabled"
                required
                [(ngModel)]="fieldValue" name="{{field}}"
