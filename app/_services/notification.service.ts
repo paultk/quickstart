@@ -4,11 +4,11 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 
-import {Notification} from "./notification";
+import {Notification} from "../_models/notification";
 import 'rxjs/add/operator/toPromise';
-import {JsonTestClass} from "./json-test-class";
-import {User} from "./user";
-import {Fravaer} from "./fravaer";
+import {JsonTestClass} from "../_models/json-test-class";
+import {User} from "../_models/user";
+import {Fravaer} from "../_models/fravaer";
 // import {USERS} from './mock-ansatte';
 
 @Injectable()
