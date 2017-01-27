@@ -31,9 +31,8 @@ export class FravaerInfoComponent implements OnInit {
 
   ngOnInit():void {
     this.user = this.userService.getCurrentUser();
-    this.fravaerService.getFravaerliste().then(fravaers => this.fravaers = fravaers);
+    this.fravaerService.getFravaers().then(fravaers => this.fravaers = fravaers);
     this.userService.getUsers().then(users => this.users = users);
-    this.fravaer = new Fravaer();
     console.log("yo yo " + this.fravaers);
   }
   selectUser(id : number){
