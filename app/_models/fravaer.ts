@@ -3,7 +3,9 @@ export class Fravaer {
     public brukerVaktId?: number,
     public fraTid?: string,
     public tilTid?: string,
-    public kommentar?: string
+    public kommentar?: string,
+    public brukerId?: number,
+    public vaktId?: number,
   ) {}
 }
 

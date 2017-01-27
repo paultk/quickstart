@@ -63,7 +63,7 @@ export class FravaerService {
       .then(response => as = (JSON.parse(response['_body'])))
       .then(() => as.forEach(
         frav => returnPromise.push(new Fravaer(frav['brukerVaktId'], frav['fraTid'], frav['tilTid'],
-          frav['kommentar']))
+          frav['kommentar'], frav['brukerId'], frav['vaktId']))
       ))
       .catch(this.handleError);
     return Promise.resolve(returnPromise);
