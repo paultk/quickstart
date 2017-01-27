@@ -24,6 +24,8 @@ export class NotificationComponent implements OnInit {
   // submitted = false;
   edited = false;
   edited2 = false;
+  overskr: string;
+  dato: string;
 
 
   constructor(
@@ -47,6 +49,8 @@ export class NotificationComponent implements OnInit {
       if(u.meldingId ==idNum){
         this.notification=u;
         this.tekst = u.melding;
+        this.overskr = u.overskrift;
+        this.dato = u.tidSendt;
         console.log(u);
       }
     }
@@ -106,6 +110,8 @@ export class NotificationComponent implements OnInit {
 
   clearText(): void{
     this.tekst = "";
+    this.overskr = "";
+    this.dato="";
     //document.getElementById("test2").innerHTML= "";
   }
 
