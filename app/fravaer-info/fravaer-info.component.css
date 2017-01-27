@@ -4,13 +4,16 @@
   box-sizing: border-box;
   height: 40px;
 }
+#registrer {
+  width: 130px;
+}
 
 table {
   display: table;
   border: 1px solid #ccc;
   border-radius: 4px;
   width: auto;
-  margin-top: 10px;
+  margin-top: 30px;
   text-align: left;
   /*overflow-y: scroll;*/
 }
@@ -43,6 +46,7 @@ th, td{
 thead, tbody {
   display: block;
   width: auto;
+
 }
 
 tbody {
