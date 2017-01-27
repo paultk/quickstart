@@ -5,7 +5,7 @@ export class Fravaer {
     public tilTid?: string,
     public kommentar?: string,
     public brukerId?: number,
-    public vaktId?: number,
+    public vaktId?: number
   ) {}
 }
 
