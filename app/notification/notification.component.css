@@ -51,6 +51,7 @@ th, tr {
   height: auto;
   float: left;
   border: 1px solid #ccc;
+  margin-left: 20px;
 }
 
 .right {
@@ -59,6 +60,7 @@ th, tr {
   height: auto;
   float: left;
   border: 1px solid #ccc;
+  margin-left: 30px;
 }
 
 .inputen{
@@ -160,3 +162,11 @@ tbody, thead{
 width: 60px;
 }
 
+.top, .bottom {
+  height: 600px;
+  margin: 10px;
+  background-color: whitesmoke;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 10px;
+}

@@ -12,14 +12,12 @@
 <table class="fravaers" id="frav">
   <thead>
   <tr>
-    <th>Bruker</th>
     <th>Fra</th>
     <th>Til</th>
   </tr>
   </thead>
   <tbody>
   <tr *ngFor="let frav of fravaers">
-    <td>{{selectUser(frav.brukerId)}} {{fraUser.fornavn}} {{fraUser.etternavn}}</td>
     <td>{{frav.fraTid}}</td>
     <td>{{frav.tilTid}}</td>
   </tr>
