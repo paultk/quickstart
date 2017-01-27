@@ -55,7 +55,7 @@ export class FravaerService {
       .catch(this.handleError);
   }
   getFravaers(): Promise<Fravaer[]> {
-    const URL = 'http://localhost:8080/fravaer/all';
+    const URL = 'http://localhost:8080/fravaer/medbrukerogvakt';
     let returnPromise: Fravaer[] = [];
     let as: Object[] = [];
 
