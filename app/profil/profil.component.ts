@@ -22,6 +22,8 @@ export class ProfilComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.isAdmin = this.userService.getCurrentUser().admin;
+    this.user = this.userService.getCurrentUser();
+    this.isAdmin = this.user.admin;
+
   }
 }

@@ -3,8 +3,8 @@
 <form>
 
   <!--<input type="text" name="search" placeholder="Søk">-->
-  <button class="btn btn-primary btn-large">Søk</button>
-  <user-search></user-search>
+  <button class="btn btn-primary btn-large" (click)="searchUsers(tekst)">Søk</button>
+  <input name="search" [(ngModel)]="searchtext" [value]="searchtext">
   <button type="submit"
           class="btn btn-default btn-primary" id="registrer"  name="test3">Registrer fravær
   </button>
