@@ -13,6 +13,9 @@
   box-sizing: border-box;
   height: 40px;
 }
+.selected {
+  background-color: #8a8a8a!important;
+}
 
 .users {
   display: table;

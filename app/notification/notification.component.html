@@ -14,7 +14,7 @@
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let notif of notifications" (click)="onSelect(notif.meldingId)">
+            <tr *ngFor="let notif of notifications" (click)="onSelect(notif.meldingId)">
 
               <td [ngStyle]="{'background-color': notif.sett? 'white' : 'lightblue'}" [class.selected]="notif==notification">{{selectUser(notif.fraBrukerId)}} {{fraUser.fornavn}} {{fraUser.etternavn}}</td>
               <td [ngStyle]="{'background-color': notif.sett? 'white' : 'lightblue'}" [class.selected]="notif==notification">{{notif.overskrift}}</td>
