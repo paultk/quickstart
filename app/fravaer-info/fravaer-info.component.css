@@ -1,8 +1,18 @@
+.contents {
+  height: 572px;
+  margin: 10px;
+  background-color: whitesmoke;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 10px;
+}
+
 .btn {
   float: left;
   width: 60px;
   box-sizing: border-box;
   height: 40px;
+
 }
 #registrer {
   width: 130px;
@@ -13,7 +23,7 @@ table {
   border: 1px solid #ccc;
   border-radius: 4px;
   width: auto;
-  margin-top: 30px;
+  margin-top: 40px;
   text-align: left;
   /*overflow-y: scroll;*/
 }
@@ -54,6 +64,10 @@ tbody {
   height: 200px;
   overflow-x: auto;
 
+}
+
+.content1{
+  margin-left: 20px;
 }
 
 /*

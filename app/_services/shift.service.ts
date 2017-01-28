@@ -15,7 +15,7 @@ const shifts = [
 @Injectable()
 export class ShiftService {
   constructor(
-    private http: Http,
+    private http: Http
   ){}
   private headers = new Headers({'Content-Type': 'application/json'});
   private handleError(error: any): Promise<any> {

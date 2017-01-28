@@ -279,7 +279,7 @@ export class CalendarComponent implements OnInit {
     console.log(returnObj);
     console.log('here');
     // console.log(this.shiftService.addAvailability(returnObj));
-    this.shiftService.addAvailability(returnObj).then(res => this.availabilityOk = res);
+    //this.shiftService.addAvailability(returnObj).then(res => this.availabilityOk = res);
 
     this.availabilityClicked = true;
     console.log(this.availabilityOk);
