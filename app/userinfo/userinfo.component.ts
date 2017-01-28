@@ -19,10 +19,45 @@ export class UserinfoComponent implements OnInit{
 
   users: User[];
   selectedUser: User;
+  edited = false;
 
   constructor (
     private userService: UserService
   ) {}
+
+  onSelect(idNum: number): void{
+    console.log('onSelect() ' + idNum);
+    for (let u of this.users){
+      if(u.brukerId ==idNum){
+        this.selectedUser=u;
+        console.log(u);
+      }
+    }
+
+  }
+
+  slett(user: User): void {
+    this.userService.delete(user).subscribe(ret => {
+      this.getUsers();
+    });
+    //setTimeout(this.getUsers(), 2000);
+    /*setTimeout(function(){
+      this.clearText();
+    }.bind(this), 100);
+
+    this.updateMessages();
+
+    this.edited = true;
+    //wait 3 Seconds and hide
+    setTimeout(function() {
+      this.edited2 = false;
+      console.log(this.edited);
+    }.bind(this), 3000);*/
+  }
+
+  /*updateUsers() {
+    this.userService.getUsers().then(users => this.users = users);
+  }*/
 
   getUsers(): void {
     let response = this.userService.getUsers();

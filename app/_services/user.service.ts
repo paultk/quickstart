@@ -92,6 +92,14 @@ export class UserService {
     return Promise.resolve(returnPromise);
 
   }
+  delete(user : User): Observable<any> {
+    const URL = 'http://localhost:8080/bruker/delete';
+    console.log("from userService -delete");
+    console.log(JSON.stringify(user));
+    return this.http
+      .post(URL, JSON.stringify(user), {headers: this.headers},).map((response: Response) =>
+      response.json());
+  }
 
   getCurrentUser(): User {
     /*let ret : User = JSON.parse(localStorage.getItem('currentUser'));

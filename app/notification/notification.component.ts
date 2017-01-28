@@ -120,6 +120,7 @@ export class NotificationComponent implements OnInit {
     this.notifService.getNotifications(this.user).then(notifications => this.notifications = notifications);
     this.userService.getUsers().then(users => this.users = users);
     this.notification = new Notification();
+    this.fraUser = new User();
     /*setInterval(() => {
       this.updateMessages();
     }, 2000);*/

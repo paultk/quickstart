@@ -3,25 +3,26 @@
   <!--<input type="text" name="search" placeholder="Søk">-->
   <button class="btn btn-primary btn-large">Søk</button>
   <user-search></user-search>
+  <button type="submit"
+          class="btn btn-default btn-primary" id="registrer"  name="test3">Registrer fravær
+  </button>
   <br>
-
-  <button class="btn btn-primary btn-large">Søk</button>
-
 </form>
 
 <table class="fravaers" id="frav">
   <thead>
   <tr>
+    <th>Bruker</th>
     <th>Fra</th>
     <th>Til</th>
   </tr>
   </thead>
-  <tbody>
+
   <tr *ngFor="let frav of fravaers">
-    <td>{{frav.fraTid}}</td>
-    <td>{{frav.tilTid}}</td>
+    <td>{{selectUser(frav.brukerId)}}{{fraUser.fornavn}}{{fraUser.etternavn}}</td>
+    <td> {{frav.fraTid}}</td>
+    <td> {{frav.tilTid}}</td>
   </tr>
 
-  </tbody>
 </table>
 
