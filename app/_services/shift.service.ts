@@ -67,9 +67,9 @@ export class ShiftService {
     console.log("user:");
     console.log(JSON.stringify(shift.user));
     /*
-    this.http.post(url, JSON.stringify(shift.user), {headers: this.headers}).toPromise()
-      .then((response) => console.log(response))
-      .catch( (error) => this.handleError(error));*/
+     this.http.post(url, JSON.stringify(shift.user), {headers: this.headers}).toPromise()
+     .then((response) => console.log(response))
+     .catch( (error) => this.handleError(error));*/
   }
 
   //todo: urgent fix on how date in url gets managed
@@ -82,14 +82,20 @@ export class ShiftService {
     );
   }
 
-  addAvailability(availability: any) {
+  addAvailability(availability: any): Promise<boolean> {
+    let okResponse = false;
     let tempObj = JSON.stringify(availability);
     console.log('json:');
     console.log(tempObj);
 
+
     let url = 'http://localhost:8080/tilgjengelighet/add';
-    this.http.post(url, JSON.stringify(availability), {headers: this.headers}).toPromise()
-      .then((response) => console.log(response))
+    return this.http.post(url, JSON.stringify(availability), {headers: this.headers}).toPromise()
+      .then((response) => response.json())
       .catch( (error) => this.handleError(error));
+  }
+
+  changeShifts(): void {
+
   }
 }
