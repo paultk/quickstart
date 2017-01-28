@@ -59,28 +59,17 @@ export class UserinfoComponent implements OnInit{
     }*/
   }
 
+
   slett(user: User): void {
     this.userService.delete(user).subscribe(ret => {
       this.getUsers();
     });
-    //setTimeout(this.getUsers(), 2000);
-    /*setTimeout(function(){
-      this.clearText();
-    }.bind(this), 100);
 
-    this.updateMessages();
-
-    this.edited = true;
-    //wait 3 Seconds and hide
-    setTimeout(function() {
-      this.edited2 = false;
-      console.log(this.edited);
-    }.bind(this), 3000);*/
   }
 
-  /*updateUsers() {
-    this.userService.getUsers().then(users => this.users = users);
-  }*/
+  //updateUsers(): void {
+  //  this.userService.getUsers().then(users => this.users = users);
+  //}
 
   getUsers(): void {
     this.userService.getUsers1().subscribe(ret => this.users = this.userService.mapUsersFromObs(ret));
