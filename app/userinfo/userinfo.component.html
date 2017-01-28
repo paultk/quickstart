@@ -1,18 +1,21 @@
 <div class="contents">
   <form>
     <!--<input type="text" name="search" placeholder="Søk">-->
+    <input id="sok" name="search" [(ngModel)]="searchtext" [value]="searchtext">
+
     <button class="btn btn-primary btn-large" (click)="searchUsers(tekst)">Søk</button>
-    <input name="search" [(ngModel)]="searchtext" [value]="searchtext">
     <br>
+    <div class="buttons">
     <a href="#">
-      <span class="glyphicon glyphicon-plus"></span>
-      Ny bruker</a>
+      <span id="ny_bruker" class="glyphicon glyphicon-plus"></span>
+        Ny bruker</a>
     <a href="#">
-      <span class="glyphicon glyphicon-edit"></span>
-      Redigere bruker</a>
-    <a href="#" (click)="slett(selectedUser)">
+      <span id= "reg_bruker" class="glyphicon glyphicon-edit"></span>
+        Redigere bruker</a>
+    <a href="#" (click)="slett(selectedUser)" id="sl_ bruker">
       <span class="glyphicon glyphicon-minus"></span>
-      Slett bruker</a>
+        Slett bruker</a>
+      </div>
   </form>
 
   <table class="users table-striped table-hover" >
