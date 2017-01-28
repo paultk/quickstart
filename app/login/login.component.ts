@@ -15,7 +15,7 @@ import 'rxjs/add/operator/map';
 })
 
 export class LoginComponent {
-  model = new Authentication("root@minvakt.no", "abcDEF!#");
+  model = new Authentication("admin", "Admin@@@");
   rememberMe = false;
   loading = false;
   returnUrl: string;

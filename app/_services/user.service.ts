@@ -81,6 +81,10 @@ export class UserService {
     return Promise.resolve(returnPromise);
 
   }
+
+  testConnect2(): void {
+  }
+
   delete(user : User): Observable<any> {
     const URL = 'http://localhost:8080/bruker/delete';
     return this.http

@@ -38,10 +38,6 @@ export class UserFormComponent implements OnInit {
 
   jsonTest = new JsonTestClass('dsffsd');
 
-  testConnect() {
-    /*// console.log('ping2');
-    this.userService.testConnect2(this.jsonTest);*/
-  }
 
   testConnect4(): void {
     console.log(this.model.fornavn)

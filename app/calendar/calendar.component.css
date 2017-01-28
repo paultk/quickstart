@@ -6,22 +6,39 @@
   border-radius: 4px;
   text-align: center;
   vertical-align: middle;
-  margin: 5px 0;
+  margin: 0 10px !important;
   padding: 5px 0;
-  float: none;
+  float: left;
 }
 
-.red-div {
+.color-code {
+  margin: 0 auto;
+  width: 500px;
+}
+
+.red-div-table, .yellow-div-table, .green-div-table {
+  width: 20px;
+  height: 15px;
+  color: whitesmoke;
+  border-collapse: collapse;
+  border-radius: 4px;
+  text-align: center;
+  vertical-align: middle;
+  margin: auto;
+}
+
+.red-div, .red-div-table {
   background-color: #a94442;
   border: 1px solid #a94442;
 }
 
-.yellow-div {
+.yellow-div, .yellow-div-table {
   background-color: #FFFF5A;
   border: 1px solid #FFFF5A;
+  color: #eeeeee !important;
 }
 
-.green-div {
+.green-div, .green-div-table {
   background-color: #42A948;
   border: 1px solid #42A948;
 }
@@ -41,13 +58,31 @@
 
 .time {
   display: block;
+  background-color: white;
   border: 1px solid #ccc;
   border-radius: 4px;
   border-collapse: collapse;
-  width: auto;
-  margin-top: 10px;
+  width: 899px;
+  margin: 10px auto;
   text-align: left;
-  /*overflow-y: scroll;*/
+}
+
+thead, tbody {
+  display: block;
+  font-size: 9px;
+  border-collapse: collapse;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+thead {
+  width: 100%;
+}
+
+tbody {
+  overflow-y: scroll;
+  height: 200px;
+  overflow-x: auto;
 }
 
 tr {
@@ -57,51 +92,58 @@ tr {
 th {
   background-color: #006D92;
   color: white;
+  width: 30px;
+  height: 30px;
+  margin: 0 auto;
+}
+
+td {
+  width: 30px;
+  border-left: 1px solid #ccc;
+}
+
+th, td {
+  padding: 2px;
+  border-bottom: 1px solid #ccc;
 }
 
 .bruker {
-  width: 100px;
+  padding: 2px;
+  width: 100px !important;
+  border-left: none !important;
   border-collapse: collapse;
-  border-top-left-radius: 4px;
 }
 
 .hour {
-  padding: 5px;
-}
-
-.last {
-  width: 200px !important;
 }
 
 .filler {
   background-color: #006D92;
-  width: 16px !important;
+  width: 18px !important;
   padding: 0 !important;
-  border-collapse: collapse;
-  border-top-right-radius: 4px;
+  border-left: none !important;
 }
 
-th, td{
-  padding: 10px;
-  width: auto;
-  border-bottom: 1px solid #ccc;
+.slett {
+  width: 60px;
 }
 
-thead, tbody {
-  display: block;
-  width: auto;
-  font-size: 11px;
-  border-collapse: collapse;
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
+.btn1 {
+  width: auto !important;
+  height: auto !important;
+  font-size: 10px;
+  padding: 5px !important;
+  margin: auto !important;
 }
 
-tbody {
-  overflow-y: scroll;
+.bytt-vakt {
   height: 200px;
-  overflow-x: auto;
-  border-bottom-left-radius: 4px;
-  border-bottom-right-radius: 4px;
+  width: 200px;
+  padding: 10px;
+}
+
+.btn2 {
+  margin: 10px 0 !important;
 }
 
 label {

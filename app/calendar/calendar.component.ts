@@ -56,7 +56,7 @@ export class CalendarComponent implements OnInit {
   shiftInForm: Shift;
   date: Date;
   allUsers: User[] = [];
-  tempArr = new Array(24);
+  tempArr = new Array(23);
   months = ['Januar', 'Februar', 'Mars', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Desember'];
 
   ordinaryTimeAndOvertime = {};
@@ -79,9 +79,9 @@ export class CalendarComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.cssClasses['Helsefagarbeider'] = 'yellow-div';
-    this.cssClasses['Assistent'] = 'green-div';
-    this.cssClasses['Sykepleier'] = 'red-div';
+    this.cssClasses['Helsefagarbeider'] = 'yellow-div-table';
+    this.cssClasses['Assistent'] = 'green-div-table';
+    this.cssClasses['Sykepleier'] = 'red-div-table';
 
 
 
