@@ -20,6 +20,7 @@ export class UserinfoComponent implements OnInit{
   users: User[];
   selectedUser: User;
   edited = false;
+  searchtext : string;
 
   constructor (
     private userService: UserService
@@ -34,6 +35,24 @@ export class UserinfoComponent implements OnInit{
       }
     }
 
+  }
+  searchUsers(): void {
+    if (this.searchtext == "") {
+      this.getUsers();
+    }
+    else {
+      this.searchtext = this.searchtext.toLowerCase();
+      console.log(this.searchtext);
+      let funnet: User[] = new Array();
+      for (let u of this.users) {
+        if (u.fornavn.toLowerCase().includes(this.searchtext) || u.etternavn.toLowerCase().includes(this.searchtext)
+          || u.epost.toLowerCase().includes(this.searchtext) || u.stillingsBeskrivelse.toLowerCase().includes(this.searchtext)
+          || u.telefonNr.toString().toLowerCase().includes(this.searchtext)) {
+          funnet.push(u);
+        }
+      }
+      this.users = funnet;
+    }
   }
 
   slett(user: User): void {
