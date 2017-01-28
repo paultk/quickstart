@@ -14,12 +14,14 @@ export class UserService {
     private http: Http
   ){}
 
-  private headers = new Headers({'Content-Type': 'application/json'});
+  private headers = new Headers({'Content-Type': 'application/json', 'token': localStorage.getItem('sessionToken')});
 
   private handleError(error: any): Promise<any> {
     console.error('An error occured', error);
     return Promise.reject(error.message || error);
   }
+
+  testConnect2() {}
 
   addUser(user: User): void {
     const URL = 'http://localhost:8080/bruker/add';
@@ -31,7 +33,7 @@ export class UserService {
   }
 
   getUsers1(): Observable<User[]> {
-    return this.http.get(this.UsersURL).map((response: Response) =>
+    return this.http.get(this.UsersURL, {headers: this.headers}).map((response: Response) =>
       response.json());
   }
 
@@ -47,7 +49,7 @@ export class UserService {
     let returnPromise: User[] = [];
     let as: Object[] = [];
 
-    this.http.get(URL).toPromise()
+    this.http.get(URL, {headers: this.headers}).toPromise()
       .then(response => as = (JSON.parse(response['_body'])))
       .then(() => as.forEach(
         user => returnPromise.push(new User(user['brukerId'], user['passordId'], user['stillingsBeskrivelse'], user['telefonNr'],
