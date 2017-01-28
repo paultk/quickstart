@@ -1,6 +1,6 @@
 /**Created by Trym Todalshaug on 16/01/2017.*/
 
-import {Component, OnInit} from "@angular/core";
+import {Component, OnInit, Input} from "@angular/core";
 
 import {User} from '../_models/user';
 import {UserService} from '../_services/user.service';
@@ -15,12 +15,13 @@ import {UserService} from '../_services/user.service';
 export class ProfilComponent implements OnInit {
   user: User;
   selectedUser: User;
+  isAdmin: boolean;
 
   constructor(
     private userService: UserService
   ) {}
 
   ngOnInit(): void {
-    this.user = this.userService.getCurrentUser();
+    this.isAdmin = this.userService.getCurrentUser().admin;
   }
 }
