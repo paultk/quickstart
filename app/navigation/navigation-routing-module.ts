@@ -13,6 +13,11 @@ import {UserinfoComponent} from "../userinfo/userinfo.component";
  */
 const navigationRoutes: Routes = [
   {
+    path: '',
+    redirectTo: '/navigation',
+    pathMatch: 'full'
+  },
+  {
     path: 'navigation',
     component: NavigationComponent,
     children: [

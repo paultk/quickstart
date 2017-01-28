@@ -5,7 +5,7 @@ import {Component} from '@angular/core';
   template: `
     <!--my-navigation hidden></my-navigation>-->
     <!--<calendar-component></calendar-component>-->
-    <router-outlet name="navigation-outlet"></router-outlet>
+    <router-outlet></router-outlet>
     <!--<my-login></my-login>-->
   `,
 })

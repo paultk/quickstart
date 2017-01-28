@@ -48,7 +48,7 @@ import {NavigationModule} from "./navigation/navigation.module";
     AppComponent,
     NavigationComponent,
     LoginComponent,
-    UserinfoComponent,
+    /*UserinfoComponent,
     ProfilComponent,
     UserFormComponent,
     InputFieldComponent,
@@ -59,16 +59,16 @@ import {NavigationModule} from "./navigation/navigation.module";
     NavBarComponent,
     FaqComponent,
     NotificationComponent,
-    UserSearchcomponent,
+    UserSearchcomponent,*/
     PageNotFoundComponent
   ],
   providers: [
-    UserService,
+    /*UserService,
     FravaerService,
     ShiftService,
     FravaerService,
     AvdelingService,
-    NotificationService,
+    NotificationService,*/
     AuthenticationService,
     AuthGuard
   ],

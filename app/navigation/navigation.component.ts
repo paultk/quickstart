@@ -51,7 +51,7 @@ export class NavigationComponent implements OnInit{
         this.numMessages = parseInt(res.text());
     })
       .catch((res) => {
-        console.log(res);
+       // console.log(res);
     })
   }
 
@@ -60,7 +60,7 @@ export class NavigationComponent implements OnInit{
    // this.selectedUser = this.authService.getGlobalUser();
     this.selectedUser = this.userService.getCurrentUser();
     this.setNumMessages();
-    setInterval(() => {this.setNumMessages();}, 2000);
+   // setInterval(() => {this.setNumMessages();}, 2000);
   }
 
   logout(): void {

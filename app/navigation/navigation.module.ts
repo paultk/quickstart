@@ -37,7 +37,6 @@ import {NavigationRoutingModule} from "./navigation-routing-module";
     NavigationRoutingModule
   ],
   declarations: [
-    LoginComponent,
     UserinfoComponent,
     ProfilComponent,
     UserFormComponent,
