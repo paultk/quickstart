@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 
-import {User}    from './user';
-import {UserService} from './user.service'
-import {JsonTestClass} from "./json-test-class";
-import {USERS} from "./mock-ansatte";
-import {AvdelingService} from "./avdeling.service";
-import {Avdeling} from "./avdeling";
+import {User}    from '../_models/user';
+import {UserService} from '../_services/user.service'
+import {JsonTestClass} from "../_models/json-test-class";
+import {USERS} from "../_mock/mock-ansatte";
+import {AvdelingService} from "../_services/avdeling.service";
+import {Avdeling} from "../_models/avdeling";
 
 @Component({
   moduleId: module.id,

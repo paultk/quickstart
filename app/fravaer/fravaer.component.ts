@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 
-import { Fravaer } from './fravaer';
-import {Vakt} from './vakt';
-import {FravaerService} from "./fravaer.service";
+import { Fravaer } from '../_models/fravaer';
+import {Vakt} from '../_models/vakt';
+import {FravaerService} from "../_services/fravaer.service";
 
 @Component({
   moduleId: module.id,

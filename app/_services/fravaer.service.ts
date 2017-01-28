@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 
-import {Fravaer} from "./fravaer";
+import {Fravaer} from "../_models/fravaer";
 import 'rxjs/add/operator/toPromise';
-import {JsonTestClass} from "./json-test-class";
-import {Vakt} from "./vakt";
+import {JsonTestClass} from "../_models/json-test-class";
+import {Vakt} from "../_models/vakt";
 
 @Injectable()
 export class FravaerService {

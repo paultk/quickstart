@@ -1,9 +1,9 @@
 import {Component, OnInit} from "@angular/core";
 
-import {User} from './user';
-import {UserService} from './user.service';
-import {Notification} from './notification';
-import {NotificationService} from './notification.service';
+import {User} from '../_models/user';
+import {UserService} from '../_services/user.service';
+import {Notification} from '../_models/notification';
+import {NotificationService} from '../_models/notification.service';
 
 @Component({
   moduleId: module.id,

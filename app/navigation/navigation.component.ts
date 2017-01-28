@@ -4,11 +4,11 @@
 
 import {Component, OnInit} from "@angular/core";
 
-import {User} from './user';
-import {UserService} from './user.service';
+import {User} from '../_models/user';
+import {UserService} from '../_services/user.service';
 import {Http, Headers} from "@angular/http";
-import {Router} from "@angular/router";
-import {AuthenticationService} from "./authentication.service";
+import {Router, ActivatedRoute} from "@angular/router";
+import {AuthenticationService} from "../_services/authentication.service";
 
 @Component({
   moduleId: module.id,
@@ -29,6 +29,7 @@ export class NavigationComponent implements OnInit{
     private userService: UserService,
     private http: Http,
     private router: Router,
+    private route: ActivatedRoute,
     private authService: AuthenticationService
 ) {}
 
@@ -38,9 +39,10 @@ export class NavigationComponent implements OnInit{
 
   /*goToCalendar() {
     this.router.navigate(['/calendar']);
-  }*/
+}*/
 
   setNumMessages(): void {
+   // this.selectedUser = this.authService.getGlobalUser();
     this.selectedUser = this.userService.getCurrentUser();
     const URL = 'http://localhost:8080/melding/get/ulest/ant';
     this.http.post(URL, JSON.stringify(this.selectedUser), {headers: this.headers},)
@@ -55,8 +57,8 @@ export class NavigationComponent implements OnInit{
 
   ngOnInit(): void {
     this.getUsers();
+   // this.selectedUser = this.authService.getGlobalUser();
     this.selectedUser = this.userService.getCurrentUser();
-    console.log(this.selectedUser);
     this.setNumMessages();
     setInterval(() => {this.setNumMessages();}, 2000);
   }

@@ -1,14 +1,14 @@
 import {Injectable} from '@angular/core';
 import {Http, Headers, Response} from '@angular/http';
 
-import {User} from "./user";
+import {User} from "../_models/user";
 import 'rxjs/add/operator/toPromise';
-import {JsonTestClass} from "./json-test-class";
-import {USERS} from './mock-ansatte';
-import {Stilling} from "./stilling";
+import {JsonTestClass} from "../_models/json-test-class";
+import {USERS} from '../_mock/mock-ansatte';
+import {Stilling} from "../_models/stilling";
 import  "rxjs/Rx";
 import {Observable} from "rxjs";
-import {Token} from "./token";
+import {Token} from "../_models/token";
 
 @Injectable()
 export class UserService {

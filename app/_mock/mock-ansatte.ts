@@ -2,7 +2,7 @@
  * Created by Trym Todalshaug on 12/01/2017.
  */
 
-import {User} from './user'
+import {User} from '../_models/user'
 
 export const USERS: User[] = [
   {brukerId: 1, passordId: 1, stillingsBeskrivelse: 'assistent', telefonNr: 41414141, stillingsProsent: 100,

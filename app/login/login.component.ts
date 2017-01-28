@@ -1,11 +1,11 @@
 import {Component} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { User } from './user';
-import {Authentication} from "./authentication";
+import { User } from '../_models/user';
+import {Authentication} from "../_models/authentication";
 import {Http, Headers} from "@angular/http";
-import {Token} from "./Token";
-import {AuthenticationService} from "./authentication.service";
+import {Token} from "../_models/token";
+import {AuthenticationService} from "../_services/authentication.service";
 
 @Component({
   moduleId: module.id,
@@ -20,7 +20,7 @@ export class LoginComponent {
   loading = false;
   returnUrl: string;
 
-  theUser: User[] = [];
+  theUser: User;
 
   constructor(
     private http: Http,
@@ -51,18 +51,18 @@ export class LoginComponent {
     this.router.navigate(['/navigation']);
   }
 
-  restOfSetUser(users: User[]): void {
+  restOfSetUser(user: User[]): void {
 
-    this.theUser = users.map(user => new User(user['brukerId'], user['passordId'], user['stillingsBeskrivelse'], user['telefonNr'], user['stillingsProsent'],
+    this.theUser = new User(user['brukerId'], user['passordId'], user['stillingsBeskrivelse'], user['telefonNr'], user['stillingsProsent'],
       user['timelonn'], user['admin'], user['fornavn'], user['etternavn'], user['epost'], user['avdelingId'], user['plaintextPassord'],
-      user['fodselsdato'], user['adresse'], user['by'], user['hash'], user['salt']));
+      user['fodselsdato'], user['adresse'], user['by'], user['hash'], user['salt']);
 
     localStorage.setItem('currentUser', JSON.stringify(this.theUser));
 
-    localStorage.setItem('currentUser', JSON.stringify(this.theUser[0]));
+    /*let globalDeadMan = this.authService.getGlobalUser();
+     console.log(globalDeadMan);*/
 
-    let globalDeadMan = this.authService.getGlobalUser();
-    console.log(globalDeadMan);
+    this.goToNavigation();
   }
 
 
