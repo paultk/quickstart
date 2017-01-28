@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers } from '@angular/http';
+import {Http, Headers, Response} from '@angular/http';
 
 import {Fravaer} from "../_models/fravaer";
 import 'rxjs/add/operator/toPromise';
 import {JsonTestClass} from "../_models/json-test-class";
 import {Vakt} from "../_models/vakt";
+import {Observable} from "rxjs";
 
 @Injectable()
 export class FravaerService {
@@ -54,6 +55,25 @@ export class FravaerService {
       .then(res => res.json().data as Fravaer[])
       .catch(this.handleError);
   }
+  getFravaers(): Promise<Fravaer[]> {
+    const URL = 'http://localhost:8080/fravaer/medbrukerogvakt';
+    let returnPromise: Fravaer[] = [];
+    let as: Object[] = [];
+
+    this.http.get(URL, {headers: this.headers},).toPromise()
+      .then(response => as = (JSON.parse(response['_body'])))
+      .then(() => as.forEach(
+        frav => returnPromise.push(new Fravaer(frav['brukerVaktId'], frav['fraTid'], frav['tilTid'],
+          frav['kommentar'], frav['brukerId'], frav['vaktId']))
+      ))
+      .catch(this.handleError);
+    return Promise.resolve(returnPromise);
+  }
+  getFravaers1(): Observable<Fravaer[]> {
+    const URL = 'http://localhost:8080/fravaer/medbrukerogvakt';
+    return this.http.get(URL, {headers: this.headers},).map((response: Response) =>
+      response.json());
+  }
 
   getVaktliste(): Promise<any> {
     const URL = 'http://localhost:8080/vakt/all';
@@ -65,7 +85,7 @@ export class FravaerService {
       .catch(this.handleError);
   }
 
-  getFravaerByUser(id: number): Promise<Fravaer[]> {
+  /*getFravaerByUser(id: number): Promise<Fravaer[]> {
     return this.getFravaerliste()
       .then(fravaerliste => fravaerliste.filter(fravaerliste => fravaerliste.brukerId === id));
   }
@@ -73,7 +93,7 @@ export class FravaerService {
   getFravaerByVakt(id: number): Promise<Fravaer[]> {
     return this.getFravaerliste()
       .then(fravaerliste => fravaerliste.filter(fravaerliste => fravaerliste.vaktId === id));
-  }
+  }*/
 
   getFravaerByDate(date: string): Promise<Fravaer[]> {
     return this.getFravaerliste()
@@ -88,6 +108,8 @@ export class FravaerService {
       //.then(res => res.json().data as Vakt[])
       .catch(this.handleError);
   }
+
+
 
   getVaktByDate2(date: string): Promise<Vakt[]> {
     const URL = `http://localhost:8080/vakt/all/${date}`;
