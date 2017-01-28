@@ -35,6 +35,13 @@ export class UserService {
       response.json());
   }
 
+  mapUsersFromObs(inn : User[]) : User[] {
+    return inn.map(usr => new User(usr['brukerId'], usr['passordId'], usr['stillingsBeskrivelse'],
+      usr['telefonNr'], usr['stillingsProsent'], usr['timelonn'], usr['admin'], usr['fornavn'],
+    usr['etternavn'], usr['epost'], usr['avdelingId'], "", "", "", "", usr['hash'], usr['salt']));
+  }
+
+
   getUsers(): Promise<User[]> {
     const URL = 'http://localhost:8080/bruker/alle';
     let returnPromise: User[] = [];

@@ -58,7 +58,7 @@ export class NotificationComponent implements OnInit {
   }
 
   updateMessages() {
-    this.notifService.getNotifications(this.user).then(notifications => this.notifications = notifications);
+    this.notifService.getNotifications1(this.user).subscribe(nots => this.notifications = this.notifService.mapNotifFromObs(nots));
   }
 
   slett(notification: Notification): void {
@@ -114,11 +114,14 @@ export class NotificationComponent implements OnInit {
     this.dato="";
     //document.getElementById("test2").innerHTML= "";
   }
+  updateUsers() : void {
+    this.userService.getUsers1().subscribe(ret => this.users = this.userService.mapUsersFromObs(ret));
+  }
 
   ngOnInit(): void {
     this.user = this.userService.getCurrentUser();
-    this.notifService.getNotifications(this.user).then(notifications => this.notifications = notifications);
-    this.userService.getUsers().then(users => this.users = users);
+    this.updateMessages();
+    this.updateUsers();
     this.notification = new Notification();
     this.fraUser = new User();
     /*setInterval(() => {

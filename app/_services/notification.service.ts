@@ -2,13 +2,14 @@
  * Created by Jens on 24-Jan-17.
  */
 import { Injectable } from '@angular/core';
-import { Http, Headers } from '@angular/http';
+import {Http, Headers, Response} from '@angular/http';
 
 import {Notification} from "../_models/notification";
 import 'rxjs/add/operator/toPromise';
 import {JsonTestClass} from "../_models/json-test-class";
 import {User} from "../_models/user";
 import {Fravaer} from "../_models/fravaer";
+import {Observable} from "rxjs";
 // import {USERS} from './mock-ansatte';
 
 @Injectable()
@@ -96,6 +97,15 @@ export class NotificationService {
       )))
       .catch(this.handleError);
     return Promise.resolve(returnPromise);
+  }
+  getNotifications1(user : User): Observable<Notification[]> {
+    const URL = 'http://localhost:8080/melding/get';
+    return this.http.post(URL, JSON.stringify(user), {headers: this.headers},).map((response: Response) =>
+      response.json());
+  }
+  mapNotifFromObs(notifs:Notification[]) : Notification[] {
+    return notifs.map(notif => new Notification(notif['meldingId'], notif['tilBrukerId'], notif['fraBrukerId'],
+    notif['overskrift'], notif['melding'], notif['tid_sendt'], notif['sett']));
   }
 
   //      .then(res => res.json().data as Fravaer[])

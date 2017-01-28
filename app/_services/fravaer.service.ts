@@ -74,6 +74,10 @@ export class FravaerService {
     return this.http.get(URL, {headers: this.headers},).map((response: Response) =>
       response.json());
   }
+  mapFravFromObs(fravaers:Fravaer[]) : Fravaer[] {
+    return fravaers.map(frav => new Fravaer(frav['brukerVaktId'], frav['fraTid'], frav['tilTid'],
+      frav['kommentar'], frav['brukerId'], frav['vaktId']));
+  }
 
   getVaktliste(): Promise<any> {
     const URL = 'http://localhost:8080/vakt/all';

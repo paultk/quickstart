@@ -37,22 +37,26 @@ export class UserinfoComponent implements OnInit{
 
   }
   searchUsers(): void {
-    if (this.searchtext == "") {
-      this.getUsers();
-    }
-    else {
-      this.searchtext = this.searchtext.toLowerCase();
-      console.log(this.searchtext);
-      let funnet: User[] = new Array();
-      for (let u of this.users) {
-        if (u.fornavn.toLowerCase().includes(this.searchtext) || u.etternavn.toLowerCase().includes(this.searchtext)
-          || u.epost.toLowerCase().includes(this.searchtext) || u.stillingsBeskrivelse.toLowerCase().includes(this.searchtext)
-          || u.telefonNr.toString().toLowerCase().includes(this.searchtext)) {
-          funnet.push(u);
+    // this.getUsers();
+    this.userService.getUsers1().subscribe(ret => {
+      this.users = this.userService.mapUsersFromObs(ret);
+      if (this.searchtext != "") {
+        let textlowercase = this.searchtext.toLowerCase();
+        console.log(textlowercase);
+        let funnet: User[] = new Array();
+        for (let u of this.users) {
+          if (u.fornavn.toLowerCase().includes(textlowercase) || u.etternavn.toLowerCase().includes(textlowercase)
+            || u.epost.toLowerCase().includes(textlowercase) || u.stillingsBeskrivelse.toLowerCase().includes(textlowercase)
+            || u.telefonNr.toString().toLowerCase().includes(textlowercase)) {
+            funnet.push(u);
+          }
         }
+        this.users = funnet;
       }
-      this.users = funnet;
-    }
+    });
+   /* else {
+      this.getUsers();
+    }*/
   }
 
   slett(user: User): void {
@@ -79,8 +83,14 @@ export class UserinfoComponent implements OnInit{
   }*/
 
   getUsers(): void {
+    this.userService.getUsers1().subscribe(ret => this.users = this.userService.mapUsersFromObs(ret));
+  }
+
+  getUserArray() : User[] {
     let response = this.userService.getUsers();
-    Promise.resolve(response).then(users => this.users = users).then(() => console.log(this.users));
+    let ret : User[] = new Array();
+    Promise.resolve(response).then(users => ret = users);
+    return ret;
   }
 
   ngOnInit(): void {

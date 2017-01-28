@@ -32,16 +32,11 @@ export class FravaerInfoComponent implements OnInit {
   ngOnInit():void {
     this.user = this.userService.getCurrentUser();
     // this.fravaerService.getFravaers().then(fravaers => this.fravaers = fravaers);
-    this.userService.getUsers().then(users => this.users = users);
-    this.fravaerService.getFravaers1().subscribe((obs) => this.lagFrav(obs));
+    this.userService.getUsers1().subscribe(ret => this.users = this.userService.mapUsersFromObs(ret));
+    this.fravaerService.getFravaers1().subscribe((obs) => this.fravaers = this.fravaerService.mapFravFromObs(obs));
     this.fraUser = new User();
   }
-  lagFrav(fravaers:Fravaer[]) : void {
-    this.fravaers = fravaers.map(frav => new Fravaer(frav['brukerVaktId'], frav['fraTid'], frav['tilTid'],
-      frav['kommentar'], frav['brukerId'], frav['vaktId']));
-    console.log(fravaers);
 
-  }
   selectUser(id : number){
     for (let u of this.users) {
       if (u.brukerId == id) {
