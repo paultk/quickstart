@@ -3,8 +3,6 @@ import {User} from "../_models/user";
 import {Shift} from "../_models/shift";
 import {ShiftService} from "../_services/shift.service";
 import {UserService} from "../_services/user.service";
-import {isUndefined} from "util";
-import {isNullOrUndefined} from "util";
 
 //todo: possibly fix the way percentage of workers handles shift display
 //todo: Alphabetize users displayed
@@ -27,9 +25,20 @@ export class CalendarComponent implements OnInit {
   ) {
   }
 
+  availableHour1= '23:00:00';
+  availableHour2= '07:00:00';
+
+  availables: any[] = [];
+
+  nullUser: User = new User(null, null, null, null, null, null, null, '', '');
+
+  vaktForBytte1 = new Shift(this.nullUser, 0, 0);
+  vaktForBytte2 = new Shift(this.nullUser, 0, 0);
+
+  byttVakt = false;
   cssClasses: string[] =[];
 
-
+  vaktansvarligIds: number[][]= [];
 
   // array where index = userId
   usersIndexed: User[] = [];
@@ -50,58 +59,50 @@ export class CalendarComponent implements OnInit {
   tempArr = new Array(24);
   months = ['Januar', 'Februar', 'Mars', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Desember'];
 
-  shifts: Shift[] = [
-    new Shift(null, null, null, 1),
-    new Shift(null, null, null, 49),
+  ordinaryTimeAndOvertime = {};
+  // 0 = HelsefagArbeider(30 %), 1 = Sykepleier(20%), 2 = Assistent
+  // Three shifts a day
+  percentageList = [[0,0,0], [0,0,0], [0,0,0]];
+  shiftPercentageOk = [false, false, false];
 
-  ];
+
+  availabilityClicked = false;
+  availabilityOk = false;
 
   restOfInit(users: User[]): void {
-
-
-    this.allUsers = users.map(user => new User(user['brukerId'], null, user['stillingsBeskrivelse'], null, user['stillingsProsent'],
+    this.allUsers = users.map(user =>  new User(user['brukerId'], null, user['stillingsBeskrivelse'], null, user['stillingsProsent'],
       null, null, user['fornavn'], user['etternavn'], user['epost'], user['avdelingId']
 
-
     ));
-    console.log(this.allUsers);
   }
 
 
   ngOnInit(): void {
 
-    this.cssClasses['Helsefagarbeider'] = 'yellowDiv';
-    this.cssClasses['Assistent'] = 'greenDiv';
-    this.cssClasses['Sykepleier'] = 'redDiv';
+    this.cssClasses['Helsefagarbeider'] = 'yellow-div';
+    this.cssClasses['Assistent'] = 'green-div';
+    this.cssClasses['Sykepleier'] = 'red-div';
 
-
-    let time1 = new Date();
-    console.log('zero' + time1);
 
 
     this.date = new Date();
 
-    this.shiftInForm = new Shift(new User(null, null, null, null, null, null, null, 'Fornavn', 'Etternavn'), 0, 0)
+    this.shiftInForm = new Shift(new User(null, null, null, null, null, null, null, 'Fornavn', 'Etternavn'), 0, 0);
 
 
     this.userService.getUsers1()
       .subscribe(
         (observable) => this.restOfInit(observable)
-      )    ;
-    // this.restOfInit();
-    // this.takenShift = this.shiftService.getShifts(new Date(1221));
+      );
+
     this.shiftsUsersCanWork = this.shiftService.getShiftsUsersCanWork(null);
     this.getShifts();
 
-    let time = new Date();
-    console.log('third' + time);
 
     this.setPercentageList();
     this.checkIfPercentageIsOk();
 
 
-    time = new Date();
-    console.log('fourth' + time);
 
   }
 
@@ -126,7 +127,6 @@ export class CalendarComponent implements OnInit {
       let shiftPeriod = this.daysShifts[currDate][i].toTime % 7;
       let stilling = stillingsIdStrings[this.usersIndexed[this.daysShifts[currDate][i].userId].stillingsBeskrivelse];
       this.percentageList[shiftPeriod][stilling] += 1;
-
     }
   }
 
@@ -143,17 +143,6 @@ export class CalendarComponent implements OnInit {
     }
   }
 
-  ordinaryTimeAndOvertime = {};
-  // 0 = HelsefagArbeider(30 %), 1 = Sykepleier(20%), 2 = Assistent
-  // Three shifts a day
-  percentageList = [[0,0,0], [0,0,0], [0,0,0]];
-  shiftPercentageOk = [false, false, false];
-
-  //todo: possibly limit getUsers to avdeling
-  // sets all the users from the db
-
-  //val[0]['vakt']['tilTid']
-
   getShifts(): void {
     this.shiftService.getShifts(this.date).subscribe(
       (val) => this.setShifts(val)
@@ -165,27 +154,30 @@ export class CalendarComponent implements OnInit {
   //todo: minimalize shift
   setShifts(shifts: any[]): void {
 
-    let time = new Date();
-    console.log('second' + time);
-
-    console.log('shifts:');
-    console.log(shifts);
     this.monthShifts = shifts;
     for (let i = 0; i < 32; i++) {
       this.daysShifts[i] = [];
     }
     for (let i in this.monthShifts) {
       let date = new Date(this.monthShifts[i]['vakt']['tilTid']);
+      let vaktAnsvarligId = this.monthShifts[i]['vakt']['vaktansvarligId'];
       // night = toTime = 0700, day = toTime = 1500, evening = toTime = 2300
-      let shiftDivided: number[] = [];
       let toTimeSliced = this.monthShifts[i]['vakt']['tilTid'].slice(11, 13) as number;
       let shiftDescript = 7;
       if (toTimeSliced > 7 && toTimeSliced < 1500) shiftDescript = 15;
       else if (toTimeSliced > 1500) shiftDescript = 23;
 
+      //todo: extremely hacky, should be fixed
+
+      this.vaktansvarligIds[date.getDate()] = [];
+      this.vaktansvarligIds[date.getDate()][shiftDescript] = vaktAnsvarligId;
+
+      let brukerId = (this.monthShifts[i]['brukerId'] == 0) ? vaktAnsvarligId : this.monthShifts[i]['brukerId'];
+
       this.daysShifts[date.getDate()].push(
-        new Shift(null, 0, shiftDescript, this.monthShifts[i]['brukerId'] ));
+        new Shift(null, 0, shiftDescript, brukerId, vaktAnsvarligId ));
     }
+
 
 
     let daysInMonth = new Date(this.date.getFullYear(), this.date.getMonth(), 0).getDate();
@@ -204,7 +196,7 @@ export class CalendarComponent implements OnInit {
 
     this.daysShifts.forEach(
       shiftarr =>
-        shiftarr.forEach( (shift) => this.ordinaryTimeAndOvertime[shift.userId][0] += 8));
+        shiftarr.forEach( (shift) => this.ordinaryTimeAndOvertime[shift.userId][0] -= 8));
 
 
     // loop to display ordinary time, or overtime
@@ -214,13 +206,18 @@ export class CalendarComponent implements OnInit {
         this.ordinaryTimeAndOvertime[i][0] = 0;
       }
     }
+
+    //  sets availables
+    this.shiftService.getAvailables(this.date).subscribe(res => this.setAvailables(res));
+
   }
   registerShift(): void {
-    console.log(this.daysShifts);
+    console.log(this.shiftInForm);
+    let dateStringed = this.date.toISOString().substr(0, 10)+ 'T';
+    console.log(dateStringed);
+    this.shiftService.addShift(this.shiftInForm, dateStringed);
 
   }
-
-
 
   changeDate(year: number, month: number, date: number): void {
 
@@ -239,10 +236,64 @@ export class CalendarComponent implements OnInit {
     if (this.date.getFullYear() != prevYear || this.date.getMonth() != prevMonth){
       this.getShifts();
 
-
     }
     this.setPercentageList();
     this.checkIfPercentageIsOk();
 
+  }
+
+  setshiftInChangeShift(shift: Shift) {
+    if(this.byttVakt) {
+      console.log(shift);
+      this.vaktForBytte1.user = this.usersIndexed[shift.userId];
+      // this.vaktForBytte1.fromTime = shift.userId;
+    }
+  }
+
+  switchShifts(): void {
+    console.log(this.vaktForBytte1);
+    console.log(this.vaktForBytte2);
+  }
+
+  setAvailables(availablesObs:any) {
+    this.availables = [];
+
+    for (let available of availablesObs) {
+      if (this.availables[available['tilTid'].substr(0, 7)] == undefined) {
+        this.availables[available['tilTid'].substr(0, 7)] = [];
+      }
+
+      this.availables[available['tilTid'].substr(0, 7)].push([this.usersIndexed[available['userId']], available['fraTid'], available['tilTid']]);
+    }
+    console.log(this.availables);
+  }
+
+  registerAvailability(val: any):void {
+    let date1 = this.date.toISOString().substr(0, 11);
+    let date2 = this.date.toISOString().substr(0, 11);
+    console.log(date1);
+    console.log(this.availableHour1);
+    console.log(this.availableHour2);
+
+    let returnObj = {'fraTid': (date1 + this.availableHour1), 'tilTid': (date2 + this.availableHour2), 'userId': this.getCurrentUser().brukerId};
+    console.log(returnObj);
+    console.log('here');
+    // console.log(this.shiftService.addAvailability(returnObj));
+    this.shiftService.addAvailability(returnObj).then(res => this.availabilityOk = res);
+
+    this.availabilityClicked = true;
+    console.log(this.availabilityOk);
+    // this.shiftService.addAvailability();
+
+  }
+
+  check(): void {
+
+    console.log(this.ordinaryTimeAndOvertime[1]);
+    // console.log(new Date(this.availables[0][2]));
+  }
+
+  getCurrentUser(): User{
+    return this.usersIndexed[1];
   }
 }
