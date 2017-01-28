@@ -1,8 +1,8 @@
 <div class="contents">
   <form>
     <!--<input type="text" name="search" placeholder="Søk">-->
-    <button class="btn btn-primary btn-large">Søk</button>
-    <user-search></user-search>
+    <button class="btn btn-primary btn-large" (click)="searchUsers(tekst)">Søk</button>
+    <input name="search" [(ngModel)]="searchtext" [value]="searchtext">{{searchtext}}
     <br>
     <a href="#">
       <span class="glyphicon glyphicon-plus"></span>
