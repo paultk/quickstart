@@ -85,8 +85,6 @@ export class ShiftService {
   addAvailability(availability: any): Promise<boolean> {
     let okResponse = false;
     let tempObj = JSON.stringify(availability);
-    console.log('json:');
-    console.log(tempObj);
 
 
     let url = 'http://localhost:8080/tilgjengelighet/add';
