@@ -1,0 +1,42 @@
+<div class="content">
+
+  <nav-bar-component [headerField2]="date.getFullYear()" [(headerField)]="date"
+                     (pushed)="changeDate(date.getFullYear() +$event, date.getMonth(), date.getDate())"></nav-bar-component>
+
+  <nav-bar-component [headerField2]="months[date.getMonth()]" [(headerField)]="date"
+                     (pushed)="changeDate(date.getFullYear(), date.getMonth() + $event, date.getDate())"></nav-bar-component>
+
+  <br>
+  <br>
+  <br>
+<table>
+  <thead>
+  <tr>
+    <th>Ansatt</th>
+    <th>Dato</th>
+    <th>Ansatt å bytte med</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let vaktBytte of vaktBytter" (click)="vaktBytteClicked = vaktBytte">
+    <td>{{usersIndexed[vaktBytte['brukerId1']].etternavn}}, {{usersIndexed[vaktBytte['brukerId1']].fornavn}}</td>
+    <td>{{shiftsIndexedById[vaktBytte['vaktId']].fromTime}}</td>
+    <td *ngIf="usersIndexed[vaktBytte['brukerId2']] != undefined">{{usersIndexed[vaktBytte['brukerId2']].etternavn}}, {{usersIndexed[vaktBytte['brukerId2']].fornavn}}</td>
+    <td *ngIf="usersIndexed[vaktBytte['brukerId2']] == undefined">
+      <select [(ngModel)]="brukerId2" name="userToReplaceWith">
+        <option *ngFor="let user of allUsers" value="{{user.brukerId}}">
+          {{user.etternavn}}, {{user.fornavn}}
+        </option>
+      </select>
+    </td>
+    <td><button (click)="godkjennVaktBytte(vaktBytte)">Godkjenn vaktbytte</button></td>
+    <td><button (click)="slettVaktBytte(vaktBytte)">Slett forespørsel</button></td>
+  </tr>
+
+
+  </tbody>
+
+</table>
+
+  <button (click)="check()">check</button>
+</div>
