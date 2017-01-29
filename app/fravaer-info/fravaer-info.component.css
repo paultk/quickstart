@@ -8,14 +8,17 @@
 }
 
 .btn {
-  float: left;
   width: 60px;
   box-sizing: border-box;
   height: 40px;
+  margin-left: 15px;
 
 }
 #registrer {
   width: 130px;
+  box-sizing: border-box;
+  height: 40px;
+  margin-left: 15px;
 }
 
 table {
@@ -23,7 +26,7 @@ table {
   border: 1px solid #ccc;
   border-radius: 4px;
   width: auto;
-  margin-top: 40px;
+  margin-top: 10px;
   text-align: left;
   /*overflow-y: scroll;*/
 }
@@ -70,6 +73,24 @@ tbody {
   margin-left: 20px;
 }
 
+#search{
+  margin-top: 10px;
+  height: 35px;
+  margin-left: 5px;
+  width: 305px;
+}
+
+#ny_fravaer{
+  margin-left: 10px;
+}
+
+#sl_fravaer{
+  margin-left: 10px;
+}
+
+.buttons{
+  margin-top: 15px;
+}
 /*
 .content {
   height: 100%;

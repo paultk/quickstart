@@ -3,11 +3,19 @@
 <form>
 
   <!--<input type="text" name="search" placeholder="Søk">-->
+  <input name="search" id="search" [(ngModel)]="searchtext" [value]="searchtext">
   <button class="btn btn-primary btn-large" (click)="searchUsers(tekst)">Søk</button>
-  <input name="search" [(ngModel)]="searchtext" [value]="searchtext">
-  <button type="submit"
-          class="btn btn-default btn-primary" id="registrer"  name="test3">Registrer fravær
-  </button>
+
+  <div class="buttons">
+    <a href="#">
+      <span id="ny_fravaer" class="glyphicon glyphicon-plus"></span>
+      Registrer fravær</a>
+
+    <a href="#" (click)="slett(selectedUser)" id="sl_ fravaer">
+      <span class="glyphicon glyphicon-minus"></span>
+      Slett fravær</a>
+
+  </div>
   <br>
 </form>
 
