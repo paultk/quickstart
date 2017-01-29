@@ -1,0 +1,159 @@
+.red-div, .green-div, .yellow-div {
+  width: 120px;
+  height: 30px;
+  color: whitesmoke;
+  border-collapse: collapse;
+  border-radius: 4px;
+  text-align: center;
+  vertical-align: middle;
+  margin: 5px 0;
+  padding: 5px 0;
+  float: none;
+}
+
+.red-div {
+  background-color: #a94442;
+  border: 1px solid #a94442;
+}
+
+.yellow-div {
+  background-color: #FFFF5A;
+  border: 1px solid #FFFF5A;
+}
+
+.green-div {
+  background-color: #42A948;
+  border: 1px solid #42A948;
+}
+
+.varsel {
+  color: #006D92;
+}
+
+.top, .bottom {
+  height: auto;
+  margin: 10px;
+  background-color: whitesmoke;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 10px;
+}
+
+.time {
+  display: block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  border-collapse: collapse;
+  width: auto;
+  margin-top: 10px;
+  text-align: left;
+  /*overflow-y: scroll;*/
+}
+
+tr {
+  width: auto;
+}
+
+th {
+  background-color: #006D92;
+  color: white;
+}
+
+.bruker {
+  width: 100px;
+  border-collapse: collapse;
+  border-top-left-radius: 4px;
+}
+
+.hour {
+  padding: 5px;
+}
+
+.last {
+  width: 200px !important;
+}
+
+.filler {
+  background-color: #006D92;
+  width: 16px !important;
+  padding: 0 !important;
+  border-collapse: collapse;
+  border-top-right-radius: 4px;
+}
+
+th, td{
+  padding: 10px;
+  width: auto;
+  border-bottom: 1px solid #ccc;
+}
+
+thead, tbody {
+  display: block;
+  width: auto;
+  font-size: 11px;
+  border-collapse: collapse;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+tbody {
+  overflow-y: scroll;
+  height: 200px;
+  overflow-x: auto;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+label {
+  float: left;
+  width: auto;
+  margin-right: 1px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.shift1 {
+  width: 300px;
+  margin: 5px 0;
+}
+
+.users {
+  font-size: 15px;
+  display: block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  border-collapse: collapse;
+  margin: 10px auto;
+  text-align: left;
+  float: left;
+  width: 100%;
+}
+
+.users > th, .users > tr {
+  width: 200px !important;
+}
+
+.availability {
+  font-size: 15px;
+  display: block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  border-collapse: collapse;
+  margin: 10px auto;
+  text-align: left;
+  float: left;
+  width: 100%;
+}
+
+.shift {
+  width: 50%;
+  height: auto;
+}
+
+.btn {
+  float: left;
+  width: auto;
+  box-sizing: border-box;
+  height: 40px;
+  margin: 10px 10px 10px 10px;
+}
