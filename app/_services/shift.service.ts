@@ -72,7 +72,7 @@ export class ShiftService {
   getAvailables(date: Date) {
     let dateTo = date.toISOString().substr(0, 7);
     let daysInMonthString = this.daysInMonth(date);
-    let url = `http://localhost:8080/tilgjengelighet/all/${dateTo}-01T00:00:00/${dateTo}-${daysInMonthString}T00:00:00`;
+    let url = `http://localhost:8080/tilgjengelighet/all/${dateTo}-01T00:00:00/${dateTo}-28T00:00:00`;
     console.log(url);
     return this.http.get(url, {headers : this.headers}).map(
       (response: Response) => response.json()
@@ -131,4 +131,6 @@ export class ShiftService {
       .then((response) => response.json())
       .catch( (error) => this.handleError(error));
   }
+
+
 }

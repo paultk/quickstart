@@ -225,28 +225,27 @@ export class UsersCalendarComponent implements OnInit {
   }
 
   changeDate(year: number, month: number, date: number): void {
-
+    console.log(this.userHaveShiftThisDay);
+    console.log(this.getCurrentUser().fornavn);
     let prevMonth = this.date.getMonth();
     let prevYear = this.date.getFullYear();
-
     if(this.date.getDate() != date) {
       this.date.setDate(date)
     }
     else if (this.date.getMonth() != month) {
-      this.date.setMonth(month);
+      if(Number(this.shiftService.daysInMonth(this.date)) > Number(this.shiftService.daysInMonth(new Date(year, month, date)))) {
+        this.date.setDate(Number(this.shiftService.daysInMonth(new Date(year, month, date))));
+        this.date.setMonth(month);
+      }
     }
     else if (this.date.getFullYear() != year) {
       this.date.setFullYear(year);
     }
     if (this.date.getFullYear() != prevYear || this.date.getMonth() != prevMonth){
       this.getShifts();
-
     }
     this.setPercentageList();
     this.checkIfPercentageIsOk();
-
-    this.userHaveShift();
-
   }
 
   userHaveShift(): Shift {

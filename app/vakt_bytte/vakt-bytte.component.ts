@@ -32,7 +32,6 @@ export class VaktBytteComponent implements OnInit{
   vaktBytter: any[];
   shiftsIndexedById: Shift[] = [];
 
-  vaktInForm: User;
 
   ngOnInit(): void {
     this.date = new Date();
@@ -69,8 +68,9 @@ export class VaktBytteComponent implements OnInit{
   //todo: minimalize shift
   setShifts(shifts: any[]): void {
 
-    console.log('here   :');
+    console.log('shifts');
     console.log(shifts);
+
     this.monthShifts = shifts;
 
     for (let i = 0; i < 32; i++) {
@@ -143,25 +143,22 @@ export class VaktBytteComponent implements OnInit{
   }
 
   changeDate(year: number, month: number, date: number): void {
-
     let prevMonth = this.date.getMonth();
     let prevYear = this.date.getFullYear();
-
     if(this.date.getDate() != date) {
       this.date.setDate(date)
     }
     else if (this.date.getMonth() != month) {
-      this.date.setMonth(month);
+      if(Number(this.shiftService.daysInMonth(this.date)) > Number(this.shiftService.daysInMonth(new Date(year, month, date)))) {
+        this.date.setDate(Number(this.shiftService.daysInMonth(new Date(year, month, date))));
+        this.date.setMonth(month);
+      }
     }
     else if (this.date.getFullYear() != year) {
       this.date.setFullYear(year);
     }
     if (this.date.getFullYear() != prevYear || this.date.getMonth() != prevMonth){
       this.getShifts();
-
     }
-    /*this.setPercentageList();
-    this.checkIfPercentageIsOk();
-*/
   }
 }
