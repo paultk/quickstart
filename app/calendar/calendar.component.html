@@ -93,124 +93,163 @@
     </div>
 
     <div class="bytt-vakt">
-      <button class="btn2 btn btn-primary btn-large" (click)="byttVakt = true">Bytt vakter</button>
-
-      <div *ngIf="byttVakt">
-        <form>
-          <select class="form-control" [(ngModel)]="vaktForBytte1.user" name="first">
-            <option *ngFor="let shift of daysShifts[date.getDate()]">{{usersIndexed[shift.userId].etternavn}},
-              {{usersIndexed[shift.userId].fornavn}}
-            </option>
-          </select>
-          <select class="form-control" [(ngModel)]="vaktForBytte2.user" name="first">
-            <option *ngFor="let shift of daysShifts[date.getDate()]">{{usersIndexed[shift.userId].etternavn}},
-              {{usersIndexed[shift.userId].fornavn}}
-            </option>
-          </select>
-          <button class="btn2 btn btn-primary btn-large" (click)="switchShifts()">Bytt</button>
-        </form>
-      </div>
+      <ngb-accordion #acc="ngbAccordion" activeIds="" class="acc">
+        <ngb-panel>
+          <template ngbPanelTitle>
+            <span class="acc-title">Bytt vakt</span>
+          </template>
+          <template ngbPanelContent>
+            <div class="form-class">
+              <form>
+                <label for="bytt-select1">Vakt å bytte</label>
+                <select class="bytt-select1 form-control" id="bytt-select1" [(ngModel)]="vaktForBytte1.user" name="first">
+                  <option *ngFor="let shift of daysShifts[date.getDate()]">{{usersIndexed[shift.userId].etternavn}},
+                    {{usersIndexed[shift.userId].fornavn}}
+                  </option>
+                </select>
+                <!--Denne skal bort etterhvert
+                <select class="bytt-select form-control" id="bytt-select2" [(ngModel)]="vaktForBytte2.user" name="first">
+                  <option *ngFor="let shift of daysShifts[date.getDate()]">{{usersIndexed[shift.userId].etternavn}},
+                    {{usersIndexed[shift.userId].fornavn}}
+                  </option>
+                </select>
+              -->
+                <button class="btn2 btn btn-primary btn-large" (click)="switchShifts()">Bytt</button>
+              </form>
+            </div>
+          </template>
+        </ngb-panel>
+      </ngb-accordion>
     </div>
   </div> <!--top-->
-  <div class="bottom">
-    <form class="shift1">
-      <label for="avdeling1">Avdeling</label>
-      <select value="dsf" class="form-control"
-              id="avdeling1" required>
-        <option value="1">Solbakken</option>
-        <option>2</option>
-        <option>3</option>
-      </select>
-    </form>
 
-    <table class="users table-striped table-hover">
-      <thead>
-      <tr>
-        <th class="bruker">Bruker</th>
-        <th>Ordinær tid igjen</th>
-        <th>Overtid</th>
-        <th class="last">Stillingsprosent</th>
-        <th class="filler"></th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let user of allUsers" (click)="setForm(user)">
-        <!--[class.selected]="shift"-->
+  <div class="accordion-container">
+    <ngb-accordion #acc="ngbAccordion" activeIds="" class="acc">
+      <ngb-panel class="ngbpanel">
+        <template ngbPanelTitle>
+          <span class="acc-title">Registrer tilgjengelighet</span>
+        </template>
+        <template ngbPanelContent>
+          <div class="middle">
+            <div class="tab2">
+              <label for="tilgjengelige-for-dag">Tilgjengelige denne dagen</label><br>
+              <table class="availability table-striped table-hover" id="tilgjengelige-for-dag">
+                <thead>
+                <tr>
+                  <th class="bruker">Ansatt</th>
+                  <th>Fra</th>
+                  <th class="last">Til</th>
+                  <th class="filler"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let available of availables[date.toISOString().substr(0,10)]">
+                  <td class="bruker">{{available[0].etternavn}}, {{available[0].fornavn}}</td>
+                  <td>{{available[1].substr(11, 5)}}</td>
+                  <td class="last">{{available[2].substr(11, 5)}}</td>
+                </tr>
+                </tbody>
+                <!--<tr *ngFor="let shift of shiftsUsersCanWork" (click)="setForm(shift)">
+                  <td>{{usersIndexed[shift.brukerId]}}</td>
+                  <td>{{shift.fromTime}}</td>
+                  <td>{{shift.toTime}}</td></tr>-->
+              </table>
+            </div>
 
-        <td>{{user.etternavn}}, {{user.fornavn}}</td>
-        <td>{{user.brukerId}}</td>
-        <td>{{ordinaryTimeAndOvertime[user.brukerId]}}</td>
-        <td>{{user.stillingsProsent}}</td>
-        <!--<td>{{ordinaryTimeAndOvertime?[user.brukerId][1]}}</td>-->
-      </tr>
-      </tbody>
-    </table>
+            <div class="reg-tilgjengelighet">
+              <label>Fra</label>
+              <select class="form-control" [(ngModel)]="availableHour1">
+                <option value="23:00:00">23:00</option>
+                <option value="07:00:00">07:00</option>
+                <option value="15:00:00">15:00</option>
+              </select>
 
-    <table class="availability table-striped table-hover">
-      <thead>
-      <tr>
-        <th class="bruker">Ansatt</th>
-        <th>Fra</th>
-        <th class="last">Til</th>
-        <th class="filler"></th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let available of availables[date.toISOString().substr(0,7)]">
-        <td>{{available[0].etternavn}}, {{available[0].fornavn}}</td>
-        <td>{{available[1].substr(11, 5)}}</td>
-        <td>{{available[2].substr(11, 5)}}</td>
-      </tr>
-      </tbody>
-      <!--<tr *ngFor="let shift of shiftsUsersCanWork" (click)="setForm(shift)">
-        <td>{{usersIndexed[shift.brukerId]}}</td>
-        <td>{{shift.fromTime}}</td>
-        <td>{{shift.toTime}}</td></tr>-->
-    </table>
-    <div>
-      <h1>Registrer Tilgjengelighet</h1>
-      <label>Fra</label>
-      <select [(ngModel)]="availableHour1">
-        <option value="23:00:00">23:00</option>
-        <option value="07:00:00">07:00</option>
-        <option value="15:00:00">15:00</option>
-      </select>
-      <label>Til</label>
-      <select [(ngModel)]="availableHour2">
-        <option value="07:00:00">15:00</option>
-        <option value="15:00:00">07:00</option>
-        <option value="23:00:00">23:00</option>
-      </select>
-      <button (click)="registerAvailability()">Registrer</button>
+              <label>Til</label>
+              <select class="form-control" [(ngModel)]="availableHour2">
+                <option value="07:00:00">15:00</option>
+                <option value="15:00:00">07:00</option>
+                <option value="23:00:00">23:00</option>
+              </select>
+              <button class="btn3 btn btn-primary btn-large" (click)="registerAvailability()">Registrer</button>
 
-      <div *ngIf="availabilityClicked">
-        <h1>clicked</h1>
-        <div *ngIf="availabilityOk">
-          <h1>Tilgjengelighet ble registrert</h1>
-        </div>
-        <div *ngIf="!availabilityOk">
-          <h1>Noe gikk galt! Skyt IT-gutta</h1>
-        </div>
-      </div>
-    </div>
+              <div *ngIf="availabilityClicked">
+                <h1>clicked</h1>
+                <div *ngIf="availabilityOk">
+                  <h1>Tilgjengelighet ble registrert</h1>
+                </div>
+                <div *ngIf="!availabilityOk">
+                  <h1>Noe gikk galt! Skyt IT-gutta</h1>
+                </div>
+              </div>
+            </div>
+          </div> <!--middle-->
+        </template>
+      </ngb-panel>
+      <ngb-panel class="ngbpanel">
+        <template ngbPanelTitle>
+          <span class="acc-title2">Registrer ny vakt</span>
+        </template>
+        <template ngbPanelContent>
+          <div class="bottom">
+            <form class="shift1">
+              <label for="avdeling1">Avdeling</label>
+              <select value="dsf" class="form-control"
+                      id="avdeling1" required>
+                <option value="1">Solbakken</option>
+                <option>2</option>
+                <option>3</option>
+              </select>
+            </form>
 
-    <h3>Registrer vakt</h3>
-    <form class="shift">
-      <input-field [field]="'Ansatt'" [disabled]="true"
-                   [fieldValue]="(shiftInForm?.user.etternavn + ', ' + shiftInForm?.user.fornavn)"></input-field>
 
-      <label for="avdeling">Skift</label>
-      <select class="selects form-control" id="avdeling"
-              required
-              name="avdelingId"
-              [(ngModel)]="shiftInForm.toTime" name="toTime">
-        <option [value]="'0'" selected>23:00-07:00</option>
-        <option [value]="'1'">07:00-15:00</option>
-        <option [value]="'2'">15:00-23:00</option>
-      </select>
-    </form>
-  </div> <!--Bottom-->
-  <button class="btn btn-primary btn-large" type="button" (click)="registerShift()">Registrer skift</button>
-  <button class="btn btn-primary btn-large" (click)="check()">check</button>
+            <div class="tab1">
+              <label for="bruker-for-avdeling">Brukere for avdeling</label>
+              <table class="users table-striped table-hover" id="bruker-for-avdeling">
+                <thead>
+                <tr>
+                  <th class="bruker">Bruker</th>
+                  <th class="row2">Ordinær tid igjen</th>
+                  <th>Overtid</th>
+                  <th class="last">Stillingsprosent</th>
+                  <th class="filler"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let user of allUsers" (click)="setForm(user)">
+                  <!--[class.selected]="shift"-->
+
+                  <td class="bruker">{{user.etternavn}}, {{user.fornavn}}</td>
+                  <td>{{user.brukerId}}</td>
+                  <td>{{ordinaryTimeAndOvertime[user.brukerId]}}</td>
+                  <td class="last">{{user.stillingsProsent}}</td>
+                  <!--<td>{{ordinaryTimeAndOvertime?[user.brukerId][1]}}</td>-->
+                </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <form class="shift">
+              <input-field [field]="'Ansatt'" [disabled]="true"
+                           [fieldValue]="(shiftInForm?.user.etternavn + ', ' + shiftInForm?.user.fornavn)"></input-field>
+
+              <label for="avdeling">Skift</label>
+              <select class="selects form-control" id="avdeling"
+                      required
+                      name="avdelingId"
+                      [(ngModel)]="shiftInForm.toTime" name="toTime">
+                <option [value]="'0'" selected>23:00-07:00</option>
+                <option [value]="'1'">07:00-15:00</option>
+                <option [value]="'2'">15:00-23:00</option>
+              </select>
+
+              <button class="btn4 btn btn-primary btn-large" type="button" (click)="registerShift()">Registrer skift
+              </button>
+              <button class="btn4 btn btn-primary btn-large" (click)="check()">check</button>
+            </form>
+          </div> <!--Bottom-->
+        </template>
+      </ngb-panel>
+    </ngb-accordion>
+  </div>
+
 </div>
-

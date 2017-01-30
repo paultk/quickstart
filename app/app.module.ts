@@ -29,6 +29,9 @@ import {UserSearchcomponent} from './userinfo/user-search.component'
 import {AppRoutingModule} from './app-routing.module';
 import {AuthGuard} from "./_guards/auth.guard";
 import {FravaerInfoComponent} from "./fravaer-info/fravaer-info.component";
+import {AdminCalendarComponent} from "./calendar/calendar_for_admin/admin-calendar.component";
+import {UsersCalendarComponent} from "./calendar/calendar_for_user/users-calendar.component";
+import {VaktBytteComponent} from "./vakt_bytte/vakt-bytte.component";
 
 @NgModule({
   imports: [
@@ -51,6 +54,9 @@ import {FravaerInfoComponent} from "./fravaer-info/fravaer-info.component";
     FravaerComponent,
     FaqComponent,
     CalendarComponent,
+    AdminCalendarComponent,
+    UsersCalendarComponent,
+    VaktBytteComponent,
     NavBarComponent,
     FaqComponent,
     NotificationComponent,

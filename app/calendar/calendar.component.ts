@@ -1,8 +1,9 @@
-import {Component, Input, OnInit} from "@angular/core";
+import {Component, Input, OnInit, ViewChild, ElementRef} from "@angular/core";
 import {User} from "../_models/user";
 import {Shift} from "../_models/shift";
 import {ShiftService} from "../_services/shift.service";
 import {UserService} from "../_services/user.service";
+declare var $:JQueryStatic;
 
 //todo: possibly fix the way percentage of workers handles shift display
 //todo: Alphabetize users displayed
@@ -22,8 +23,24 @@ export class CalendarComponent implements OnInit {
   constructor(
     private shiftService: ShiftService,
     private userService: UserService
-  ) {
-  }
+  ) {}
+
+  hidden: boolean = false;
+
+  //Javascript for hiding/showing divs
+  /*@ViewChild('selectElem') el:ElementRef;
+  $('#select-id').bind('change', function(event) {
+    var i= $('#yourselectorid').val();
+
+    if(i=="sometext") { // equal to a selection option
+      $('#divid').show();
+    }
+    else if(i=="othertext") {
+      $('#divid').hide(); // hide the first one
+      $('#divid2').show(); // show the other one
+
+    }
+  });*/
 
   availableHour1= '23:00:00';
   availableHour2= '07:00:00';
@@ -35,7 +52,7 @@ export class CalendarComponent implements OnInit {
   vaktForBytte1 = new Shift(this.nullUser, 0, 0);
   vaktForBytte2 = new Shift(this.nullUser, 0, 0);
 
-  byttVakt = false;
+  byttVakt = true;
   cssClasses: string[] =[];
 
   vaktansvarligIds: number[][]= [];
@@ -68,6 +85,25 @@ export class CalendarComponent implements OnInit {
 
   availabilityClicked = false;
   availabilityOk = false;
+
+  toggleHidden(val: string): void {
+
+    if (val == "Registrer tilgjengelighet") {
+      this.hidden = false;
+    } else if (val == "Registrer vakt") {
+      this.hidden = true;
+    }
+
+    if (val == "byttVakt!") {
+      if (this.byttVakt) {
+        this.byttVakt = false;
+      } else {
+        this.byttVakt = true;
+      }
+    }
+  }
+
+
 
   restOfInit(users: User[]): void {
     this.allUsers = users.map(user =>  new User(user['brukerId'], null, user['stillingsBeskrivelse'], null, user['stillingsProsent'],

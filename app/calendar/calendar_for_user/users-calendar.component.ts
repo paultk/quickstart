@@ -14,7 +14,7 @@ import {Shift} from "../../_models/shift";
 
 @Component({
   moduleId: module.id,
-  selector: 'calendar-component',
+  selector: 'users-calendar-component',
   templateUrl: 'users-calendar.component.html',
   styleUrls: [ 'users-calendar.component.css']
 })
@@ -80,9 +80,9 @@ export class UsersCalendarComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.cssClasses['Helsefagarbeider'] = 'yellow-div';
-    this.cssClasses['Assistent'] = 'green-div';
-    this.cssClasses['Sykepleier'] = 'red-div';
+    this.cssClasses['Helsefagarbeider'] = 'yellow-div-table';
+    this.cssClasses['Assistent'] = 'green-div-table';
+    this.cssClasses['Sykepleier'] = 'red-div-table';
 
 
 
