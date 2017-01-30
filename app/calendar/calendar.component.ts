@@ -280,15 +280,14 @@ export class CalendarComponent implements OnInit {
 
   setshiftInChangeShift(shift: Shift) {
     if(this.byttVakt) {
-      console.log(shift);
       this.vaktForBytte1.user = this.usersIndexed[shift.userId];
       // this.vaktForBytte1.fromTime = shift.userId;
     }
   }
 
   switchShifts(): void {
-    console.log(this.vaktForBytte1);
-    console.log(this.vaktForBytte2);
+    this.shiftService.changeShifts();
+
   }
 
   setAvailables(availablesObs:any) {
@@ -301,31 +300,21 @@ export class CalendarComponent implements OnInit {
 
       this.availables[available['tilTid'].substr(0, 7)].push([this.usersIndexed[available['userId']], available['fraTid'], available['tilTid']]);
     }
-    console.log(this.availables);
   }
 
   registerAvailability(val: any):void {
     let date1 = this.date.toISOString().substr(0, 11);
     let date2 = this.date.toISOString().substr(0, 11);
-    console.log(date1);
-    console.log(this.availableHour1);
-    console.log(this.availableHour2);
 
     let returnObj = {'fraTid': (date1 + this.availableHour1), 'tilTid': (date2 + this.availableHour2), 'userId': this.getCurrentUser().brukerId};
-    console.log(returnObj);
-    console.log('here');
-    // console.log(this.shiftService.addAvailability(returnObj));
-    //this.shiftService.addAvailability(returnObj).then(res => this.availabilityOk = res);
+    this.shiftService.addAvailability(returnObj).then(res => this.availabilityOk = res);
 
     this.availabilityClicked = true;
-    console.log(this.availabilityOk);
-    // this.shiftService.addAvailability();
 
   }
 
   check(): void {
 
-    console.log(this.ordinaryTimeAndOvertime[1]);
     // console.log(new Date(this.availables[0][2]));
   }
 
