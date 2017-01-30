@@ -7,42 +7,34 @@
                      (pushed)="changeDate(date.getFullYear(), date.getMonth() + $event, date.getDate())"></nav-bar-component>
 
   <table class="vakt-bytte-table table-striped table-hover">
-    <thead>
     <tr>
       <th class="bruker">Ansatt</th>
-      <th>Dato</th>
+      <th class="dato">Dato</th>
       <th class="bruker">Ansatt å bytte med</th>
-      <th class="filler"></th>
+      <th class="knapp"></th>
+      <th class="knapp"></th>
     </tr>
-    </thead>
-    <tbody>
-    <tr>
-      <td class="bruker">knut arne person</td>
-      <td>20/06/1995</td>
-      <td class="bruker">johan mc. kompisen</td>
-    </tr>
+
     <tr *ngFor="let vaktBytte of vaktBytter" (click)="vaktBytteClicked = vaktBytte">
       <td class="bruker">{{usersIndexed[vaktBytte['brukerId1']].etternavn}}, {{usersIndexed[vaktBytte['brukerId1']].fornavn}}</td>
-      <td>{{shiftsIndexedById[vaktBytte['vaktId']].fromTime}}</td>
+      <td class="dato">{{shiftsIndexedById[vaktBytte['vaktId']].fromTime}}</td>
       <td class="bruker" *ngIf="usersIndexed[vaktBytte['brukerId2']] != undefined">{{usersIndexed[vaktBytte['brukerId2']].etternavn}},
         {{usersIndexed[vaktBytte['brukerId2']].fornavn}}
       </td>
-      <td *ngIf="usersIndexed[vaktBytte['brukerId2']] == undefined">
+      <td class="bruker" *ngIf="usersIndexed[vaktBytte['brukerId2']] == undefined">
         <select class="form-control" [(ngModel)]="brukerId2" name="userToReplaceWith">
           <option *ngFor="let user of allUsers" value="{{user.brukerId}}">
             {{user.etternavn}}, {{user.fornavn}}
           </option>
         </select>
       </td>
-      <td>
+      <td class="knapp">
         <button class="btn2 btn btn-primary btn-large" (click)="godkjennVaktBytte(vaktBytte)">Godkjenn vaktbytte</button>
       </td>
-      <td>
+      <td class="knapp">
         <button class="btn2 btn btn-primary btn-large" (click)="slettVaktBytte(vaktBytte)">Slett forespørsel</button>
       </td>
     </tr>
-    </tbody>
-
   </table>
 
   <button class="btn1 btn btn-primary btn-large" (click)="check()">check</button>
