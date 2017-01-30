@@ -8,43 +8,38 @@
 }
 
 .vakt-bytte-table {
-  display: block;
-  width: 500px;
+  display: table;
+  width: auto;
   height: auto;
   border: 1px solid #ccc;
   margin: 20px 0;
-}
-
-thead {
-  display: block;
-  width: auto;
-  height: auto;
-  color: white;
-  font-size: 15px;
-}
-
-tbody {
-  display: block;
-  width: auto;
-  height: 200px;
   background-color: white;
-  overflow-y: scroll;
 }
 
 th {
   background-color: #006D92;
-  /*border: 1px solid #ccc;*/
+  color: white;
   width: 100px;
   height: 30px;
+  padding: 5px;
 }
 
 td {
   width: 100px;
   border: 1px solid #ccc;
+  padding: 5px;
 }
 
 .bruker {
-  width: 200px;
+  width: 200px !important;
+}
+
+.dato {
+  width: 150px !important;
+}
+
+.knapp {
+  width: 100px !important;
 }
 
 .filler {
